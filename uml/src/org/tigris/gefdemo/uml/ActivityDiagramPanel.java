@@ -33,7 +33,7 @@ public class ActivityDiagramPanel extends DiagramPanel {
         getActions().add(new CmdSetMode(ModeCreatePolyEdge.class, "edgeClass", UmlAssociationClass.class, "AssociationClass"));
         add(makeToolBar(), BorderLayout.NORTH);
         
-        ClassDiagramRenderer renderer = new ClassDiagramRenderer();
+        FigFactory renderer = new FigFactory();
         getGraph().setGraphNodeRenderer(renderer);
         getGraph().setGraphEdgeRenderer(renderer);
     }

@@ -60,10 +60,10 @@ import org.tigris.gefdemo.uml.ui.ModelElementEdgeFig;
  * This class defines a renderer object for UML Class Diagrams.
  */
 
-public class ClassDiagramRenderer implements GraphNodeRenderer,
+public class FigFactory implements GraphNodeRenderer,
         GraphEdgeRenderer {
 
-    private static Log LOG = LogFactory.getLog(ClassDiagramRenderer.class);
+    private static Log LOG = LogFactory.getLog(FigFactory.class);
 
     /** Return a Fig that can be used to represent the given node */
     public FigNode getFigNodeFor(GraphModel gm, Layer lay, Object node,
