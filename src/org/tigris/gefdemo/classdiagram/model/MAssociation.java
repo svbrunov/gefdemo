@@ -56,13 +56,6 @@ public class MAssociation extends NetNode implements Serializable {
         return getName();
     }
     
-    /** Add the constraint that PortEther's can only be connected to
-     * other ports of the same type. */
-    public boolean canConnectTo(GraphModel gm, Object otherNode, Object otherPort, Object myPort) {
-        return (super.canConnectTo(gm, otherNode, otherPort, myPort)) &&
-            (otherNode.getClass() == this.getClass());
-    }
-    
     public String toString() {
         return name;
     }

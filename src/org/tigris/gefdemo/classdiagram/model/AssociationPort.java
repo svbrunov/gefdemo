@@ -32,11 +32,4 @@ public class AssociationPort extends NetPort implements Serializable {
         if (LOG.isDebugEnabled()) LOG.debug("Getting default edge for a DependsPort");
         return null;
     }
-
-    /** Add the constraint that DependsPorts can only be connected to
-     * other ports of the same type. */
-    public boolean canConnectTo(GraphModel gm, Object anotherPort) {
-	return (super.canConnectTo(gm, anotherPort)) &&
-	    (anotherPort.getClass() == this.getClass());
-    }
 }

@@ -33,11 +33,6 @@ abstract public class MClassifier extends NetNode implements Serializable {
         return getName();
     }
     
-    public boolean canConnectTo(GraphModel gm, Object otherNode, Object otherPort, Object myPort) {
-        return (super.canConnectTo(gm, otherNode, otherPort, myPort)) &&
-            (otherNode.getClass() == this.getClass());
-    }
-    
     public String toString() {
         return name;
     }
