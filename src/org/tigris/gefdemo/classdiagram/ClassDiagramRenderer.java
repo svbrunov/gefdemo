@@ -62,9 +62,9 @@ public class ClassDiagramRenderer
     /** Return a Fig that can be used to represent the given node */
     public FigNode getFigNodeFor(GraphModel gm, Layer lay, Object node) {
         LOG.debug("getFigNodeFor node " + node.getClass().getName());
-        if (node instanceof UmlClass) return new ClassFig(gm, node);
-        else if (node instanceof UmlInterface) return new InterfaceFig(gm, node);
-        else if (node instanceof UmlAssociation) return new AssociationFig(gm, node);
+        if (node instanceof UmlClass) return new ClassFig(node);
+        else if (node instanceof UmlInterface) return new InterfaceFig(node);
+        else if (node instanceof UmlAssociation) return new AssociationFig(node);
         LOG.error("Unable to create FigNode for " + node);
         return null;
     }
