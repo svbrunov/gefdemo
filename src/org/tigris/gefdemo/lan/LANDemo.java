@@ -15,7 +15,7 @@ import org.tigris.gef.util.ResourceLoader;
  * application.
  */
 
-public class Main {
+public class LANDemo {
 
   ////////////////////////////////////////////////////////////////
   // instance variables
@@ -25,7 +25,7 @@ public class Main {
   ////////////////////////////////////////////////////////////////
   // constructors
 
-  public Main() {
+  public LANDemo() {
       // init localizer and resourceloader
       //JR-TODO: localization of LAN demo
       Localizer.addResource("GefBase","org.tigris.gef.base.BaseResourceBundle");
@@ -54,7 +54,7 @@ public class Main {
   // main
 
   public static void main(String args[]) {
-    Main lan_demo = new Main();
+    LANDemo demo = new LANDemo();
   }
 
 }

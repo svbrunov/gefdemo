@@ -12,7 +12,7 @@ public class Main {
     
     public static void main(String args[]) {
 	// Run the LAN demo
-	org.tigris.gefdemo.lan.Main demo1 = new org.tigris.gefdemo.lan.Main();
+	org.tigris.gefdemo.lan.LANDemo demo1 = new org.tigris.gefdemo.lan.LANDemo();
     }
     
 } /* end class Main */
