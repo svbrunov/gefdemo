@@ -1,5 +1,7 @@
 package org.tigris.gefdemo;
 
+import org.tigris.gefdemo.basic.BasicApplication;
+import org.tigris.gefdemo.lan.LANDemo;
 
 /** Launch all GEF demos at the same time.
     TODO: Implement a new window to give a menu of demos.
@@ -12,7 +14,8 @@ public class Main {
     
     public static void main(String args[]) {
 	// Run the LAN demo
-	org.tigris.gefdemo.lan.LANDemo demo1 = new org.tigris.gefdemo.lan.LANDemo();
+	BasicApplication demo1 = new BasicApplication();
+	LANDemo demo2 = new LANDemo();
     }
     
 } /* end class Main */
