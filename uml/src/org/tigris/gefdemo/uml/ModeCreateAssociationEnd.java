@@ -141,7 +141,7 @@ public class ModeCreateAssociationEnd extends ModeCreatePolyEdge {
         UmlGraphModel gm = (UmlGraphModel)editor.getGraphModel();
         GraphNodeRenderer renderer = editor.getGraphNodeRenderer();
         Layer lay = editor.getLayerManager().getActiveLayer();
-        FigNode figNode = renderer.getFigNodeFor(gm, lay, association);
+        FigNode figNode = renderer.getFigNodeFor(gm, lay, association, null);
         figNode.setX(me.getX() - figNode.getWidth()/2);
         figNode.setY(me.getY() - figNode.getHeight()/2);
         figNode.setVisible(false);

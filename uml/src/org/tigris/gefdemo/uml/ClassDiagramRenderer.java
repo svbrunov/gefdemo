@@ -29,9 +29,12 @@
 
 package org.tigris.gefdemo.uml;
 
+import java.util.Map;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import org.tigris.gef.base.Globals;
 import org.tigris.gef.base.Layer;
 import org.tigris.gef.graph.GraphEdgeRenderer;
 import org.tigris.gef.graph.GraphModel;
@@ -52,6 +55,7 @@ import org.tigris.gefdemo.uml.ui.ClassNodeFig;
 import org.tigris.gefdemo.uml.ui.DependencyEdgeFig;
 import org.tigris.gefdemo.uml.ui.FigAssociationClass;
 import org.tigris.gefdemo.uml.ui.InterfaceNodeFig;
+import org.tigris.gefdemo.uml.ui.ModelElementEdgeFig;
 
 /** 
  * This class defines a renderer object for UML Class Diagrams.
@@ -63,7 +67,12 @@ public class ClassDiagramRenderer
     private static Log LOG = LogFactory.getLog(ClassDiagramRenderer.class);
 
     /** Return a Fig that can be used to represent the given node */
-    public FigNode getFigNodeFor(GraphModel gm, Layer lay, Object node) {
+    public FigNode getFigNodeFor(GraphModel gm, Layer lay, Object node, Map styleAttributes) {
+        return getFigNodeFor(node, styleAttributes);
+    }
+
+    /** Return a Fig that can be used to represent the given node */
+    public FigNode getFigNodeFor(Object node, Map styleAttributes) {
         LOG.debug("getFigNodeFor node " + node);
         if (node instanceof UmlClass) return new ClassNodeFig(node);
         else if (node instanceof UmlInterface) return new InterfaceNodeFig(node);
@@ -73,76 +82,56 @@ public class ClassDiagramRenderer
     }
 
     /** Return a Fig that can be used to represent the given edge */
-    public FigEdge getFigEdgeFor(GraphModel gm, Layer lay, Object edge) {
+    public FigEdge getFigEdgeFor(Object edge, Map styleAttributes) {
+        Layer lay = Globals.curEditor().getLayerManager().getActiveLayer();
+        return getFigEdgeFor(null, lay, edge, styleAttributes);
+    }
+    
+    /** Return a Fig that can be used to represent the given edge */
+    public FigEdge getFigEdgeFor(GraphModel gm, Layer lay, Object edge, Map styleAttributes) {
         LOG.debug("making figedge for " + edge);
+        ModelElementEdgeFig newEdgeFig = null;
+        Object source = null;
+        Object dest = null;
+        
         if (edge instanceof UmlAssociationEnd) {
             UmlAssociationEnd associationEnd = (UmlAssociationEnd) edge;
-            AssociationEndEdgeFig ascEndFig = new AssociationEndEdgeFig(edge, lay);
-            UmlAssociation association = associationEnd.getAssociation();
-            UmlClassifier classifier = associationEnd.getClassifier();
-
-            FigNode associationFN = (FigNode) lay.presentationFor(association);
-            FigNode classifierFN = (FigNode) lay.presentationFor(classifier);
-
-            ascEndFig.setSourcePortFig(associationFN);
-            ascEndFig.setSourceFigNode(associationFN);
-            ascEndFig.setDestPortFig(classifierFN);
-            ascEndFig.setDestFigNode(classifierFN);
-            return ascEndFig;
-        }
-        if (edge instanceof UmlDependency) {
+            newEdgeFig = new AssociationEndEdgeFig(edge, lay);
+            source = associationEnd.getAssociation();
+            dest = associationEnd.getClassifier();
+        } else if (edge instanceof UmlDependency) {
             UmlDependency dep = (UmlDependency) edge;
-            DependencyEdgeFig depFig = new DependencyEdgeFig(edge, lay);
+            newEdgeFig = new DependencyEdgeFig(edge, lay);
 
-            Object supplier = dep.getClient();
-            Object client = dep.getSupplier();
-
-            FigNode supFN = (FigNode) lay.presentationFor(supplier);
-            FigNode cliFN = (FigNode) lay.presentationFor(client);
-
-            depFig.setSourcePortFig(cliFN);
-            depFig.setSourceFigNode(cliFN);
-            depFig.setDestPortFig(supFN);
-            depFig.setDestFigNode(supFN);
-            return depFig;
-        }
-        if (edge instanceof UmlAssociationClass) {
+            source = dep.getClient();
+            dest = dep.getSupplier();
+        } else if (edge instanceof UmlAssociationClass) {
             UmlAssociationClass association = (UmlAssociationClass)edge;
-            FigAssociationClass associationClassFig = new FigAssociationClass(edge, lay);
+            newEdgeFig = new FigAssociationClass(edge, lay);
 
             UmlAssociationEnd sourceEnd = (UmlAssociationEnd)association.getAssociationEnds().get(0);
-            Object source = sourceEnd.getClassifier();
+            source = sourceEnd.getClassifier();
             UmlAssociationEnd targetEnd = (UmlAssociationEnd)association.getAssociationEnds().get(1);
-            Object target = targetEnd.getClassifier();
-
-            FigNode sourceFN = (FigNode) lay.presentationFor(source);
-            FigNode targetFN = (FigNode) lay.presentationFor(target);
-
-            associationClassFig.setSourcePortFig(sourceFN);
-            associationClassFig.setSourceFigNode(sourceFN);
-            associationClassFig.setDestPortFig(targetFN);
-            associationClassFig.setDestFigNode(targetFN);
-            System.out.println("Creating an AssociationFig between " + sourceFN + " and " + targetFN);
-            return associationClassFig;
-        }
-        if (edge instanceof UmlAssociation) {
+            dest = targetEnd.getClassifier();
+        } else if (edge instanceof UmlAssociation) {
             UmlAssociation association = (UmlAssociation)edge;
-            AssociationEdgeFig associationFig = new AssociationEdgeFig(edge, lay);
+            newEdgeFig = new AssociationEdgeFig(edge, lay);
 
             UmlAssociationEnd sourceEnd = (UmlAssociationEnd)association.getAssociationEnds().get(0);
-            Object source = sourceEnd.getClassifier();
+            source = sourceEnd.getClassifier();
             UmlAssociationEnd targetEnd = (UmlAssociationEnd)association.getAssociationEnds().get(1);
-            Object target = targetEnd.getClassifier();
-
+            dest = targetEnd.getClassifier();
+        }
+        
+        if (newEdgeFig != null) {
             FigNode sourceFN = (FigNode) lay.presentationFor(source);
-            FigNode targetFN = (FigNode) lay.presentationFor(target);
+            FigNode destFN = (FigNode) lay.presentationFor(dest);
 
-            associationFig.setSourcePortFig(sourceFN);
-            associationFig.setSourceFigNode(sourceFN);
-            associationFig.setDestPortFig(targetFN);
-            associationFig.setDestFigNode(targetFN);
-            System.out.println("Creating an AssociationFig between " + sourceFN + " and " + targetFN);
-            return associationFig;
+            newEdgeFig.setSourcePortFig(sourceFN);
+            newEdgeFig.setSourceFigNode(sourceFN);
+            newEdgeFig.setDestPortFig(destFN);
+            newEdgeFig.setDestFigNode(destFN);
+            return newEdgeFig;
         }
         LOG.error("Unable to create FigEdge for " + edge);
         return null;
