@@ -48,15 +48,23 @@ class UmlAssociationEndImpl
      * @param classifier The classifier to set.
      */
     public void setClassifier(UmlClassifier classifier) {
-        UmlClassifierImpl newClassifier = (UmlClassifierImpl)classifier;
-        UmlClassifierImpl oldClassifier = (UmlClassifierImpl)this.classifier;
+        UmlClassifier newClassifier = classifier;
+        UmlClassifier oldClassifier = this.classifier;
         if (oldClassifier == classifier) return;
         if (oldClassifier != null) {
-            oldClassifier.removeAssociationEndRole(this);
+            if (oldClassifier instanceof UmlAssociationClass) {
+                ((UmlAssociationClassImpl)oldClassifier).removeAssociationEndRole(this);
+            } else {
+                ((UmlClassifierImpl)oldClassifier).removeAssociationEndRole(this);
+            }
         }
         this.classifier = newClassifier;
         if (newClassifier != null) {
-            newClassifier.addAssociationEndRole(this);
+            if (newClassifier instanceof UmlAssociationClass) {
+                ((UmlAssociationClassImpl)newClassifier).addAssociationEndRole(this);
+            } else {
+                ((UmlClassifierImpl)newClassifier).addAssociationEndRole(this);
+            }
         }
     }
     
