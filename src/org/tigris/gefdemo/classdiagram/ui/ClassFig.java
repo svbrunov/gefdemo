@@ -16,8 +16,8 @@ public class ClassFig extends ModelElementNodeFig {
     FigLine seperator1;
     FigLine seperator2;
             
-    public ClassFig(GraphModel gm, Object node) {
-        super(gm, node);
+    public ClassFig(Object node) {
+        super(node);
         
         boundryFig = new FigRect(0,0,70,60);
 

@@ -10,11 +10,10 @@ import org.tigris.gef.graph.GraphModel;
  */
 public class AssociationFig extends ModelElementNodeFig {
     
-    public AssociationFig(GraphModel gm, Object node) {
-        super(gm, node);
+    public AssociationFig(Object node) {
+        super(node);
         
-        boundryFig = new FigDiamond(0,0,70,60);
-
+        boundryFig = new FigDiamond(0,0,70,70);
         addFig(boundryFig);
         setOwner(node);
     }

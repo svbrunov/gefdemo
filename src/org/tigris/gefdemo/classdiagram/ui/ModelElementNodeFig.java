@@ -8,7 +8,6 @@ import org.tigris.gef.graph.GraphModel;
 import org.tigris.gef.presentation.Fig;
 import org.tigris.gef.presentation.FigNode;
 
-import org.tigris.gefdemo.classdiagram.model.UmlClass;
 import org.tigris.gefdemo.classdiagram.model.UmlModelElement;
 
 /**
@@ -19,9 +18,8 @@ abstract public class ModelElementNodeFig extends FigNode {
     
     Fig boundryFig;
             
-    public ModelElementNodeFig(GraphModel gm, Object node) {
-        super();
-        setOwner(node);
+    public ModelElementNodeFig(Object node) {
+        super(node);
     }
     
     public String getName() {
@@ -60,9 +58,11 @@ abstract public class ModelElementNodeFig extends FigNode {
      */
     public void setOwner(Object node) {
         super.setOwner(node);
-        String name = ((UmlModelElement)node).getName();
-        if (boundryFig != null) {
-            bindPort(node, boundryFig);
+        if (node != null) {
+            String name = ((UmlModelElement)node).getName();
+            if (boundryFig != null) {
+                bindPort(node, boundryFig);
+            }
         }
     }
     

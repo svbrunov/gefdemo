@@ -11,11 +11,10 @@ public class InterfaceFig extends ModelElementNodeFig {
     
     FigLine seperator1;
             
-    public InterfaceFig(GraphModel gm, Object node) {
-        super(gm, node);
+    public InterfaceFig(Object node) {
+        super(node);
         
         boundryFig = new FigRect(0,0,70,60);
-
         seperator1 = new FigLine(0,20,70,20);    
         
         addFig(boundryFig);
