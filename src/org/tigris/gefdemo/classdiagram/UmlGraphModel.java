@@ -35,6 +35,7 @@ import java.util.Vector;
 import org.apache.log4j.Logger;
 
 import org.tigris.gef.graph.MutableGraphSupport;
+import org.tigris.gefdemo.classdiagram.model.UmlFactory;
 
 
 /** UMLGraphModel is a helper class which extends
@@ -147,7 +148,7 @@ public class UmlGraphModel extends MutableGraphSupport {
 			  java.lang.Class edgeClass)
     {
         Object connection = null;
-//        try {
+        try {
 //            // If this was an association then there will be relevant
 //            // information to fetch out of the mode arguments.  If it
 //            // not an association then these will be passed forward
@@ -161,30 +162,26 @@ public class UmlGraphModel extends MutableGraphSupport {
 //            // Create the UML connection of the given type between the
 //            // given model elements.
 //	    // default aggregation (none)
-//            connection = UmlFactory.getFactory().buildConnection(
-//                edgeClass,
-//                fromPort,
-//                style,
-//                toPort,
-//                null, 
-//                unidirectional
-//            );
-//        } catch (org.argouml.model.uml.UmlException ex) {
-//            // fail silently as we expect users to accidentally drop
-//            // on to wrong component
-//        }
-//        
-//        if (connection == null) {
-//            cat.debug("Cannot make a " + edgeClass.getName() +
-//		      " between a " + fromPort.getClass().getName() +
-//		      " and a " + toPort.getClass().getName());
-//            return null;
-//        }
-//        
-//        addEdge(connection);
-//        cat.debug("Connection type" + edgeClass.getName() +
-//		  " made between a " + fromPort.getClass().getName() +
-//		  " and a " + toPort.getClass().getName());
+            connection = UmlFactory.getInstance().createModelElement(
+                edgeClass,
+                fromPort,
+                toPort);
+        } catch (IllegalArgumentException ex) {
+            // fail silently as we expect users to accidentally drop
+            // on to wrong component
+        }
+        
+        if (connection == null) {
+            cat.debug("Cannot make a " + edgeClass.getName() +
+		      " between a " + fromPort.getClass().getName() +
+		      " and a " + toPort.getClass().getName());
+            return null;
+        }
+        
+        addEdge(connection);
+        cat.debug("Connection type" + edgeClass.getName() +
+		  " made between a " + fromPort.getClass().getName() +
+		  " and a " + toPort.getClass().getName());
         return connection;
     }
     
