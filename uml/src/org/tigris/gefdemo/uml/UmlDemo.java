@@ -1,41 +1,16 @@
-// Copyright (c) 1996-99 The Regents of the University of California. All
-// Rights Reserved. Permission to use, copy, modify, and distribute this
-// software and its documentation without fee, and without a written
-// agreement is hereby granted, provided that the above copyright notice
-// and this paragraph appear in all copies.  This software program and
-// documentation are copyrighted by The Regents of the University of
-// California. The software program and documentation are supplied "AS
-// IS", without any accompanying services from The Regents. The Regents
-// does not warrant that the operation of the program will be
-// uninterrupted or error-free. The end-user understands that the program
-// was developed for research purposes and is advised not to rely
-// exclusively on the program for any reason.  IN NO EVENT SHALL THE
-// UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY FOR DIRECT, INDIRECT,
-// SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, INCLUDING LOST PROFITS,
-// ARISING OUT OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF
-// THE UNIVERSITY OF CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY OF
-// SUCH DAMAGE. THE UNIVERSITY OF CALIFORNIA SPECIFICALLY DISCLAIMS ANY
-// WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-// MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE SOFTWARE
-// PROVIDED HEREUNDER IS ON AN "AS IS" BASIS, AND THE UNIVERSITY OF
-// CALIFORNIA HAS NO OBLIGATIONS TO PROVIDE MAINTENANCE, SUPPORT,
-// UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
-
 package org.tigris.gefdemo.uml;
 
 import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JFrame;
+import java.util.Locale;
+
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
-import javax.swing.border.EtchedBorder;
-
 
 import org.tigris.gef.base.CmdAdjustGrid;
 import org.tigris.gef.base.CmdAdjustGuide;
@@ -59,25 +34,24 @@ import org.tigris.gef.base.CmdUngroup;
 import org.tigris.gef.base.CmdUseReshape;
 import org.tigris.gef.base.CmdUseResize;
 import org.tigris.gef.base.CmdUseRotate;
-import org.tigris.gef.base.Editor;
 import org.tigris.gef.base.Globals;
 import org.tigris.gef.base.ModeSelect;
 import org.tigris.gef.event.ModeChangeEvent;
-import org.tigris.gef.event.ModeChangeListener;
 import org.tigris.gef.graph.GraphEdgeRenderer;
 import org.tigris.gef.graph.GraphModel;
 import org.tigris.gef.graph.GraphNodeRenderer;
 import org.tigris.gef.graph.presentation.JGraph;
-import org.tigris.gef.ui.IStatusBar;
 import org.tigris.gef.ui.PaletteFig;
 import org.tigris.gef.ui.ToolBar;
 import org.tigris.gef.util.Localizer;
+import org.tigris.gef.util.ResourceLoader;
+import org.tigris.panelbeater.PanelManager;
 
-/** A window that displays a toolbar, a connected graph editing pane,
- *  and a status bar. */
+/** A simple example of the minimum code needed to build an
+ *  application using GEF.
+ */
 
-public class GefGraphFrame extends JFrame
-    implements IStatusBar, Cloneable, ModeChangeListener {
+public class UmlDemo {
 
     /** The toolbar (shown at top of window). */
     private ToolBar _toolbar = new PaletteFig();
@@ -90,72 +64,100 @@ public class GefGraphFrame extends JFrame
     private JPanel _graphPanel = new JPanel(new BorderLayout());
     private JMenuBar _menubar = new JMenuBar();
 
-    /** Contruct a new JGraphFrame with the title "untitled" and a new
-     *  DefaultGraphModel. */
-    public GefGraphFrame() {
-        this("untitled");
-    }
+    private static UmlDemo instance;
 
-    public GefGraphFrame(boolean init_later) {
-        super("untitled");
-        if (!init_later)
-            init(new JGraph());
-    }
-    /** Contruct a new JGraphFrame with the given title and a new
-     *  DefaultGraphModel. */
-    public GefGraphFrame(String title) {
-        this(title, new JGraph());
-    }
-    public GefGraphFrame(String title, Editor ed) {
-        this(title, new JGraph(ed));
-    }
-    /** Contruct a new JGraphFrame with the given title and given
-     *  JGraph. All JGraphFrame contructors call this one. */
-    public GefGraphFrame(String title, JGraph jg) {
-        super(title);
-        init(jg);
-    }
-
-    public void init() {
-        init(new JGraph());
-    }
-
-    public void init(JGraph jg) {
-        _graph = jg;
-        Container content = getContentPane();
-        setUpMenus();
-        content.setLayout(new BorderLayout());
-        content.add(_menubar, BorderLayout.NORTH);
-        _graphPanel.add(_graph, BorderLayout.CENTER);
-        _graphPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
-
-        _mainPanel.add(_toolbar, BorderLayout.NORTH);
-        _mainPanel.add(_graphPanel, BorderLayout.CENTER);
-        content.add(_mainPanel, BorderLayout.CENTER);
-        content.add(_statusbar, BorderLayout.SOUTH);
-        setSize(300, 250);
-        _graph.addModeChangeListener(this);
+    public UmlDemo getInstance() {
+        return instance;
     }
     
-    /** Contruct a new JGraphFrame with the titleed with the
-     *  given GraphModel. */
-    public GefGraphFrame(String title, GraphModel gm) {
-        this(title);
-        setGraphModel(gm);
+    public UmlDemo() {
+
+        instance = this;
+        
+        ResourceLoader.addResourceLocation("/org/tigris/gefdemo/uml/Images");
+        ResourceLoader.addResourceExtension("gif");
+        ResourceLoader.addResourceLocation("/org/tigris/gef/Images");
+        
+        PanelManager panelManager = new PanelManager();
+        
+        panelManager.setMode(PanelManager.INTERNAL_FRAME_MODE, PanelManager.CENTER);
+        
+        panelManager.pack();
+        panelManager.setVisible(true);
+ 
+        DiagramPanel diagramPanel = null;
+        try {
+            diagramPanel = new DiagramPanel(ConnectionConstrainer.getInstance());
+        } catch (Exception e) {
+            
+        }
+        panelManager.add(diagramPanel);
+        panelManager.add(new JPanel(), PanelManager.WEST);
+            
+        // init localizer and resourceloader
+        ////////////////////////////////////////////////////////////////
+        // constructors
+
+        Localizer.addResource(
+            "GefBase",
+            "org.tigris.gef.base.BaseResourceBundle");
+        Localizer.addResource(
+            "GefPres",
+            "org.tigris.gef.presentation.PresentationResourceBundle");
+        Localizer.addLocale(Locale.getDefault());
+        Localizer.switchCurrentLocale(Locale.getDefault());
+//        ResourceLoader.addResourceExtension("gif");
+//        ResourceLoader.addResourceLocation("/org/tigris/gef/Images");
+//        ResourceLoader.addResourceLocation("/org/tigris/gefdemo/uml/Images");
+//        GraphModel gm = new UmlGraphModel();
+//
+//        graphFrame = new GefGraphFrame("Class Diagram", gm);
+//        graphFrame.addWindowListener(new WindowAdapter() {
+//            public void windowClosing(WindowEvent event) {
+//                graphFrame.dispose();
+//            }
+//            public void windowClosed(WindowEvent event) {
+//                System.exit(0);
+//            }
+//        });
+//        graphFrame.setToolBar(new SamplePalette()); //needs-more-work
+
+//        ClassDiagramRenderer renderer = new ClassDiagramRenderer();
+//        graphFrame.getGraph().setGraphNodeRenderer(renderer);
+//        graphFrame.getGraph().setGraphEdgeRenderer(renderer);
+        
+//        try {
+//            graphFrame.getGraphModel().setConnectionConstrainer(ConnectionConstrainer.getInstance());
+//        } catch (GraphModelException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//
+//        graphFrame.setBounds(10, 10, 300, 200);
+//        graphFrame.setVisible(true);
     }
     
-    /** Contruct a new JGraphFrame with the title "untitled" and the
-     *  given GraphModel. */
-    public GefGraphFrame(GraphModel gm) {
-        this("untitled");
-        setGraphModel(gm);
-    }
-    ////////////////////////////////////////////////////////////////
-    // Cloneable implementation
-
-    public Object clone() {
-        return null; //needs-more-work
-    }
+//    public void init() {
+//        init(new JGraph());
+//    }
+//
+//    public void init(JGraph jg) {
+//        _graph = jg;
+//        Container content = getContentPane();
+//        setUpMenus();
+//        content.setLayout(new BorderLayout());
+//        content.add(_menubar, BorderLayout.NORTH);
+//        _graphPanel.add(_graph, BorderLayout.CENTER);
+//        _graphPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+//
+//        _mainPanel.add(_toolbar, BorderLayout.NORTH);
+//        _mainPanel.add(_graphPanel, BorderLayout.CENTER);
+//        content.add(_mainPanel, BorderLayout.CENTER);
+//        content.add(_statusbar, BorderLayout.SOUTH);
+//        setSize(300, 250);
+//        _graph.addModeChangeListener(this);
+//    }
+    
     ////////////////////////////////////////////////////////////////
     // accessors
 
@@ -196,10 +198,10 @@ public class GefGraphFrame extends JFrame
     public void setGraphNodeRenderer(GraphNodeRenderer rend) {
         _graph.getEditor().setGraphNodeRenderer(rend);
     }
-    public void setJMenuBar(JMenuBar mb) {
-        _menubar = mb;
-        getContentPane().add(_menubar, BorderLayout.NORTH);
-    }
+//    public void setJMenuBar(JMenuBar mb) {
+//        _menubar = mb;
+//        getContentPane().add(_menubar, BorderLayout.NORTH);
+//    }
     public void setToolBar(ToolBar tb) {
         _toolbar = tb;
         _mainPanel.add(_toolbar, BorderLayout.NORTH);
@@ -339,19 +341,27 @@ public class GefGraphFrame extends JFrame
     ////////////////////////////////////////////////////////////////
     // display related methods
 
-    public void setVisible(boolean b) {
-        super.setVisible(b);
-        if (b) {
-            Globals.setStatusBar(this);
-        }
-    }
+//    public void setVisible(boolean b) {
+//        super.setVisible(b);
+//        if (b) {
+//            Globals.setStatusBar(this);
+//        }
+//    }
     ////////////////////////////////////////////////////////////////
     // IStatusListener implementation
 
-    /** Show a message in the statusbar. */
-    public void showStatus(String msg) {
-        if (_statusbar != null) {
-            _statusbar.setText(msg);
-        }
+//    /** Show a message in the statusbar. */
+//    public void showStatus(String msg) {
+//        if (_statusbar != null) {
+//            _statusbar.setText(msg);
+//        }
+//    }
+
+    ////////////////////////////////////////////////////////////////
+    // main
+
+    public static void main(String args[]) {
+        new UmlDemo();
     }
-} /* end class JGraphFrame */
+
+} /* end class BasicApplication */

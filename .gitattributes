@@ -14,7 +14,11 @@ lan/src/org/tigris/gefdemo/lan/Images/NodeSonar.gif -text
 lan/src/org/tigris/gefdemo/lan/Images/NodeWireless.gif -text
 lib/xerces_2_5_0.jar -text
 lib/xml-apis.jar -text
+uml/lib/panelbeater0.1.jar -text
+uml/lib/swidgets-0.1.jar -text
+uml/lib/toolbar-0.4.jar -text
 uml/src/org/tigris/gefdemo/uml/Images/Association.gif -text
+uml/src/org/tigris/gefdemo/uml/Images/AssociationClass.gif -text
 uml/src/org/tigris/gefdemo/uml/Images/Class.gif -text
 uml/src/org/tigris/gefdemo/uml/Images/Dependency.gif -text
 uml/src/org/tigris/gefdemo/uml/Images/Interface.gif -text
