@@ -31,8 +31,9 @@ public class ClassDiagramDemo {
         Localizer.switchCurrentLocale(Locale.getDefault());
         ResourceLoader.addResourceExtension("gif");
         ResourceLoader.addResourceLocation("/org/tigris/gef/Images");
-        graphFrame = new JGraphFrame();
         GraphModel gm = new UmlGraphModel();
+
+        graphFrame = new JGraphFrame(gm);
         graphFrame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent event) {
                 graphFrame.dispose();
@@ -41,7 +42,6 @@ public class ClassDiagramDemo {
                 System.exit(0);
             }
         });
-
         graphFrame.setToolBar(new SamplePalette()); //needs-more-work
 
         // make the delete key remove elements from the underlying GraphModel

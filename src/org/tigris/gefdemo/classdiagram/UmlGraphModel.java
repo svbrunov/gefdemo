@@ -37,10 +37,9 @@ import org.apache.log4j.Logger;
 import org.tigris.gef.graph.MutableGraphSupport;
 
 
-/** UMLMutableGraphSupport is a helper class which extends
+/** UMLGraphModel is a helper class which extends
  * MutableGraphSupport to provide additional helper and common methods
  * for UML Diagrams.
- * @author mkl@tigris.org
  */
 public class UmlGraphModel extends MutableGraphSupport {
     
@@ -78,6 +77,7 @@ public class UmlGraphModel extends MutableGraphSupport {
 
     /** Add the given node to the graph, if valid. */
     public void addNode(Object node) {
+        System.out.println("Adding a node " + node);
         nodes.add(node);
         fireNodeAdded(node);
     }
