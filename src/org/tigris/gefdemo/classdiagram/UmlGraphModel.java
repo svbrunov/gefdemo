@@ -30,6 +30,7 @@
 
 package org.tigris.gefdemo.classdiagram;
 
+import java.util.List;
 import java.util.Vector;
 
 import org.apache.log4j.Logger;
@@ -45,7 +46,7 @@ import org.tigris.gefdemo.classdiagram.model.UmlClassifier;
  */
 public class UmlGraphModel extends MutableGraphSupport {
     
-    protected static Logger cat =
+    protected static final Logger LOG =
 	Logger.getLogger(UmlGraphModel.class);
     
     /** contains all the nodes in the graphmodel/diagram. */    
@@ -65,18 +66,17 @@ public class UmlGraphModel extends MutableGraphSupport {
      * @see org.tigris.gef.graph.MutableGraphSupport#getNodes()
      * @return Vector of nodes in the graphmodel/diagram
      */    
-    public Vector getNodes() { return nodes; }
+    public List getNodes() {
+        return nodes;
+    }
     
     /** get all the edges from the graphmodel/diagram
      * @return Vector of edges in the graphmodel/diagram
      */    
-    public Vector getEdges() { return (Vector)edges.clone(); }
+    public List getEdges() {
+        return (Vector)edges.clone();
+    }
     
-    /** Return a valid node in this graph */
-    //public Object createNode(String name, Hashtable args) {
-    //    return null;
-    //}
-
     /** Add the given node to the graph, if valid. */
     public void addNode(Object node) {
         nodes.add(node);
@@ -158,21 +158,18 @@ public class UmlGraphModel extends MutableGraphSupport {
         }
         
         if (connection == null) {
-            cat.debug("Cannot make a " + edgeClass.getName() +
+            LOG.debug("Cannot make a " + edgeClass.getName() +
 		      " between a " + fromPort.getClass().getName() +
 		      " and a " + toPort.getClass().getName());
             return null;
         }
         
         addEdge(connection);
-        cat.debug("Connection type" + edgeClass.getName() +
-		  " made between a " + fromPort.getClass().getName() +
-		  " and a " + toPort.getClass().getName());
         return connection;
     }
     
     /** Return all ports on node or edge */
-    public Vector getPorts(Object nodeOrEdge) {
+    public List getPorts(Object nodeOrEdge) {
         Vector res = new Vector();
         if (nodeOrEdge instanceof UmlClassifier) res.addElement(nodeOrEdge);
         // TODO Check if this association only has 2 edges
@@ -200,23 +197,23 @@ public class UmlGraphModel extends MutableGraphSupport {
     
     /** Return one end of an edge */
     public Object getSourcePort(Object edge) {
-        cat.error("TODO getSourcePort");
+        LOG.error("TODO getSourcePort");
         return null;
     }
 
     /** Return  the other end of an edge */
     public Object getDestPort(Object edge) {
-        cat.error("TODO getSourcePort");
+        LOG.error("TODO getSourcePort");
         return null;
     }
 
     /** Return all edges going to given port */
-    public Vector getInEdges(Object port) {
+    public List getInEdges(Object port) {
         return null;
     }
 
     /** Return all edges going from given port */
-    public Vector getOutEdges(Object port) {
+    public List getOutEdges(Object port) {
         return null;
     }
 }
