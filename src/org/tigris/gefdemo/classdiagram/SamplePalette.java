@@ -2,7 +2,7 @@ package org.tigris.gefdemo.classdiagram;
 
 import org.tigris.gef.base.*;
 import org.tigris.gef.ui.*;
-import org.tigris.gefdemo.classdiagram.model.AssociationEdge;
+import org.tigris.gefdemo.classdiagram.model.MAssociationEnd;
 
 /** A class to define a custom palette for use in some demos.
  *
@@ -22,8 +22,12 @@ public class SamplePalette extends PaletteFig {
 
         add(
             new CmdCreateNode(
-                org.tigris.gefdemo.classdiagram.model.ClassNode.class,
+                org.tigris.gefdemo.classdiagram.model.MClass.class,
                 "Class"));
-        add(new CmdSetMode(ModeCreatePolyEdge.class, "edgeClass", AssociationEdge.class, "Association"));
+        add(
+            new CmdCreateNode(
+                org.tigris.gefdemo.classdiagram.model.MAssociation.class,
+                "Association"));
+        add(new CmdSetMode(ModeCreatePolyEdge.class, "edgeClass", MAssociationEnd.class, "Association"));
     }
 } /* end class SamplePalette */

@@ -1,0 +1,14 @@
+<graphmodel>
+    <connections>
+        <connection>
+            <edge>org.tigris.gefdemo.classdiagram.model.MAssociationEnd</edge>
+            <port>org.tigris.gefdemo.classdiagram.model.ClassifierPort</port>
+            <port>org.tigris.gefdemo.classdiagram.model.AssociationPort</port>
+        </connection>
+        <connection>
+            <edge>org.tigris.gefdemo.classdiagram.model.MAssociationEnd</edge>
+            <port>org.tigris.gefdemo.classdiagram.model.AssociationPort</port>
+            <port>org.tigris.gefdemo.classdiagram.model.ClassifierPort</port>
+        </connection>
+    </connections>
+</graphmodel>
