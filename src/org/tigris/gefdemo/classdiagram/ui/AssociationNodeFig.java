@@ -1,6 +1,7 @@
 package org.tigris.gefdemo.classdiagram.ui;
 
-import java.awt.Rectangle;
+import java.awt.*;
+import java.util.Vector;
 
 /**
  * A Fig representing an association between 2 or more classifiers
@@ -15,7 +16,17 @@ public class AssociationNodeFig extends ModelElementNodeFig {
         addFig(boundryFig);
         setOwner(node);
     }
-    
+
+    public Vector getGravityPoints() {
+        Vector ret = new Vector();
+        Rectangle r = boundryFig.getBounds();
+        ret.add(new Point(r.x + r.width / 2, r.y));
+        ret.add(new Point(r.x + r.width, r.y + r.height / 2));
+        ret.add(new Point(r.x + r.width / 2, r.y + r.height));
+        ret.add(new Point(r.x, r.y + r.height / 2));
+        return ret;
+    }
+
     /**
      * Set the bounding box to the given rect. Figs in the group are
      * scaled and/or positioned to fit.
