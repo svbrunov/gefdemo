@@ -151,26 +151,26 @@ public class UmlGraphModel extends MutableGraphSupport {
      *                   <code>null</code> otherwise)
      */
     public Object connect(Object fromPort, Object toPort,
-			  java.lang.Class edgeClass)
+			  Object edgeType)
     {
         Object connection = null;
         
-        if (canConnect(fromPort, toPort, edgeClass)) {
+        if (canConnect(fromPort, toPort, edgeType)) {
             connection = ModelFacade.getInstance().createModelElement(
-                edgeClass,
+                edgeType,
                 fromPort,
                 toPort);
         }
         
         if (connection == null) {
-            LOG.debug("Cannot make a " + edgeClass.getName() +
+            LOG.debug("Cannot make a " + edgeType +
 		      " between a " + fromPort.getClass().getName() +
 		      " and a " + toPort.getClass().getName());
             return null;
         }
         
         addEdge(connection);
-        LOG.debug("Connection type" + edgeClass.getName() +
+        LOG.debug("Connection type" + edgeType +
 		  " made between a " + fromPort.getClass().getName() +
 		  " and a " + toPort.getClass().getName());
         return connection;

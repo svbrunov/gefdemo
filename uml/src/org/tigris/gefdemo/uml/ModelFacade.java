@@ -27,7 +27,7 @@ public class ModelFacade {
     private ModelFacade() {
     }
 
-    public Object createModelElement(Class identifier, Object fromPort, Object toPort) {
+    public Object createModelElement(Object identifier, Object fromPort, Object toPort) {
         // Spot any attempt to draw an association end between to classifiers
         if (identifier.equals(UmlAssociationEnd.class) && fromPort instanceof UmlClassifier && toPort instanceof UmlClassifier) {
             Object association = umlModel.createModelElement(UmlAssociation.class);
@@ -51,7 +51,7 @@ public class ModelFacade {
         return umlModel.createModelElement(identifier, (UmlModelElement)fromPort, (UmlModelElement)toPort);
     }
     
-    public Object createModelElement(Class identifier) {
+    public Object createModelElement(Object identifier) {
         return umlModel.createModelElement(identifier);
     }
     
