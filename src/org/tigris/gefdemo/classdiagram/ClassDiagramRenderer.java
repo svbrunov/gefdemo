@@ -43,6 +43,7 @@ import org.tigris.gefdemo.classdiagram.model.UmlClass;
 import org.tigris.gefdemo.classdiagram.model.UmlClassifier;
 import org.tigris.gefdemo.classdiagram.model.UmlDependency;
 import org.tigris.gefdemo.classdiagram.model.UmlInterface;
+import org.tigris.gefdemo.classdiagram.ui.AssociationEdgeFig;
 import org.tigris.gefdemo.classdiagram.ui.AssociationEndFig;
 import org.tigris.gefdemo.classdiagram.ui.AssociationFig;
 import org.tigris.gefdemo.classdiagram.ui.ClassFig;
@@ -102,6 +103,25 @@ public class ClassDiagramRenderer
             depFig.setDestPortFig(supFN);
             depFig.setDestFigNode(supFN);
             return depFig;
+        }
+        if (edge instanceof UmlAssociation) {
+            UmlAssociation association = (UmlAssociation)edge;
+            AssociationEdgeFig associationFig = new AssociationEdgeFig(edge, lay);
+
+            UmlAssociationEnd sourceEnd = (UmlAssociationEnd)association.getAssociationEnds().get(0);
+            Object source = sourceEnd.getClassifier();
+            UmlAssociationEnd targetEnd = (UmlAssociationEnd)association.getAssociationEnds().get(1);
+            Object target = targetEnd.getClassifier();
+
+            FigNode sourceFN = (FigNode) lay.presentationFor(source);
+            FigNode targetFN = (FigNode) lay.presentationFor(target);
+
+            associationFig.setSourcePortFig(sourceFN);
+            associationFig.setSourceFigNode(sourceFN);
+            associationFig.setDestPortFig(targetFN);
+            associationFig.setDestFigNode(targetFN);
+            System.out.println("Creating an AssociationFig between " + sourceFN + " and " + targetFN);
+            return associationFig;
         }
         LOG.error("Unable to create FigEdge for " + edge);
         return null;

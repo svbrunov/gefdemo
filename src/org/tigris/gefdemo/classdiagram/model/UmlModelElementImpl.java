@@ -2,11 +2,16 @@ package org.tigris.gefdemo.classdiagram.model;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
+import java.util.List;
 
 abstract class UmlModelElementImpl implements UmlModelElement {
     
     private String name;
 
+    private List supplierDependencies = new ArrayList();
+    private List clientDependencies = new ArrayList();
+    
     protected PropertyChangeSupport _changeSup = new PropertyChangeSupport(this);
     protected boolean _highlight = false;
 
@@ -55,6 +60,22 @@ abstract class UmlModelElementImpl implements UmlModelElement {
      */
     public void setName(String string) {
         name = string;
+    }
+    
+    public void addClientDependency(UmlDependency dep) {
+        clientDependencies.add(dep);
+    }
+
+    public void removeClientDependency(UmlDependency dep) {
+        clientDependencies.remove(dep);
+    }
+
+    public void addSupplierDependency(UmlDependency dep) {
+        supplierDependencies.add(dep);
+    }
+
+    public void removeSupplierDependency(UmlDependency dep) {
+        supplierDependencies.remove(dep);
     }
 
 } /* end class NetPrimitive */

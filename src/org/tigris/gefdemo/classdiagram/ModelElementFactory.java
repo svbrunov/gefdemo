@@ -10,7 +10,7 @@ import org.tigris.gefdemo.classdiagram.model.UmlAssociation;
 import org.tigris.gefdemo.classdiagram.model.UmlAssociationEnd;
 import org.tigris.gefdemo.classdiagram.model.UmlClassifier;
 import org.tigris.gefdemo.classdiagram.model.UmlDependency;
-import org.tigris.gefdemo.classdiagram.model.UmlFactory;
+import org.tigris.gefdemo.classdiagram.model.UmlModel;
 import org.tigris.gefdemo.classdiagram.model.UmlModelElement;
 
 /**
@@ -18,14 +18,14 @@ import org.tigris.gefdemo.classdiagram.model.UmlModelElement;
  * @author Bob Tarling
  * @since 09-Jun-2004
  */
-public class FactoryFacade {
-    private static FactoryFacade instance = new FactoryFacade();
+public class ModelElementFactory {
+    private static ModelElementFactory instance = new ModelElementFactory();
     
-    public static FactoryFacade getInstance() {
+    public static ModelElementFactory getInstance() {
         return instance;
     }
     
-    private FactoryFacade() {
+    private ModelElementFactory() {
     }
 
     public Object create(Class identifier, Object fromPort, Object toPort) {
@@ -34,6 +34,6 @@ public class FactoryFacade {
             fromPort = toPort;
             toPort = swapper;
         }
-        return UmlFactory.getInstance().createModelElement(identifier, (UmlModelElement)fromPort, (UmlModelElement)toPort);
+        return UmlModel.getInstance().createModelElement(identifier, (UmlModelElement)fromPort, (UmlModelElement)toPort);
     }
 }

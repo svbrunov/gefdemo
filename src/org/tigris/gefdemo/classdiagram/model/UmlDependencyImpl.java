@@ -11,9 +11,7 @@ class UmlDependencyImpl implements UmlDependency {
     private String name;
     
     /** Construct a new Depends. */
-    public UmlDependencyImpl(UmlModelElement supplier, UmlModelElement client) {
-        this.supplier = supplier;
-        this.client = client;
+    public UmlDependencyImpl() {
     }
 
     public String getId() {
@@ -33,4 +31,32 @@ class UmlDependencyImpl implements UmlDependency {
     public UmlModelElement getSupplier() {
         return supplier;
     }
+    /**
+     * @param element
+     */
+    public void setClient(UmlModelElement client) {
+        if (this.client == client) return;
+        if (this.client != null) {
+            this.client.removeClientDependency(this);
+        }
+        this.client = client;
+        if (client != null) {
+            client.addClientDependency(this);
+        }
+    }
+
+    /**
+     * @param element
+     */
+    public void setSupplier(UmlModelElement supplier) {
+        if (this.supplier == supplier) return;
+        if (this.supplier != null) {
+            this.supplier.removeSupplierDependency(this);
+        }
+        this.supplier = supplier;
+        if (supplier != null) {
+            supplier.addSupplierDependency(this);
+        }
+    }
+
 }

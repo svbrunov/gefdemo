@@ -21,4 +21,14 @@ public class DependencyFig extends ModelElementEdgeFig {
         f.setDashed(true);
     }
 
+    public void dispose() {
+        System.out.println("Disposing of dependancy from model");
+        super.dispose();
+    }
+
+    public void delete() {
+        System.out.println("Deleting dependancy from diagram");
+        super.delete();
+    }
+
 }

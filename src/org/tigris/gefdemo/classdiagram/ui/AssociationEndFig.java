@@ -3,9 +3,13 @@ package org.tigris.gefdemo.classdiagram.ui;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.tigris.gef.base.Globals;
 import org.tigris.gef.base.Layer;
+import org.tigris.gef.graph.GraphModel;
 import org.tigris.gef.presentation.ArrowHead;
 import org.tigris.gef.presentation.ArrowHeadGreater;
+import org.tigris.gefdemo.classdiagram.UmlGraphModel;
+import org.tigris.gefdemo.classdiagram.model.UmlAssociation;
 
 /**
  * @author Bob Tarling
@@ -19,6 +23,8 @@ public class AssociationEndFig extends ModelElementEdgeFig {
     
     public void delete() {
         AssociationFig af = (AssociationFig)getSourceFigNode();
+        UmlGraphModel gm = (UmlGraphModel)Globals.curEditor().getGraphModel();
+        UmlAssociation association = (UmlAssociation)af.getOwner();
         super.delete();
         Collection remainingEdges = af.getFigEdges(null);
         int edgeCount = remainingEdges.size();
@@ -29,6 +35,7 @@ public class AssociationEndFig extends ModelElementEdgeFig {
                 fig.delete();
             }
             af.delete();
+            gm.addEdge(association);
         }
     }
 }

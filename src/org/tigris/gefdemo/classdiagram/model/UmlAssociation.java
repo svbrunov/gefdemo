@@ -6,7 +6,7 @@
  */
 package org.tigris.gefdemo.classdiagram.model;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * 
@@ -14,7 +14,7 @@ import java.util.Collection;
  * @since 03-Jun-2004
  */
 public interface UmlAssociation {
-    public abstract Collection getAssociationEnds();
+    public abstract List getAssociationEnds();
     public abstract void addAssociationEnd(UmlAssociationEnd associationEnd);
     public abstract void removeAssociationEnd(UmlAssociationEnd associationEnd);
 }

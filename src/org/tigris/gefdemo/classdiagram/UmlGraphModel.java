@@ -30,6 +30,7 @@
 
 package org.tigris.gefdemo.classdiagram;
 
+import java.beans.PropertyChangeEvent;
 import java.util.Vector;
 
 import org.apache.log4j.Logger;
@@ -70,7 +71,7 @@ public class UmlGraphModel extends MutableGraphSupport {
     /** get all the edges from the graphmodel/diagram
      * @return Vector of edges in the graphmodel/diagram
      */    
-    public Vector getEdges() { return edges; }
+    public Vector getEdges() { return (Vector)edges.clone(); }
     
     /** Return a valid node in this graph */
     //public Object createNode(String name, Hashtable args) {
@@ -79,7 +80,6 @@ public class UmlGraphModel extends MutableGraphSupport {
 
     /** Add the given node to the graph, if valid. */
     public void addNode(Object node) {
-        System.out.println("Adding a node " + node);
         nodes.add(node);
         fireNodeAdded(node);
     }
@@ -113,6 +113,7 @@ public class UmlGraphModel extends MutableGraphSupport {
      * @param edge edge to remove
      */    
     public void removeEdge(Object edge) {
+        System.out.println("Removing the edge " + edge);
 	if (!containsEdge(edge)) return;
         edges.removeElement(edge);
         fireEdgeRemoved(edge);
@@ -152,7 +153,7 @@ public class UmlGraphModel extends MutableGraphSupport {
         Object connection = null;
         
         if (canConnect(fromPort, toPort, edgeClass)) {
-            connection = FactoryFacade.getInstance().create(
+            connection = ModelElementFactory.getInstance().create(
                 edgeClass,
                 fromPort,
                 toPort);
@@ -220,5 +221,19 @@ public class UmlGraphModel extends MutableGraphSupport {
     public Vector getOutEdges(Object port) {
         return null;
     }
+
+//    public void vetoableChange(PropertyChangeEvent pce) {
+//
+//        if ("ownedElement".equals(pce.getPropertyName())) {
+//            Vector oldOwned = (Vector) pce.getOldValue();
+//            Object elementImport = /*(MElementImport)*/ pce.getNewValue();
+//                Object modelElement = ModelFacade.getModelElement(elementImport);
+//            //MModelElement modelElement = elementImport.getModelElement();
+//            if (oldOwned.contains(elementImport)) {
+//                cat.debug("model removed " + modelElement);
+//                removeNode(modelElement);
+//        }
+//    }
+
 
 }
