@@ -5,7 +5,9 @@ import java.util.Locale;
 
 import org.tigris.gef.base.*;
 import org.tigris.gef.util.*;
+import org.tigris.gef.graph.GraphModelException;
 import org.tigris.gef.graph.presentation.*;
+import org.tigris.gefdemo.classdiagram.model.ConnectionConstrainer;
 
 /** A simple example of the minimum code needed to build an
  *  application using GEF. */
@@ -30,6 +32,12 @@ public class ClassDiagram {
         ResourceLoader.addResourceExtension("gif");
         ResourceLoader.addResourceLocation("/org/tigris/gef/Images");
         graphFrame = new JGraphFrame();
+        try {
+            graphFrame.getGraphModel().setConnectionConstrainer(ConnectionConstrainer.getInstance());
+        } catch (GraphModelException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         graphFrame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent event) {
                 graphFrame.dispose();

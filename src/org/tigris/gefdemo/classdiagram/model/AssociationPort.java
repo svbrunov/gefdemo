@@ -18,7 +18,7 @@ public class AssociationPort extends NetPort implements Serializable {
     
     public AssociationPort(NetNode parent) {
 	super(parent);
-	if (!(parent instanceof ClassNode)) {
+	if (!(parent instanceof MClass)) {
 	    // throw an exception
 	    LOG.error("DependencyPorts are only to be used on TargetNodes");
 	}

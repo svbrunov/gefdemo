@@ -7,11 +7,12 @@ import java.awt.Rectangle;
 import java.beans.PropertyChangeEvent;
 
 import org.tigris.gef.presentation.Fig;
+import org.tigris.gef.presentation.FigLine;
 import org.tigris.gef.presentation.FigNode;
 import org.tigris.gef.presentation.FigRect;
 import org.tigris.gef.presentation.FigText;
 
-import org.tigris.gefdemo.classdiagram.model.ClassNode;
+import org.tigris.gefdemo.classdiagram.model.MClass;
 
 /**
  * A Fig representing a target node of an Ant script
@@ -20,27 +21,23 @@ import org.tigris.gefdemo.classdiagram.model.ClassNode;
 public class ClassFig extends FigNode {
     
     Fig boundryFig;
-    FigText nameFig;
-        
+    FigLine seperator1;
+    FigLine seperator2;
+            
     public ClassFig() {
-        Font font = new Font("sans", Font.PLAIN, 10);
-        nameFig = new FigText(17,1,53,16);
-        nameFig.setFont(font);
-        nameFig.setJustification(FigText.JUSTIFY_LEFT);
-        nameFig.setTextColor(Color.black);
-        nameFig.setLineColor(Color.white);
-        nameFig.setLineSpacing(-4);
-        nameFig.setMovable(false);
-        nameFig.setText("anon");
         
-        boundryFig = new FigRect(0,0,70,40);
-    
+        boundryFig = new FigRect(0,0,70,60);
+
+        seperator1 = new FigLine(0,20,70,20);    
+        seperator2 = new FigLine(0,40,70,40);    
+        
         addFig(boundryFig);
-        addFig(nameFig);
+        addFig(seperator1);
+        addFig(seperator2);
     }
     
     public String getName() {
-        return ((ClassNode)getOwner()).getName();
+        return ((MClass)getOwner()).getName();
     }
     
     /**
@@ -66,7 +63,7 @@ public class ClassFig extends FigNode {
     public void propertyChange(PropertyChangeEvent pce) {
         super.propertyChange(pce);
         if (pce.getPropertyName().equals("name")) {
-            nameFig.setText((String)pce.getNewValue());
+            //nameFig.setText((String)pce.getNewValue());
         }
     }
 
@@ -75,8 +72,7 @@ public class ClassFig extends FigNode {
      */
     public void setOwner(Object node) {
         super.setOwner(node);
-        String name = ((ClassNode)node).getName();
-        nameFig.setText(name);
+        String name = ((MClass)node).getName();
     }
 
     /**
@@ -93,7 +89,8 @@ public class ClassFig extends FigNode {
     public void setBounds(int x, int y, int w, int h) {
         Rectangle oldBounds = getBounds();
         boundryFig.setBounds(x, y, w, h);
-        nameFig.setBounds(x+17, y+1, w-18, h-2);
+        seperator1.setBounds(x, y + h/3, w, y + h/3);
+        seperator2.setBounds(x, y + h*2/3, w, y + h*2/3);
         calcBounds(); //_x = x; _y = y; _w = w; _h = h;
         firePropChange("bounds", oldBounds, getBounds());
         updateEdges();
