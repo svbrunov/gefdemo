@@ -52,11 +52,11 @@ class UmlAssociationEndImpl
         UmlClassifierImpl oldClassifier = (UmlClassifierImpl)this.classifier;
         if (oldClassifier == classifier) return;
         if (oldClassifier != null) {
-            oldClassifier.removeAssociationEnd(this);
+            oldClassifier.removeAssociationEndRole(this);
         }
         this.classifier = newClassifier;
         if (newClassifier != null) {
-            newClassifier.addAssociationEnd(this);
+            newClassifier.addAssociationEndRole(this);
         }
     }
     

@@ -1,6 +1,7 @@
 package org.tigris.gefdemo.uml;
 
 import org.tigris.gefdemo.uml.model.UmlAssociation;
+import org.tigris.gefdemo.uml.model.UmlAssociationClass;
 import org.tigris.gefdemo.uml.model.UmlAssociationEnd;
 import org.tigris.gefdemo.uml.model.UmlClassifier;
 import org.tigris.gefdemo.uml.model.UmlModel;
@@ -32,6 +33,13 @@ public class ModelFacade {
             Object association = umlModel.createModelElement(UmlAssociation.class);
             createModelElement(UmlAssociationEnd.class, association, fromPort);
             createModelElement(UmlAssociationEnd.class, association, toPort);
+            return association;
+        }
+        
+        if (identifier.equals(UmlAssociationClass.class) && fromPort instanceof UmlClassifier && toPort instanceof UmlClassifier) {
+            Object association = umlModel.createModelElement(UmlAssociationClass.class);
+            umlModel.createModelElement(UmlAssociationEnd.class, (UmlModelElement)association, (UmlModelElement)fromPort);
+            umlModel.createModelElement(UmlAssociationEnd.class, (UmlModelElement)association, (UmlModelElement)toPort);
             return association;
         }
         

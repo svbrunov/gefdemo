@@ -39,6 +39,7 @@ import org.tigris.gef.graph.GraphNodeRenderer;
 import org.tigris.gef.presentation.FigEdge;
 import org.tigris.gef.presentation.FigNode;
 import org.tigris.gefdemo.uml.model.UmlAssociation;
+import org.tigris.gefdemo.uml.model.UmlAssociationClass;
 import org.tigris.gefdemo.uml.model.UmlAssociationEnd;
 import org.tigris.gefdemo.uml.model.UmlClass;
 import org.tigris.gefdemo.uml.model.UmlClassifier;
@@ -49,6 +50,7 @@ import org.tigris.gefdemo.uml.ui.AssociationEndEdgeFig;
 import org.tigris.gefdemo.uml.ui.AssociationNodeFig;
 import org.tigris.gefdemo.uml.ui.ClassNodeFig;
 import org.tigris.gefdemo.uml.ui.DependencyEdgeFig;
+import org.tigris.gefdemo.uml.ui.FigAssociationClass;
 import org.tigris.gefdemo.uml.ui.InterfaceNodeFig;
 
 /** 
@@ -103,6 +105,25 @@ public class ClassDiagramRenderer
             depFig.setDestPortFig(supFN);
             depFig.setDestFigNode(supFN);
             return depFig;
+        }
+        if (edge instanceof UmlAssociationClass) {
+            UmlAssociationClass association = (UmlAssociationClass)edge;
+            FigAssociationClass associationClassFig = new FigAssociationClass(edge, lay);
+
+            UmlAssociationEnd sourceEnd = (UmlAssociationEnd)association.getAssociationEnds().get(0);
+            Object source = sourceEnd.getClassifier();
+            UmlAssociationEnd targetEnd = (UmlAssociationEnd)association.getAssociationEnds().get(1);
+            Object target = targetEnd.getClassifier();
+
+            FigNode sourceFN = (FigNode) lay.presentationFor(source);
+            FigNode targetFN = (FigNode) lay.presentationFor(target);
+
+            associationClassFig.setSourcePortFig(sourceFN);
+            associationClassFig.setSourceFigNode(sourceFN);
+            associationClassFig.setDestPortFig(targetFN);
+            associationClassFig.setDestFigNode(targetFN);
+            System.out.println("Creating an AssociationFig between " + sourceFN + " and " + targetFN);
+            return associationClassFig;
         }
         if (edge instanceof UmlAssociation) {
             UmlAssociation association = (UmlAssociation)edge;

@@ -18,6 +18,7 @@ public class UmlModel {
         if (identifier.equals(UmlClass.class)) return new UmlClassImpl();
         if (identifier.equals(UmlInterface.class)) return new UmlInterfaceImpl();
         if (identifier.equals(UmlAssociation.class)) return new UmlAssociationImpl();
+        if (identifier.equals(UmlAssociationClass.class)) return new UmlAssociationClassImpl();
         throw new IllegalArgumentException("Factory failed to create a model element for the identifier " + identifier);
     }
     
@@ -34,8 +35,8 @@ public class UmlModel {
         }
         if (identifier.equals(UmlDependency.class)) {
             UmlDependencyImpl dep = new UmlDependencyImpl();
-            dep.setSupplier((UmlModelElement)fromPort);
-            dep.setClient((UmlModelElement)toPort);
+            dep.setSupplier(fromPort);
+            dep.setClient(toPort);
             modelElement = dep;
         }
         System.out.println("ModelElement created " + modelElement);
