@@ -10,37 +10,30 @@ import org.tigris.gef.presentation.FigLine;
 import org.tigris.gef.presentation.FigNode;
 import org.tigris.gef.presentation.FigRect;
 
-import org.tigris.gefdemo.classdiagram.model.UmlClass;
+import org.tigris.gefdemo.classdiagram.model.UmlInterface;
 
-/**
- * A Fig representing a target node of an Ant script
- * @author Bob Tarling
- */
-public class ClassFig extends FigNode {
+public class InterfaceFig extends FigNode {
     
     Fig boundryFig;
     FigLine seperator1;
-    FigLine seperator2;
             
-    public ClassFig() {
+    public InterfaceFig() {
         
         boundryFig = new FigRect(0,0,70,60);
 
         seperator1 = new FigLine(0,20,70,20);    
-        seperator2 = new FigLine(0,40,70,40);    
         
         addFig(boundryFig);
         addFig(seperator1);
-        addFig(seperator2);
     }
     
-    public ClassFig(GraphModel gm, Object node) {
+    public InterfaceFig(GraphModel gm, Object node) {
         this();
         setOwner(node);
     }
     
     public String getName() {
-        return ((UmlClass)getOwner()).getName();
+        return ((UmlInterface)getOwner()).getName();
     }
     
     /**
@@ -75,7 +68,7 @@ public class ClassFig extends FigNode {
      */
     public void setOwner(Object node) {
         super.setOwner(node);
-        String name = ((UmlClass)node).getName();
+        String name = ((UmlInterface)node).getName();
     }
 
     /**
@@ -93,7 +86,6 @@ public class ClassFig extends FigNode {
         Rectangle oldBounds = getBounds();
         boundryFig.setBounds(x, y, w, h);
         seperator1.setBounds(x, y + h/3, w, y + h/3);
-        seperator2.setBounds(x, y + h*2/3, w, y + h*2/3);
         calcBounds(); //_x = x; _y = y; _w = w; _h = h;
         firePropChange("bounds", oldBounds, getBounds());
         updateEdges();

@@ -8,12 +8,12 @@ import org.tigris.gefdemo.classdiagram.ui.AssociationEndFig;
 /** A NetEdge subclass to represent a dependency between tagets.
  */
 
-public class MAssociationEnd extends NetEdge {
+class UmlAssociationEndImpl extends NetEdge implements UmlAssociationEnd {
     
     private String name;
     
     /** Construct a new Depends. */
-    public MAssociationEnd() {
+    public UmlAssociationEndImpl() {
     }
 
     public String getId() {

@@ -1,8 +1,13 @@
 package org.tigris.gefdemo.classdiagram;
 
-import org.tigris.gef.base.*;
-import org.tigris.gef.ui.*;
-import org.tigris.gefdemo.classdiagram.model.MAssociationEnd;
+import org.tigris.gef.base.CmdSetMode;
+import org.tigris.gef.base.ModeCreatePolyEdge;
+import org.tigris.gef.ui.PaletteFig;
+import org.tigris.gefdemo.classdiagram.model.UmlAssociationEnd;
+import org.tigris.gefdemo.classdiagram.model.UmlAssociation;
+import org.tigris.gefdemo.classdiagram.model.UmlClass;
+import org.tigris.gefdemo.classdiagram.model.UmlInterface;
+
 
 /** A class to define a custom palette for use in some demos.
  *
@@ -20,14 +25,9 @@ public class SamplePalette extends PaletteFig {
     public void defineButtons() {
         super.defineButtons();
 
-        add(
-            new CmdCreateNode(
-                org.tigris.gefdemo.classdiagram.model.MClass.class,
-                "Class"));
-        add(
-            new CmdCreateNode(
-                org.tigris.gefdemo.classdiagram.model.MAssociation.class,
-                "Association"));
-        add(new CmdSetMode(ModeCreatePolyEdge.class, "edgeClass", MAssociationEnd.class, "Association"));
+        add(new CmdCreateNode(UmlClass.class, "Class"));
+        add(new CmdCreateNode(UmlInterface.class, "Interface"));
+        add(new CmdCreateNode(UmlAssociation.class, "Association"));
+        add(new CmdSetMode(ModeCreatePolyEdge.class, "edgeClass", UmlAssociationEnd.class, "Association"));
     }
 } /* end class SamplePalette */

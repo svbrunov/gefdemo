@@ -59,7 +59,6 @@ public class BasicApplication {
       //      sn2.initialize(null);
       //      dgm.addNode(sn2);
     }
-    System.out.println("finished adding nodes");
   }
 
   ////////////////////////////////////////////////////////////////

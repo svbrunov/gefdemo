@@ -4,10 +4,11 @@ package org.tigris.gefdemo.classdiagram.ui;
 import java.awt.Rectangle;
 import java.beans.PropertyChangeEvent;
 
+import org.tigris.gef.graph.GraphModel;
 import org.tigris.gef.presentation.Fig;
 import org.tigris.gef.presentation.FigNode;
 
-import org.tigris.gefdemo.classdiagram.model.MAssociation;
+import org.tigris.gefdemo.classdiagram.model.UmlAssociation;
 
 /**
  * A Fig representing a target node of an Ant script
@@ -23,9 +24,14 @@ public class AssociationFig extends FigNode {
 
         addFig(boundryFig);
     }
+
+    public AssociationFig(GraphModel gm, Object node) {
+        this();
+        setOwner(node);
+    }
     
     public String getName() {
-        return ((MAssociation)getOwner()).getName();
+        return ((UmlAssociation)getOwner()).getName();
     }
     
     /**
@@ -60,7 +66,7 @@ public class AssociationFig extends FigNode {
      */
     public void setOwner(Object node) {
         super.setOwner(node);
-        String name = ((MAssociation)node).getName();
+        String name = ((UmlAssociation)node).getName();
     }
 
     /**

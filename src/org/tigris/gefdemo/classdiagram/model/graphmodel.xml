@@ -1,6 +1,6 @@
 <graphmodel>
     <connections>
-        <connection>
+        <!--connection>
             <edge>org.tigris.gefdemo.classdiagram.model.MAssociationEnd</edge>
             <port>org.tigris.gefdemo.classdiagram.model.ClassifierPort</port>
             <port>org.tigris.gefdemo.classdiagram.model.AssociationPort</port>
@@ -9,6 +9,6 @@
             <edge>org.tigris.gefdemo.classdiagram.model.MAssociationEnd</edge>
             <port>org.tigris.gefdemo.classdiagram.model.AssociationPort</port>
             <port>org.tigris.gefdemo.classdiagram.model.ClassifierPort</port>
-        </connection>
+        </connection-->
     </connections>
 </graphmodel>

@@ -17,7 +17,6 @@ public class PortEther extends NetPort implements Serializable {
 	super(parent);
 	if (!(parent instanceof NodeLAN)) {
 	    // throw an exception
-	    System.out.println("PortEthers are only to be used on NodeLAN");
 	}
     }
     
