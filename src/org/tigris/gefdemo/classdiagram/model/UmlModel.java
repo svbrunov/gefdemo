@@ -12,15 +12,9 @@ import java.util.Vector;
  */
 public class UmlModel {
 
-    private static UmlModel instance = new UmlModel();
-    
     private Vector umlModelElementRemovalListeners = new Vector();
     private List umlModelElements = new ArrayList();
      
-    public static UmlModel getInstance() {
-        return instance;
-    }
-    
     public Object createModelElement(Object identifier) {
         if (identifier.equals(UmlClass.class)) return new UmlClassImpl();
         if (identifier.equals(UmlInterface.class)) return new UmlInterfaceImpl();

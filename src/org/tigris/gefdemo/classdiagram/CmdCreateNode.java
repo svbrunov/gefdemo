@@ -149,7 +149,7 @@ public class CmdCreateNode extends org.tigris.gef.base.CmdCreateNode {
     public Object makeNode() {
         Class nodeClass = (Class) getArg("className", DEFAULT_NODE_CLASS);
         try {
-            return UmlModel.getInstance().createModelElement(nodeClass);
+            return ModelFacade.getInstance().createModelElement(nodeClass);
         } catch (IllegalArgumentException e) {
             LOG.error("Exception caught", e);
         }

@@ -153,7 +153,7 @@ public class UmlGraphModel extends MutableGraphSupport {
         Object connection = null;
         
         if (canConnect(fromPort, toPort, edgeClass)) {
-            connection = ModelElementFactory.getInstance().create(
+            connection = ModelFacade.getInstance().createModelElement(
                 edgeClass,
                 fromPort,
                 toPort);
