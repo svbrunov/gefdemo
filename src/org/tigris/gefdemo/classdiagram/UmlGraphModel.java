@@ -28,18 +28,12 @@
  * Created on November 14, 2002, 10:20 PM
  */
 
-package org.tigris.gefdemo.classdiagram.model;
+package org.tigris.gefdemo.classdiagram;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.Vector;
 
 import org.apache.log4j.Logger;
 
-import org.tigris.gef.base.Editor;
-import org.tigris.gef.base.Globals;
-import org.tigris.gef.base.Mode;
-import org.tigris.gef.base.ModeManager;
 import org.tigris.gef.graph.MutableGraphSupport;
 
 

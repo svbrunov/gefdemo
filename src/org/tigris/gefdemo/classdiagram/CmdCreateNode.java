@@ -30,7 +30,7 @@ import javax.swing.Action;
 
 import org.apache.log4j.Logger;
 import org.tigris.gef.graph.GraphModelException;
-import org.tigris.gefdemo.classdiagram.model.UmlFactory;
+import org.tigris.gefdemo.classdiagram.model.*;
 
 /**
  * Command to create nodes with the appropriate modelelement. The modelelement

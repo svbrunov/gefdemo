@@ -8,8 +8,6 @@ import org.tigris.gef.util.*;
 import org.tigris.gef.graph.GraphModel;
 import org.tigris.gef.graph.GraphModelException;
 import org.tigris.gef.graph.presentation.*;
-import org.tigris.gefdemo.classdiagram.model.ConnectionConstrainer;
-import org.tigris.gefdemo.classdiagram.model.UmlGraphModel;
 
 /** A simple example of the minimum code needed to build an
  *  application using GEF.
@@ -53,16 +51,6 @@ public class ClassDiagram {
         graphFrame.getGraph().setGraphNodeRenderer(renderer);
         graphFrame.getGraph().setGraphEdgeRenderer(renderer);
         
-//        DefaultGraphModel gm = new DefaultGraphModel();
-//        LayerPerspective lay = new LayerPerspectiveMutable("", gm);
-//        ClassDiagramRenderer rend = new ClassDiagramRenderer();
-//        lay.setGraphNodeRenderer(rend);
-//        lay.setGraphEdgeRenderer(rend);
-//        Diagram d= new Diagram("", gm, lay);
-////        d.setLayer(lay);
-//        JGraph graph = new JGraph(d);
-//        graphFrame.setGraph(graph);
-
         try {
             graphFrame.getGraphModel().setConnectionConstrainer(ConnectionConstrainer.getInstance());
         } catch (GraphModelException e) {

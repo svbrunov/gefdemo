@@ -1,4 +1,4 @@
-package org.tigris.gefdemo.classdiagram.model;
+package org.tigris.gefdemo.classdiagram;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,7 +35,7 @@ public class ConnectionConstrainer extends XmlConnectionConstrainer {
 
     private static Document getDocument() throws GraphModelException {
         try {
-            File file = new File("src/org/tigris/gefdemo/classdiagram/model/graphmodel.xml");
+            File file = new File("src/org/tigris/gefdemo/classdiagram/graphmodel.xml");
             FileInputStream inputStream = null;
             inputStream = new FileInputStream(file);
             InputSource inputSource = new InputSource(inputStream);
