@@ -4,10 +4,10 @@ package org.tigris.gefdemo.classdiagram.ui;
 import java.awt.Rectangle;
 import java.beans.PropertyChangeEvent;
 
-import org.tigris.gef.graph.GraphModel;
 import org.tigris.gef.presentation.Fig;
 import org.tigris.gef.presentation.FigNode;
 
+import org.tigris.gefdemo.classdiagram.ModelFacade;
 import org.tigris.gefdemo.classdiagram.model.UmlModelElement;
 
 /**
@@ -83,5 +83,11 @@ abstract public class ModelElementNodeFig extends FigNode {
         calcBounds(); //_x = x; _y = y; _w = w; _h = h;
         firePropChange("bounds", oldBounds, getBounds());
         updateEdges();
+    }
+
+    public void dispose() {
+        Object owner = getOwner();
+        super.dispose();
+        ModelFacade.getInstance().removeModelElement(owner);
     }
 }

@@ -2,8 +2,6 @@ package org.tigris.gefdemo.classdiagram.ui;
 
 import java.awt.Rectangle;
 
-import org.tigris.gef.graph.GraphModel;
-
 /**
  * A Fig representing an association between 2 or more classifiers
  * @author Bob Tarling

@@ -5,6 +5,7 @@ import java.awt.event.WindowEvent;
 
 import java.util.Locale;
 
+import org.tigris.gef.base.Globals;
 import org.tigris.gef.graph.GraphModel;
 import org.tigris.gef.graph.GraphModelException;
 import org.tigris.gef.util.Localizer;

@@ -15,6 +15,4 @@ import java.util.Collection;
  */
 public interface UmlClassifier {
     public abstract Collection getAssociationEnds();
-    public abstract void addAssociationEnd(UmlAssociationEnd associationEnd);
-    public abstract void removeAssociationEnd(UmlAssociationEnd associationEnd);
 }

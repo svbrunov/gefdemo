@@ -8,7 +8,9 @@ import org.tigris.gefdemo.classdiagram.model.UmlModelElement;
 
 /**
  * A facade class to simplify access to the model.
- * In this case it's pretty simple anyway.
+ * In this case the model pretty mcuh fits our requirements
+ * anyway but it is good practise to add another layer
+ * of seperation here.
  * @author Bob Tarling
  * @since 09-Jun-2004
  */

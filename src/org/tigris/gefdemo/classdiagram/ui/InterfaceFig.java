@@ -3,7 +3,6 @@ package org.tigris.gefdemo.classdiagram.ui;
 
 import java.awt.Rectangle;
 
-import org.tigris.gef.graph.GraphModel;
 import org.tigris.gef.presentation.FigLine;
 import org.tigris.gef.presentation.FigRect;
 

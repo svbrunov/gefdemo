@@ -5,7 +5,6 @@ import java.util.Iterator;
 
 import org.tigris.gef.base.Globals;
 import org.tigris.gef.base.Layer;
-import org.tigris.gef.graph.GraphModel;
 import org.tigris.gef.presentation.ArrowHead;
 import org.tigris.gef.presentation.ArrowHeadGreater;
 import org.tigris.gefdemo.classdiagram.UmlGraphModel;

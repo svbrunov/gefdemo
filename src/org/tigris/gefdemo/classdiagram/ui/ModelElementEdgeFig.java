@@ -5,6 +5,7 @@ import org.tigris.gef.presentation.ArrowHead;
 import org.tigris.gef.presentation.ArrowHeadGreater;
 import org.tigris.gef.presentation.FigEdgePoly;
 
+import org.tigris.gefdemo.classdiagram.ModelFacade;
 import org.tigris.gefdemo.classdiagram.model.UmlModelElement;
 
 /**
@@ -22,5 +23,11 @@ public class ModelElementEdgeFig extends FigEdgePoly {
 
     public String getName() {
         return ((UmlModelElement)getOwner()).getName();
+    }
+    
+    public void dispose() {
+        Object owner = getOwner();
+        super.dispose();
+        ModelFacade.getInstance().removeModelElement(owner);
     }
 }

@@ -29,7 +29,6 @@ import java.util.Vector;
 import javax.swing.Action;
 
 import org.apache.log4j.Logger;
-import org.tigris.gefdemo.classdiagram.model.*;
 
 /**
  * Command to create nodes with the appropriate modelelement. The modelelement

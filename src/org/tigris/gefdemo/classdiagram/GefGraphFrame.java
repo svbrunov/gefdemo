@@ -23,23 +23,60 @@
 
 package org.tigris.gefdemo.classdiagram;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.border.*;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.event.KeyEvent;
 
-import org.tigris.gef.base.*;
-import org.tigris.gef.ui.*;
-import org.tigris.gef.event.*;
-import org.tigris.gef.graph.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.KeyStroke;
+import javax.swing.border.EtchedBorder;
+
+
+import org.tigris.gef.base.CmdAdjustGrid;
+import org.tigris.gef.base.CmdAdjustGuide;
+import org.tigris.gef.base.CmdAdjustPageBreaks;
+import org.tigris.gef.base.CmdAlign;
+import org.tigris.gef.base.CmdCopy;
+import org.tigris.gef.base.CmdDeleteFromModel;
+import org.tigris.gef.base.CmdDistribute;
+import org.tigris.gef.base.CmdExit;
+import org.tigris.gef.base.CmdGroup;
+import org.tigris.gef.base.CmdOpen;
+import org.tigris.gef.base.CmdPaste;
+import org.tigris.gef.base.CmdPrint;
+import org.tigris.gef.base.CmdReorder;
+import org.tigris.gef.base.CmdSave;
+import org.tigris.gef.base.CmdSelectInvert;
+import org.tigris.gef.base.CmdSelectNext;
+import org.tigris.gef.base.CmdShowProperties;
+import org.tigris.gef.base.CmdSpawn;
+import org.tigris.gef.base.CmdUngroup;
+import org.tigris.gef.base.CmdUseReshape;
+import org.tigris.gef.base.CmdUseResize;
+import org.tigris.gef.base.CmdUseRotate;
+import org.tigris.gef.base.Editor;
+import org.tigris.gef.base.Globals;
+import org.tigris.gef.base.ModeSelect;
+import org.tigris.gef.event.ModeChangeEvent;
+import org.tigris.gef.event.ModeChangeListener;
+import org.tigris.gef.graph.GraphEdgeRenderer;
+import org.tigris.gef.graph.GraphModel;
+import org.tigris.gef.graph.GraphNodeRenderer;
 import org.tigris.gef.graph.presentation.JGraph;
-import org.tigris.gef.util.*;
+import org.tigris.gef.ui.IStatusBar;
+import org.tigris.gef.ui.PaletteFig;
+import org.tigris.gef.ui.ToolBar;
+import org.tigris.gef.util.Localizer;
 
 /** A window that displays a toolbar, a connected graph editing pane,
  *  and a status bar. */
 
-public class GefGraphFrame
-    extends JFrame
+public class GefGraphFrame extends JFrame
     implements IStatusBar, Cloneable, ModeChangeListener {
 
     /** The toolbar (shown at top of window). */
@@ -216,10 +253,6 @@ public class GefGraphFrame
         view.setMnemonic('V');
         view.add(new CmdSpawn());
         view.add(new CmdShowProperties());
-        //view.addSeparator();
-        //view.add(new CmdZoomIn());
-        //view.add(new CmdZoomOut());
-        //view.add(new CmdZoomNormal());
         view.addSeparator();
         view.add(new CmdAdjustGrid());
         view.add(new CmdAdjustGuide());
@@ -261,36 +294,23 @@ public class GefGraphFrame
         JMenu nudge = new JMenu(Localizer.localize("GefBase", "Nudge"));
         arrange.add(nudge);
 
-        KeyStroke ctrlO =
-            KeyStroke.getKeyStroke(KeyEvent.VK_O, KeyEvent.CTRL_MASK);
-        KeyStroke ctrlS =
-            KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_MASK);
-        KeyStroke ctrlP =
-            KeyStroke.getKeyStroke(KeyEvent.VK_P, KeyEvent.CTRL_MASK);
-        KeyStroke altF4 =
-            KeyStroke.getKeyStroke(KeyEvent.VK_F4, KeyEvent.ALT_MASK);
+        KeyStroke ctrlO = KeyStroke.getKeyStroke(KeyEvent.VK_O, KeyEvent.CTRL_MASK);
+        KeyStroke ctrlS = KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_MASK);
+        KeyStroke ctrlP = KeyStroke.getKeyStroke(KeyEvent.VK_P, KeyEvent.CTRL_MASK);
+        KeyStroke altF4 = KeyStroke.getKeyStroke(KeyEvent.VK_F4, KeyEvent.ALT_MASK);
 
-        KeyStroke delKey,
-            ctrlC,
-            ctrlV,
-            ctrlG,
-            ctrlU,
-            ctrlB,
-            ctrlF,
-            sCtrlB,
-            sCtrlF;
-        delKey = KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0);
-        ctrlC = KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_MASK);
-        ctrlV = KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.CTRL_MASK);
-        ctrlG = KeyStroke.getKeyStroke(KeyEvent.VK_G, KeyEvent.CTRL_MASK);
-        ctrlU = KeyStroke.getKeyStroke(KeyEvent.VK_U, KeyEvent.CTRL_MASK);
-        ctrlB = KeyStroke.getKeyStroke(KeyEvent.VK_B, KeyEvent.CTRL_MASK);
-        ctrlF = KeyStroke.getKeyStroke(KeyEvent.VK_F, KeyEvent.CTRL_MASK);
-        sCtrlB =
+        KeyStroke delKey = KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0);
+        KeyStroke ctrlC = KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_MASK);
+        KeyStroke ctrlV = KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.CTRL_MASK);
+        KeyStroke ctrlG = KeyStroke.getKeyStroke(KeyEvent.VK_G, KeyEvent.CTRL_MASK);
+        KeyStroke ctrlU = KeyStroke.getKeyStroke(KeyEvent.VK_U, KeyEvent.CTRL_MASK);
+        KeyStroke ctrlB = KeyStroke.getKeyStroke(KeyEvent.VK_B, KeyEvent.CTRL_MASK);
+        KeyStroke ctrlF = KeyStroke.getKeyStroke(KeyEvent.VK_F, KeyEvent.CTRL_MASK);
+        KeyStroke sCtrlB =
             KeyStroke.getKeyStroke(
                 KeyEvent.VK_B,
                 KeyEvent.CTRL_MASK | KeyEvent.SHIFT_MASK);
-        sCtrlF =
+        KeyStroke sCtrlF =
             KeyStroke.getKeyStroke(
                 KeyEvent.VK_F,
                 KeyEvent.CTRL_MASK | KeyEvent.SHIFT_MASK);
@@ -321,15 +341,17 @@ public class GefGraphFrame
 
     public void setVisible(boolean b) {
         super.setVisible(b);
-        if (b)
+        if (b) {
             Globals.setStatusBar(this);
+        }
     }
     ////////////////////////////////////////////////////////////////
     // IStatusListener implementation
 
     /** Show a message in the statusbar. */
     public void showStatus(String msg) {
-        if (_statusbar != null)
+        if (_statusbar != null) {
             _statusbar.setText(msg);
+        }
     }
 } /* end class JGraphFrame */

@@ -30,7 +30,6 @@
 
 package org.tigris.gefdemo.classdiagram;
 
-import java.beans.PropertyChangeEvent;
 import java.util.Vector;
 
 import org.apache.log4j.Logger;

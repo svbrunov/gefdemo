@@ -30,13 +30,15 @@ class UmlAssociationEndImpl
      * @param association The association to set.
      */
     public void setAssociation(UmlAssociation association) {
-        if (this.association == association) return;
-        if (this.association != null) {
-            this.association.removeAssociationEnd(this);
+        UmlAssociationImpl newAssociation = (UmlAssociationImpl)association;
+        UmlAssociationImpl oldAssociation = (UmlAssociationImpl)this.association;
+        if (oldAssociation == association) return;
+        if (oldAssociation != null) {
+            oldAssociation.removeAssociationEnd(this);
         }
         this.association = association;
-        if (association != null) {
-            association.addAssociationEnd(this);
+        if (newAssociation != null) {
+            newAssociation.addAssociationEnd(this);
         }
     }
 
@@ -44,13 +46,15 @@ class UmlAssociationEndImpl
      * @param classifier The classifier to set.
      */
     public void setClassifier(UmlClassifier classifier) {
-        if (this.classifier == classifier) return;
-        if (this.classifier != null) {
-            this.classifier.removeAssociationEnd(this);
+        UmlClassifierImpl newClassifier = (UmlClassifierImpl)classifier;
+        UmlClassifierImpl oldClassifier = (UmlClassifierImpl)this.classifier;
+        if (oldClassifier == classifier) return;
+        if (oldClassifier != null) {
+            oldClassifier.removeAssociationEnd(this);
         }
-        this.classifier = classifier;
-        if (classifier != null) {
-            classifier.addAssociationEnd(this);
+        this.classifier = newClassifier;
+        if (newClassifier != null) {
+            newClassifier.addAssociationEnd(this);
         }
     }
 }

@@ -1,7 +1,6 @@
 package org.tigris.gefdemo.classdiagram.model;
 
 import java.beans.PropertyChangeListener;
-import java.util.List;
 
 /**
  * The base interface for all model elements
@@ -23,8 +22,4 @@ public interface UmlModelElement {
     
     public String getName();
     public void setName(String name);
-    public void addSupplierDependency(UmlDependency dep);
-    public void removeSupplierDependency(UmlDependency dep);
-    public void addClientDependency(UmlDependency dep);
-    public void removeClientDependency(UmlDependency dep);
 }

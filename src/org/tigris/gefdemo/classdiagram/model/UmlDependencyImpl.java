@@ -35,13 +35,15 @@ class UmlDependencyImpl implements UmlDependency {
      * @param element
      */
     public void setClient(UmlModelElement client) {
-        if (this.client == client) return;
-        if (this.client != null) {
-            this.client.removeClientDependency(this);
+        UmlModelElementImpl oldClient = (UmlModelElementImpl)this.client;
+        UmlModelElementImpl newClient = (UmlModelElementImpl)client;
+        if (oldClient == newClient) return;
+        if (oldClient != null) {
+            oldClient.removeClientDependency(this);
         }
-        this.client = client;
-        if (client != null) {
-            client.addClientDependency(this);
+        this.client = newClient;
+        if (newClient != null) {
+            newClient.addClientDependency(this);
         }
     }
 
@@ -49,13 +51,15 @@ class UmlDependencyImpl implements UmlDependency {
      * @param element
      */
     public void setSupplier(UmlModelElement supplier) {
-        if (this.supplier == supplier) return;
-        if (this.supplier != null) {
-            this.supplier.removeSupplierDependency(this);
+        UmlModelElementImpl oldSupplier = (UmlModelElementImpl)this.supplier;
+        UmlModelElementImpl newSupplier = (UmlModelElementImpl)supplier;
+        if (oldSupplier == newSupplier) return;
+        if (oldSupplier != null) {
+            oldSupplier.removeSupplierDependency(this);
         }
-        this.supplier = supplier;
-        if (supplier != null) {
-            supplier.addSupplierDependency(this);
+        this.supplier = newSupplier;
+        if (newSupplier != null) {
+            newSupplier.addSupplierDependency(this);
         }
     }
 
