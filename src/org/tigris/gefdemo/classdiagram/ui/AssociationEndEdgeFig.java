@@ -15,15 +15,15 @@ import org.tigris.gefdemo.classdiagram.model.UmlClassifier;
 /**
  * @author Bob Tarling
  */
-public class AssociationEndFig extends ModelElementEdgeFig {
+public class AssociationEndEdgeFig extends ModelElementEdgeFig {
     private ArrowHead arrowHead = new ArrowHeadGreater();
     
-    public AssociationEndFig(Object edge, Layer lay) {
+    public AssociationEndEdgeFig(Object edge, Layer lay) {
         super(edge, lay);
     }
     
     public void dispose() {
-        AssociationFig af = (AssociationFig)getSourceFigNode();
+        AssociationNodeFig af = (AssociationNodeFig)getSourceFigNode();
         UmlGraphModel gm = (UmlGraphModel)Globals.curEditor().getGraphModel();
         UmlAssociation association = (UmlAssociation)af.getOwner();
         super.dispose();
@@ -32,7 +32,7 @@ public class AssociationEndFig extends ModelElementEdgeFig {
         if (edgeCount == 2) {
             Iterator it = remainingEdges.iterator();
             while (it.hasNext()) {
-                AssociationEndFig fig = (AssociationEndFig)it.next();
+                AssociationEndEdgeFig fig = (AssociationEndEdgeFig)it.next();
                 fig.delete();
             }
             af.delete();

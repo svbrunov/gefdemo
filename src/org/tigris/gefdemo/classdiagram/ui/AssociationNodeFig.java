@@ -6,9 +6,9 @@ import java.awt.Rectangle;
  * A Fig representing an association between 2 or more classifiers
  * @author Bob Tarling
  */
-public class AssociationFig extends ModelElementNodeFig {
+public class AssociationNodeFig extends ModelElementNodeFig {
     
-    public AssociationFig(Object node) {
+    public AssociationNodeFig(Object node) {
         super(node);
         
         boundryFig = new FigDiamond(0,0,70,70);

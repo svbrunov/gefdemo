@@ -8,10 +8,10 @@ import org.tigris.gef.presentation.Fig;
 /**
  * @author Bob Tarling
  */
-public class DependencyFig extends ModelElementEdgeFig {
+public class DependencyEdgeFig extends ModelElementEdgeFig {
     private ArrowHead destArrowHead = new ArrowHeadGreater();
     
-    public DependencyFig(Object edge, Layer lay) {
+    public DependencyEdgeFig(Object edge, Layer lay) {
         super(edge, lay);
         setDestArrowHead(destArrowHead);
         getFig().setDashed(true);

@@ -44,10 +44,10 @@ import org.tigris.gefdemo.classdiagram.model.UmlClassifier;
 import org.tigris.gefdemo.classdiagram.model.UmlDependency;
 import org.tigris.gefdemo.classdiagram.model.UmlInterface;
 import org.tigris.gefdemo.classdiagram.ui.AssociationEdgeFig;
-import org.tigris.gefdemo.classdiagram.ui.AssociationEndFig;
-import org.tigris.gefdemo.classdiagram.ui.AssociationFig;
-import org.tigris.gefdemo.classdiagram.ui.ClassFig;
-import org.tigris.gefdemo.classdiagram.ui.DependencyFig;
+import org.tigris.gefdemo.classdiagram.ui.AssociationEndEdgeFig;
+import org.tigris.gefdemo.classdiagram.ui.AssociationNodeFig;
+import org.tigris.gefdemo.classdiagram.ui.ClassNodeFig;
+import org.tigris.gefdemo.classdiagram.ui.DependencyEdgeFig;
 import org.tigris.gefdemo.classdiagram.ui.InterfaceFig;
 
 /** 
@@ -63,9 +63,9 @@ public class ClassDiagramRenderer
     /** Return a Fig that can be used to represent the given node */
     public FigNode getFigNodeFor(GraphModel gm, Layer lay, Object node) {
         LOG.debug("getFigNodeFor node " + node.getClass().getName());
-        if (node instanceof UmlClass) return new ClassFig(node);
+        if (node instanceof UmlClass) return new ClassNodeFig(node);
         else if (node instanceof UmlInterface) return new InterfaceFig(node);
-        else if (node instanceof UmlAssociation) return new AssociationFig(node);
+        else if (node instanceof UmlAssociation) return new AssociationNodeFig(node);
         LOG.error("Unable to create FigNode for " + node);
         return null;
     }
@@ -75,7 +75,7 @@ public class ClassDiagramRenderer
         LOG.debug("making figedge for " + edge);
         if (edge instanceof UmlAssociationEnd) {
             UmlAssociationEnd associationEnd = (UmlAssociationEnd) edge;
-            AssociationEndFig ascEndFig = new AssociationEndFig(edge, lay);
+            AssociationEndEdgeFig ascEndFig = new AssociationEndEdgeFig(edge, lay);
             UmlAssociation association = associationEnd.getAssociation();
             UmlClassifier classifier = associationEnd.getClassifier();
 
@@ -90,7 +90,7 @@ public class ClassDiagramRenderer
         }
         if (edge instanceof UmlDependency) {
             UmlDependency dep = (UmlDependency) edge;
-            DependencyFig depFig = new DependencyFig(edge, lay);
+            DependencyEdgeFig depFig = new DependencyEdgeFig(edge, lay);
 
             Object supplier = dep.getClient();
             Object client = dep.getSupplier();

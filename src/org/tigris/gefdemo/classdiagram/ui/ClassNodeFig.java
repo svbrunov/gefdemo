@@ -10,12 +10,12 @@ import org.tigris.gef.presentation.FigRect;
  * A Fig representing a target node of an Ant script
  * @author Bob Tarling
  */
-public class ClassFig extends ModelElementNodeFig {
+public class ClassNodeFig extends ModelElementNodeFig {
     
     FigLine seperator1;
     FigLine seperator2;
             
-    public ClassFig(Object node) {
+    public ClassNodeFig(Object node) {
         super(node);
         
         boundryFig = new FigRect(0,0,70,60);
