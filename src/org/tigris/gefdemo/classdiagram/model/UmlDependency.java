@@ -15,4 +15,6 @@ public interface UmlDependency {
     public abstract String getId();
     public abstract String getName();
     public abstract void setName(String name);
+    public abstract UmlModelElement getClient();
+    public abstract UmlModelElement getSupplier();
 }

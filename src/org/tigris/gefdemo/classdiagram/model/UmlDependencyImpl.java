@@ -5,10 +5,15 @@ package org.tigris.gefdemo.classdiagram.model;
 
 class UmlDependencyImpl implements UmlDependency {
     
+    UmlModelElement supplier;
+    UmlModelElement client;
+    
     private String name;
     
     /** Construct a new Depends. */
-    public UmlDependencyImpl() {
+    public UmlDependencyImpl(UmlModelElement supplier, UmlModelElement client) {
+        this.supplier = supplier;
+        this.client = client;
     }
 
     public String getId() {
@@ -21,5 +26,11 @@ class UmlDependencyImpl implements UmlDependency {
 
     public void setName(String name) {
         this.name = name;
+    }
+    public UmlModelElement getClient() {
+        return client;
+    }
+    public UmlModelElement getSupplier() {
+        return supplier;
     }
 }

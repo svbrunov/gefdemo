@@ -25,6 +25,7 @@ public class UmlFactory {
             Object fromPort,
             Object toPort) {
         if (identifier.equals(UmlAssociationEnd.class)) return new UmlAssociationEndImpl();
+        if (identifier.equals(UmlDependency.class)) return new UmlDependencyImpl((UmlModelElement)fromPort, (UmlModelElement)toPort);
         throw new IllegalArgumentException("Factory failed to create a model element for the identifier " + identifier);
     }
 }
