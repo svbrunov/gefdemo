@@ -7,7 +7,6 @@ import javax.swing.*;
 
 import org.tigris.gef.base.*;
 import org.tigris.gef.presentation.*;
-import org.tigris.gef.util.*;
 
 /** An example subclass of NetNode for use in the demos.
  *
@@ -23,10 +22,10 @@ public class NodeComputer extends NodeLAN implements Serializable {
     FigImage obj1 = new FigImage(-15, -15, computerImage);
     Fig obj4 = new FigRect(13,  -5, 10, 10, Color.blue, Color.white);
     Fig obj3 = new FigCircle(-22,  -5, 10, 10, Color.blue, Color.white);
-    Vector temp_list = new Vector();
-    temp_list.addElement(obj1);
-    temp_list.addElement(obj3);
-    temp_list.addElement(obj4);
+    Collection temp_list = new Vector();
+    temp_list.add(obj1);
+    temp_list.add(obj3);
+    temp_list.add(obj4);
     FigNode fn = new FigNode(this, temp_list);
     fn.bindPort(print1, obj3);
     fn.bindPort(ether1, obj4);

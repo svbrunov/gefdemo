@@ -1,12 +1,8 @@
 package org.tigris.gefdemo.lan;
 
-import java.awt.*;
-import java.awt.event.*;
 import java.util.*;
 import java.io.*;
 
-import org.tigris.gef.base.*;
-import org.tigris.gef.presentation.*;
 import org.tigris.gef.graph.presentation.*;
 
 /** An example subclass of NetNode for use in the BasicApplication

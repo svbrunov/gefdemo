@@ -1,6 +1,5 @@
 package org.tigris.gefdemo.lan;
 
-import java.awt.*;
 import java.io.*;
 
 import org.tigris.gef.graph.*;

@@ -1,7 +1,5 @@
 package org.tigris.gefdemo.basic;
 
-import java.awt.*;
-import java.util.*;
 import javax.swing.Action;
 
 import org.tigris.gef.base.*;

@@ -1,11 +1,8 @@
 package org.tigris.gefdemo.lan;
 
 import java.awt.*;
-import java.util.*;
-import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.event.*;
 import javax.swing.border.*;
 
 import org.tigris.gef.base.*;

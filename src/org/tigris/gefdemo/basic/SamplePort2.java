@@ -1,7 +1,5 @@
 package org.tigris.gefdemo.basic;
 
-import java.awt.*;
-import java.util.Vector;
 import java.io.*;
 
 import org.tigris.gef.graph.*;

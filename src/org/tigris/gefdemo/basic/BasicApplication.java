@@ -3,7 +3,6 @@ package org.tigris.gefdemo.basic;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Locale;
-import javax.swing.*;
 
 import org.tigris.gef.base.*;
 import org.tigris.gef.util.*;

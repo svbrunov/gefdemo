@@ -1,7 +1,6 @@
 package org.tigris.gefdemo.lan;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
 public class PSTable extends JPanel{

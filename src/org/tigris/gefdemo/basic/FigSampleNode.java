@@ -1,9 +1,7 @@
 package org.tigris.gefdemo.basic;
 
 import java.awt.*;
-import java.awt.event.*;
 import java.util.*;
-import java.io.*;
 
 import org.tigris.gef.presentation.*;
 
