@@ -23,9 +23,10 @@ import org.tigris.gef.presentation.Fig;
 import org.tigris.gef.presentation.FigEdge;
 import org.tigris.gef.presentation.FigNode;
 import org.tigris.gefdemo.classdiagram.model.UmlAssociation;
+import org.tigris.gefdemo.classdiagram.model.UmlAssociationEnd;
 import org.tigris.gefdemo.classdiagram.ui.AssociationEdgeFig;
-import org.tigris.gefdemo.classdiagram.ui.AssociationEndFig;
-import org.tigris.gefdemo.classdiagram.ui.AssociationFig;
+import org.tigris.gefdemo.classdiagram.ui.AssociationEndEdgeFig;
+import org.tigris.gefdemo.classdiagram.ui.AssociationNodeFig;
 
 /**
  * 
@@ -35,7 +36,10 @@ import org.tigris.gefdemo.classdiagram.ui.AssociationFig;
 public class ModeCreateAssociationEnd extends ModeCreatePolyEdge {
     
     private static Log LOG = LogFactory.getLog(ModeCreatePolyEdge.class);
-    FigNode newAssociationNode;
+    FigNode newAssociationNodeFig;
+    FigEdge oldAssociationEdgeFig;
+    UmlAssociation association;
+    List associationEnds;
     
     /** On mousePressed determine what port the user is dragging from.
      *  The mousePressed event is sent via ModeSelect. */
@@ -59,34 +63,41 @@ public class ModeCreateAssociationEnd extends ModeCreatePolyEdge {
             return;
         }
         
-        if (underMouse instanceof AssociationEdgeFig) {
+        if (underMouse instanceof AssociationEdgeFig && _npoints == 0) {
             if (LOG.isDebugEnabled()) LOG.debug("MousePressed detected on an association so replacing FigEdge with FigNode");
-            newAssociationNode = replaceEdgeWithNode((FigEdge)underMouse, me);
-            underMouse = newAssociationNode;
+            oldAssociationEdgeFig = (FigEdge)underMouse;
+            association = (UmlAssociation)oldAssociationEdgeFig.getOwner();
+            associationEnds = association.getAssociationEnds();
+            oldAssociationEdgeFig.setOwner(null);
+            newAssociationNodeFig = placeTempNode(me);
+            underMouse = newAssociationNodeFig;
+            setSourceFigNode(newAssociationNodeFig);
+            setStartPort(newAssociationNodeFig.getOwner());
+            setStartPortFig(newAssociationNodeFig);
+        } else {
+            if (!(underMouse instanceof FigNode) && _npoints == 0) {
+                done();
+                me.consume();
+                if (LOG.isDebugEnabled()) LOG.debug("MousePressed detected but not on a FigNode - consumed anyway");
+                return;
+            }
+        
+            if (getSourceFigNode() == null) { //_npoints == 0) {
+                setSourceFigNode((FigNode) underMouse);
+                setStartPort(getSourceFigNode().deepHitPort(x, y));
+            }
+        
+            if (getStartPort() == null) {
+                if (LOG.isDebugEnabled()) LOG.debug("MousePressed detected but not on a port - consumed anyway");
+                done();
+                me.consume();
+                return;
+            }
+            setStartPortFig(getSourceFigNode().getPortFig(getStartPort()));
         }
         
-        if (!(underMouse instanceof FigNode) && _npoints == 0) {
-            done();
-            me.consume();
-            if (LOG.isDebugEnabled()) LOG.debug("MousePressed detected but not on a FigNode - consumed anyway");
-            return;
-        }
-        
-        if (getSourceFigNode() == null) { //_npoints == 0) {
-            setSourceFigNode((FigNode) underMouse);
-            setStartPort(getSourceFigNode().deepHitPort(x, y));
-        }
-        
-        if (getStartPort() == null) {
-            if (LOG.isDebugEnabled()) LOG.debug("MousePressed detected but not on a port - consumed anyway");
-            done();
-            me.consume();
-            return;
-        }
-        setStartPortFig(getSourceFigNode().getPortFig(getStartPort()));
-
         if (_npoints == 0) {
-            super.mousePressed(me);
+            createFig(me);
         }
         if (LOG.isDebugEnabled()) LOG.debug("MousePressed detected and processed by ancestor - consumed");
         me.consume();
@@ -95,15 +106,37 @@ public class ModeCreateAssociationEnd extends ModeCreatePolyEdge {
     public void keyPressed(KeyEvent ke) {
         if (ke.getKeyChar() == KeyEvent.VK_ESCAPE) { // escape
             LOG.debug("ESC pressed");
-            if (newAssociationNode != null) {
-                replaceNodeWithEdge(newAssociationNode);
+            if (newAssociationNodeFig != null) {
+                newAssociationNodeFig.delete();
+                newAssociationNodeFig = null;
+                oldAssociationEdgeFig.setOwner(association);
             }
         }
         super.keyTyped(ke);
     }
     
-    private FigNode replaceEdgeWithNode(FigEdge figEdge, MouseEvent me) {
-        UmlAssociation association = (UmlAssociation)figEdge.getOwner();
+    /**
+     * This will be called when the edge is successfully connected.
+     * What we do in this class is to determine if we are creating
+     * an n-ary association. If so then FigNode representing the n-ary
+     * association is made visible. The FigEdge representing the old
+     * binary association is removed and replaced with edges representing
+     * the 2 association ends of that original fig.
+     */
+    protected void endAttached() {
+        if (newAssociationNodeFig != null) {
+            newAssociationNodeFig.setVisible(true);
+            oldAssociationEdgeFig.delete();
+        
+            Editor editor = Globals.curEditor();
+            UmlGraphModel gm = (UmlGraphModel)editor.getGraphModel();
+            gm.addEdge(associationEnds.get(0));
+            gm.addEdge(associationEnds.get(1));
+            editor.getSelectionManager().deselectAll();
+        }
+    }
+    
+    private FigNode placeTempNode(MouseEvent me) {
         Editor editor = Globals.curEditor();
         UmlGraphModel gm = (UmlGraphModel)editor.getGraphModel();
         GraphNodeRenderer renderer = editor.getGraphNodeRenderer();
@@ -111,24 +144,21 @@ public class ModeCreateAssociationEnd extends ModeCreatePolyEdge {
         FigNode figNode = renderer.getFigNodeFor(gm, lay, association);
         figNode.setX(me.getX() - figNode.getWidth()/2);
         figNode.setY(me.getY() - figNode.getHeight()/2);
-        figEdge.delete();
-        List associationEnds = association.getAssociationEnds();
+        figNode.setVisible(false);
         editor.add(figNode);
-        gm.addEdge(associationEnds.get(0));
-        gm.addEdge(associationEnds.get(1));
         editor.getSelectionManager().deselectAll();
         return figNode;
     }
     
     private void replaceNodeWithEdge(FigNode figNode) {
         System.out.println("Trying to replace assoc node with edge");
-        AssociationFig af = (AssociationFig)figNode;
+        AssociationNodeFig af = (AssociationNodeFig)figNode;
         UmlGraphModel gm = (UmlGraphModel)Globals.curEditor().getGraphModel();
         UmlAssociation association = (UmlAssociation)af.getOwner();
         Collection remainingEdges = af.getFigEdges(null);
         Iterator it = remainingEdges.iterator();
         while (it.hasNext()) {
-            AssociationEndFig fig = (AssociationEndFig)it.next();
+            AssociationEndEdgeFig fig = (AssociationEndEdgeFig)it.next();
             fig.delete();
         }
         af.delete();
