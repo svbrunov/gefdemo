@@ -1,14 +1,14 @@
 <graphmodel>
     <connections>
-        <!--connection>
-            <edge>org.tigris.gefdemo.classdiagram.model.MAssociationEnd</edge>
-            <port>org.tigris.gefdemo.classdiagram.model.ClassifierPort</port>
-            <port>org.tigris.gefdemo.classdiagram.model.AssociationPort</port>
+        <connection>
+            <edge>org.tigris.gefdemo.classdiagram.model.UmlAssociationEnd</edge>
+            <port>org.tigris.gefdemo.classdiagram.model.UmlClassifier</port>
+            <port>org.tigris.gefdemo.classdiagram.model.UmlAssociation</port>
         </connection>
         <connection>
-            <edge>org.tigris.gefdemo.classdiagram.model.MAssociationEnd</edge>
-            <port>org.tigris.gefdemo.classdiagram.model.AssociationPort</port>
-            <port>org.tigris.gefdemo.classdiagram.model.ClassifierPort</port>
-        </connection-->
+            <edge>org.tigris.gefdemo.classdiagram.model.UmlAssociationEnd</edge>
+            <port>org.tigris.gefdemo.classdiagram.model.UmlAssociation</port>
+            <port>org.tigris.gefdemo.classdiagram.model.UmlClassifier</port>
+        </connection>
     </connections>
 </graphmodel>

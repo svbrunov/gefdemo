@@ -6,8 +6,6 @@
  */
 package org.tigris.gefdemo.classdiagram.model;
 
-import java.util.Hashtable;
-
 /**
  * 
  * @author Bob Tarling
@@ -16,7 +14,6 @@ import java.util.Hashtable;
 public interface UmlAssociation {
     public abstract void setName(String name);
     public abstract String getName();
-    public abstract void initialize(Hashtable args);
     public abstract String getId();
     public abstract String toString();
 }

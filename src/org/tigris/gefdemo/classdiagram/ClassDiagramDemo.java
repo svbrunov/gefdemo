@@ -3,7 +3,6 @@ package org.tigris.gefdemo.classdiagram;
 import java.awt.event.*;
 import java.util.Locale;
 
-import org.tigris.gef.base.*;
 import org.tigris.gef.util.*;
 import org.tigris.gef.graph.GraphModel;
 import org.tigris.gef.graph.GraphModelException;

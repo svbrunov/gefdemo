@@ -1,14 +1,9 @@
 package org.tigris.gefdemo.classdiagram.model;
 
-import org.tigris.gef.base.Layer;
-import org.tigris.gef.graph.presentation.NetEdge;
-import org.tigris.gef.presentation.FigEdge;
-import org.tigris.gefdemo.classdiagram.ui.AssociationEndFig;
-
 /** A NetEdge subclass to represent a dependency between tagets.
  */
 
-class UmlAssociationEndImpl extends NetEdge implements UmlAssociationEnd {
+class UmlAssociationEndImpl implements UmlAssociationEnd {
     
     private String name;
     
@@ -27,9 +22,4 @@ class UmlAssociationEndImpl extends NetEdge implements UmlAssociationEnd {
     public void setName(String name) {
         this.name = name;
     }
-
-    public FigEdge makePresentation(Layer lay) {
-        return new AssociationEndFig();
-    }
-
-} /* end class EdgeEther */
+}

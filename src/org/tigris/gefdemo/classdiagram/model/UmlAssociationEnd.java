@@ -6,9 +6,6 @@
  */
 package org.tigris.gefdemo.classdiagram.model;
 
-import org.tigris.gef.base.Layer;
-import org.tigris.gef.presentation.FigEdge;
-
 /**
  * 
  * @author Bob Tarling
@@ -18,5 +15,4 @@ public interface UmlAssociationEnd {
     public abstract String getId();
     public abstract String getName();
     public abstract void setName(String name);
-    public abstract FigEdge makePresentation(Layer lay);
 }

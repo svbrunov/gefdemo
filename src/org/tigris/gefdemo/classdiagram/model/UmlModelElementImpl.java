@@ -7,8 +7,7 @@ abstract class UmlModelElementImpl implements java.io.Serializable, UmlModelElem
     ////////////////////////////////////////////////////////////////
     // instance variables
 
-    protected PropertyChangeSupport _changeSup =
-        new PropertyChangeSupport(this);
+    protected PropertyChangeSupport _changeSup = new PropertyChangeSupport(this);
     protected boolean _highlight = false;
 
     /** Construct a new net-level object, currently does nothing */
@@ -48,13 +47,15 @@ abstract class UmlModelElementImpl implements java.io.Serializable, UmlModelElem
         _changeSup.firePropertyChange(
             pName,
             oldV ? Boolean.TRUE : Boolean.FALSE,
-            newV ? Boolean.TRUE : Boolean.FALSE);
+            newV ? Boolean.TRUE : Boolean.FALSE
+        );
     }
 
     public void firePropertyChange(String pName, int oldV, int newV) {
         _changeSup.firePropertyChange(
             pName,
             new Integer(oldV),
-            new Integer(newV));
+            new Integer(newV)
+        );
     }
 } /* end class NetPrimitive */

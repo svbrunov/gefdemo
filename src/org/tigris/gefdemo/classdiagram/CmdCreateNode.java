@@ -156,7 +156,7 @@ public class CmdCreateNode extends org.tigris.gef.base.CmdCreateNode {
         Class nodeClass = (Class) getArg("className", DEFAULT_NODE_CLASS);
         try {
             return UmlFactory.getInstance().createModelElement(nodeClass);
-        } catch (GraphModelException e) {
+        } catch (IllegalArgumentException e) {
             LOG.error("Exception caught", e);
         }
         return null;

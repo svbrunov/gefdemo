@@ -1,7 +1,5 @@
 package org.tigris.gefdemo.classdiagram.model;
 
-import org.tigris.gef.graph.GraphModelException;
-
 /**
  * 
  * @author Bob Tarling
@@ -15,10 +13,10 @@ public class UmlFactory {
         return instance;
     }
     
-    public Object createModelElement(Object identifier) throws GraphModelException {
+    public Object createModelElement(Object identifier) {
         if (identifier.equals(UmlClass.class)) return new UmlClassImpl();
         if (identifier.equals(UmlInterface.class)) return new UmlInterfaceImpl();
         if (identifier.equals(UmlAssociation.class)) return new UmlAssociationImpl();
-        throw new GraphModelException("Factory failed to create a model element for the identifier " + identifier);
+        throw new IllegalArgumentException("Factory failed to create a model element for the identifier " + identifier);
     }
 }

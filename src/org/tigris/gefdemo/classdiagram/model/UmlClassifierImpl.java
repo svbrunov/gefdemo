@@ -1,7 +1,5 @@
 package org.tigris.gefdemo.classdiagram.model;
 
-import java.util.Hashtable;
-
 class UmlClassifierImpl extends UmlModelElementImpl implements UmlClassifier {
 
     private String name="";
@@ -13,9 +11,6 @@ class UmlClassifierImpl extends UmlModelElementImpl implements UmlClassifier {
     
     public String getName() {
         return name;
-    }
-
-    public void initialize(Hashtable args) {
     }
 
     public String getId() {

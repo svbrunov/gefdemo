@@ -1,7 +1,5 @@
 package org.tigris.gefdemo.classdiagram.model;
 
-import java.util.Hashtable;
-
 class UmlAssociationImpl extends UmlModelElementImpl implements UmlAssociation {
 
     private String name="";
@@ -13,9 +11,6 @@ class UmlAssociationImpl extends UmlModelElementImpl implements UmlAssociation {
     
     public String getName() {
         return name;
-    }
-
-    public void initialize(Hashtable args) {
     }
 
     public String getId() {
