@@ -36,9 +36,7 @@ import org.apache.log4j.Logger;
 
 import org.tigris.gef.graph.MutableGraphSupport;
 import org.tigris.gefdemo.classdiagram.model.UmlAssociation;
-import org.tigris.gefdemo.classdiagram.model.UmlAssociationEnd;
 import org.tigris.gefdemo.classdiagram.model.UmlClassifier;
-import org.tigris.gefdemo.classdiagram.model.UmlFactory;
 
 
 /** UMLGraphModel is a helper class which extends
@@ -116,20 +114,6 @@ public class UmlGraphModel extends MutableGraphSupport {
      */    
     public void removeEdge(Object edge) {
 	if (!containsEdge(edge)) return;
-//        if (edge instanceof UmlAssociationEnd) {
-//            UmlAssociation association = ((UmlAssociationEnd)edge).getAssociation();
-//            UmlClassifier classifier = ((UmlAssociationEnd)edge).getClassifier();
-//            association.removeAssociationEnd((UmlAssociationEnd)edge);
-//            classifier.removeAssociationEnd((UmlAssociationEnd)edge);
-//            if (association.getAssociationEnds().size() == 2) {
-//                System.out.println("=========== We now have a binary association ==============");
-//                // Delete the association fig and the association end
-//                // figs but do not delete their underlying models
-//                // Then create an AssociationEdgeFig reresenting the
-//                // existing association and joining the 2 remaining
-//                // figs
-//            }
-//        }
         edges.removeElement(edge);
         fireEdgeRemoved(edge);
     }
@@ -166,14 +150,12 @@ public class UmlGraphModel extends MutableGraphSupport {
 			  java.lang.Class edgeClass)
     {
         Object connection = null;
-        try {
+        
+        if (canConnect(fromPort, toPort, edgeClass)) {
             connection = FactoryFacade.getInstance().create(
                 edgeClass,
                 fromPort,
                 toPort);
-        } catch (IllegalArgumentException ex) {
-            // fail silently as we expect users to accidentally drop
-            // on to wrong component
         }
         
         if (connection == null) {
