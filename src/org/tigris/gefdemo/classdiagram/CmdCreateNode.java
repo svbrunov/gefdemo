@@ -139,7 +139,7 @@ public class CmdCreateNode extends org.tigris.gef.base.CmdCreateNode {
      * cache, so that subsequent lookups do not have to iterate through all
      * methods again. If no match is found it will delegate to
      * <code>super.makeNode()</code>.
-     * 
+     * TODO exception
      * @return an object which represents in most cases a particular UML
      *         Element.
      * 
