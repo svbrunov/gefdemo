@@ -18,13 +18,7 @@ public class AssociationNodeFig extends ModelElementNodeFig {
     }
 
     public Vector getGravityPoints() {
-        Vector ret = new Vector();
-        Rectangle r = boundryFig.getBounds();
-        ret.add(new Point(r.x + r.width / 2, r.y));
-        ret.add(new Point(r.x + r.width, r.y + r.height / 2));
-        ret.add(new Point(r.x + r.width / 2, r.y + r.height));
-        ret.add(new Point(r.x, r.y + r.height / 2));
-        return ret;
+        return boundryFig.getGravityPoints();
     }
 
     /**
@@ -46,3 +40,4 @@ public class AssociationNodeFig extends ModelElementNodeFig {
         updateEdges();
     }
 }
+
