@@ -2,6 +2,8 @@ package org.tigris.gefdemo.uml.ui;
 
 import java.awt.Rectangle;
 
+import org.tigris.gef.presentation.FigDiamond;
+
 /**
  * A Fig representing an association between 2 or more classifiers
  * @author Bob Tarling

@@ -1,8 +1,11 @@
 
 package org.tigris.gefdemo.uml.ui;
 
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.beans.PropertyChangeEvent;
+import java.util.List;
+import java.util.Vector;
 
 import org.tigris.gef.presentation.Fig;
 import org.tigris.gef.presentation.FigNode;
@@ -89,5 +92,14 @@ abstract public class ModelElementNodeFig extends FigNode {
         Object owner = getOwner();
         super.dispose();
         ModelFacade.getInstance().removeModelElement(owner);
+    }
+    
+    
+    /**
+     * Makes sure that the edges stick to the outline of the fig.
+     * @see org.tigris.gef.presentation.Fig#getGravityPoints()
+     */
+    public List getGravityPoints() {
+        return boundryFig.getGravityPoints();
     }
 }
