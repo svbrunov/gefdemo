@@ -205,7 +205,7 @@ public class GefGraphFrame
         pasteItem = edit.add(new CmdPaste());
         pasteItem.setMnemonic('P');
 
-        deleteItem = edit.add(new CmdRemoveFromGraph());
+        deleteItem = edit.add(new CmdDeleteFromModel());
         edit.addSeparator();
         edit.add(new CmdUseReshape());
         edit.add(new CmdUseResize());

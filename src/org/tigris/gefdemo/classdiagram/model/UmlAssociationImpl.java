@@ -1,23 +1,30 @@
 package org.tigris.gefdemo.classdiagram.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 class UmlAssociationImpl extends UmlModelElementImpl implements UmlAssociation {
 
-    private String name="";
+    private Collection umlAssociationEnds = new ArrayList();
     
-    public void setName(String name) {
-        this.name = name;
-        this.firePropertyChange("name", null, name);
-    }
-    
-    public String getName() {
-        return name;
+    /**
+     * Return all the association ends of this association
+     */
+    public Collection getAssociationEnds() {
+        return new ArrayList(umlAssociationEnds);
     }
 
-    public String getId() {
-        return getName();
+    /**
+     * Add a new association end to this association
+     */
+    public void addAssociationEnd(UmlAssociationEnd associationEnd) {
+        umlAssociationEnds.add(associationEnd);
     }
-    
-    public String toString() {
-        return name;
+
+    /**
+     * Remove an association end from this association
+     */
+    public void removeAssociationEnd(UmlAssociationEnd associationEnd) {
+        umlAssociationEnds.remove(associationEnd);
     }
 }

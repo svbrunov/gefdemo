@@ -1,14 +1,30 @@
 package org.tigris.gefdemo.classdiagram.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 class UmlClassifierImpl extends UmlModelElementImpl implements UmlClassifier {
 
-    private String name="";
+    private Collection umlAssociationEnds = new ArrayList();
     
-    public String getId() {
-        return getName();
+    /**
+     * Return all the association ends of this association
+     */
+    public Collection getAssociationEnds() {
+        return new ArrayList(umlAssociationEnds);
     }
-    
-    public String toString() {
-        return name;
+
+    /**
+     * Add a new association end to this association
+     */
+    public void addAssociationEnd(UmlAssociationEnd associationEnd) {
+        umlAssociationEnds.add(associationEnd);
+    }
+
+    /**
+     * Remove an association end from this association
+     */
+    public void removeAssociationEnd(UmlAssociationEnd associationEnd) {
+        umlAssociationEnds.remove(associationEnd);
     }
 }

@@ -37,6 +37,7 @@ import org.apache.log4j.Logger;
 import org.tigris.gef.graph.MutableGraphSupport;
 import org.tigris.gefdemo.classdiagram.model.UmlAssociation;
 import org.tigris.gefdemo.classdiagram.model.UmlAssociationEnd;
+import org.tigris.gefdemo.classdiagram.model.UmlClassifier;
 import org.tigris.gefdemo.classdiagram.model.UmlFactory;
 
 
@@ -115,18 +116,22 @@ public class UmlGraphModel extends MutableGraphSupport {
      */    
     public void removeEdge(Object edge) {
 	if (!containsEdge(edge)) return;
-        if (edge instanceof UmlAssociationEnd) {
-            UmlAssociation association = ((UmlAssociationEnd)edge).getAssociation();
-            //if (association.getAssociationEnds() == 2) {
-                // Delete the association fig and the association end
-                // figs but do not delete their underlying models
-                // Then create an AssociationEdgeFig reresenting the
-                // existing association and joining the 2 remaining
-                // figs
-            //}
-        }
-	edges.removeElement(edge);
-	fireEdgeRemoved(edge);
+//        if (edge instanceof UmlAssociationEnd) {
+//            UmlAssociation association = ((UmlAssociationEnd)edge).getAssociation();
+//            UmlClassifier classifier = ((UmlAssociationEnd)edge).getClassifier();
+//            association.removeAssociationEnd((UmlAssociationEnd)edge);
+//            classifier.removeAssociationEnd((UmlAssociationEnd)edge);
+//            if (association.getAssociationEnds().size() == 2) {
+//                System.out.println("=========== We now have a binary association ==============");
+//                // Delete the association fig and the association end
+//                // figs but do not delete their underlying models
+//                // Then create an AssociationEdgeFig reresenting the
+//                // existing association and joining the 2 remaining
+//                // figs
+//            }
+//        }
+        edges.removeElement(edge);
+        fireEdgeRemoved(edge);
     }
     
     /** Assume that anything can be connected to anything unless overridden
@@ -187,11 +192,10 @@ public class UmlGraphModel extends MutableGraphSupport {
     
     /** Return all ports on node or edge */
     public Vector getPorts(Object nodeOrEdge) {
-        Vector res = new Vector();  //wasteful!
-//        if (ModelFacade.isAClass(nodeOrEdge)) res.addElement(nodeOrEdge);
-//        if (ModelFacade.isAInterface(nodeOrEdge)) res.addElement(nodeOrEdge);
-//        if (ModelFacade.isAInstance(nodeOrEdge)) res.addElement(nodeOrEdge);
-//        if (ModelFacade.isAModel(nodeOrEdge)) res.addElement(nodeOrEdge);
+        Vector res = new Vector();
+        if (nodeOrEdge instanceof UmlClassifier) res.addElement(nodeOrEdge);
+        // TODO Check if this association only has 2 edges
+        else if (nodeOrEdge instanceof UmlAssociation) res.addElement(nodeOrEdge);
         return res;
     }
 

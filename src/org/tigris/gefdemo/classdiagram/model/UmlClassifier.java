@@ -6,14 +6,15 @@
  */
 package org.tigris.gefdemo.classdiagram.model;
 
+import java.util.Collection;
+
 /**
  * 
  * @author Bob Tarling
  * @since 03-Jun-2004
  */
 public interface UmlClassifier {
-    public abstract void setName(String name);
-    public abstract String getName();
-    public abstract String getId();
-    public abstract String toString();
+    public abstract Collection getAssociationEnds();
+    public abstract void addAssociationEnd(UmlAssociationEnd associationEnd);
+    public abstract void removeAssociationEnd(UmlAssociationEnd associationEnd);
 }

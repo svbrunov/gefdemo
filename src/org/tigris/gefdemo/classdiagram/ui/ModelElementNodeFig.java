@@ -25,7 +25,7 @@ abstract public class ModelElementNodeFig extends FigNode {
     }
     
     public String getName() {
-        return ((UmlClass)getOwner()).getName();
+        return ((UmlModelElement)getOwner()).getName();
     }
     
     /**
