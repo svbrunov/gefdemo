@@ -75,7 +75,7 @@ public class ClassDiagramRenderer
         if (node instanceof UmlClass) return new ClassFig(gm, node);
         else if (node instanceof UmlInterface) return new InterfaceFig(gm, node);
         else if (node instanceof UmlAssociation) return new AssociationFig(gm, node);
-        cat.error("TODO ClassDiagramRenderer getFigNodeFor " + node);
+        cat.error("Unable to create FigNode for " + node);
         return null;
     }
 
@@ -86,7 +86,7 @@ public class ClassDiagramRenderer
             AssociationEndFig ascFig = new AssociationEndFig(edge, lay);
             return ascFig;
         }
-        cat.debug("TODO ClassDiagramRenderer getFigEdgeFor");
+        cat.error("Unable to create FigEdge for " + edge);
         return null;
     }
 } /* end class ClassDiagramRenderer */
