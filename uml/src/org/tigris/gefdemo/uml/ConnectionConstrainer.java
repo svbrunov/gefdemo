@@ -35,7 +35,7 @@ public class ConnectionConstrainer extends XmlConnectionConstrainer {
 
     private static Document getDocument() throws GraphModelException {
         try {
-            File file = new File("uml/src/org/tigris/gefdemo/uml/graphmodel.xml");
+            File file = new File("org/tigris/gefdemo/uml/graphmodel.xml");
             FileInputStream inputStream = null;
             inputStream = new FileInputStream(file);
             InputSource inputSource = new InputSource(inputStream);
