@@ -3,9 +3,15 @@ package org.tigris.gefdemo.uml.model;
 import java.util.ArrayList;
 import java.util.List;
 
-class UmlAssociationImpl extends UmlModelElementImpl implements UmlAssociation {
+class UmlAssociationImpl 
+        extends UmlModelElementImpl
+        implements UmlAssociation {
 
     private List umlAssociationEnds = new ArrayList();
+    
+    public UmlAssociationImpl(UmlNamespace ns) {
+        super(ns);
+    }
     
     /**
      * Return all the association ends of this association

@@ -17,6 +17,11 @@ import java.util.List;
 public class UmlAssociationClassImpl extends UmlAssociationImpl implements UmlAssociationClass {
 
     private ArrayList umlAssociationEndRoles = new ArrayList();
+
+    public UmlAssociationClassImpl(UmlNamespace ns) {
+        super(ns);
+    }
+    
     
     /**
      * Return all the association ends of this association

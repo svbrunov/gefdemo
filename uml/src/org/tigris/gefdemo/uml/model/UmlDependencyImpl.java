@@ -3,7 +3,9 @@ package org.tigris.gefdemo.uml.model;
 /** A NetEdge subclass to represent a dependency between tagets.
  */
 
-class UmlDependencyImpl implements UmlDependency {
+class UmlDependencyImpl 
+        extends UmlModelElementImpl
+        implements UmlDependency {
     
     UmlModelElement supplier;
     UmlModelElement client;
@@ -11,7 +13,8 @@ class UmlDependencyImpl implements UmlDependency {
     private String name;
     
     /** Construct a new Depends. */
-    public UmlDependencyImpl() {
+    public UmlDependencyImpl(UmlNamespace ns) {
+        super(ns);
     }
 
     public String getId() {

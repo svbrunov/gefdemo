@@ -13,12 +13,18 @@ public class UmlModel {
 
     private Vector umlModelElementRemovalListeners = new Vector();
     private List umlModelElements = new ArrayList();
+    
+    private UmlNamespace defaultNs = new UmlNamespaceImpl();
      
     public Object createModelElement(Object identifier) {
-        if (identifier.equals(UmlClass.class)) return new UmlClassImpl();
-        if (identifier.equals(UmlInterface.class)) return new UmlInterfaceImpl();
-        if (identifier.equals(UmlAssociation.class)) return new UmlAssociationImpl();
-        if (identifier.equals(UmlAssociationClass.class)) return new UmlAssociationClassImpl();
+        if (identifier.equals(UmlClass.class)) 
+            return new UmlClassImpl(defaultNs);
+        if (identifier.equals(UmlInterface.class)) 
+            return new UmlInterfaceImpl(defaultNs);
+        if (identifier.equals(UmlAssociation.class)) 
+            return new UmlAssociationImpl(defaultNs);
+        if (identifier.equals(UmlAssociationClass.class))
+            return new UmlAssociationClassImpl(defaultNs);
         throw new IllegalArgumentException("Factory failed to create a model element for the identifier " + identifier);
     }
     
@@ -28,13 +34,13 @@ public class UmlModel {
             UmlModelElement toPort) {
         Object modelElement = null;
         if (identifier.equals(UmlAssociationEnd.class)) {
-            UmlAssociationEndImpl ae = new UmlAssociationEndImpl();
+            UmlAssociationEndImpl ae = new UmlAssociationEndImpl(defaultNs);
             ae.setAssociation((UmlAssociation)fromPort);
             ae.setClassifier((UmlClassifier)toPort);
             modelElement = ae;
         }
         if (identifier.equals(UmlDependency.class)) {
-            UmlDependencyImpl dep = new UmlDependencyImpl();
+            UmlDependencyImpl dep = new UmlDependencyImpl(defaultNs);
             dep.setSupplier(fromPort);
             dep.setClient(toPort);
             modelElement = dep;

@@ -12,11 +12,14 @@ abstract class UmlModelElementImpl implements UmlModelElement {
     private List supplierDependencies = new ArrayList();
     private List clientDependencies = new ArrayList();
     
+    private UmlNamespace namespace;
+    
     protected PropertyChangeSupport _changeSup = new PropertyChangeSupport(this);
     protected boolean _highlight = false;
 
     /** Construct a new net-level object, currently does nothing */
-    public UmlModelElementImpl() {
+    public UmlModelElementImpl(UmlNamespace ns) {
+        setNamespace(ns);
     }
 
     public void addPropertyChangeListener(PropertyChangeListener l) {
@@ -76,6 +79,23 @@ abstract class UmlModelElementImpl implements UmlModelElement {
 
     public void removeSupplierDependency(UmlDependency dep) {
         supplierDependencies.remove(dep);
+    }
+    
+    public void setNamespace(UmlNamespace ns) {
+        if (ns == null && !this.getClass().equals(UmlNamespaceImpl.class)) {
+            throw new IllegalArgumentException("Namespace cannot be null");
+        }
+        if (namespace != null) {
+            namespace.removeOwnedElement(this);
+        }
+        namespace = ns;
+        if (namespace != null) {
+            namespace.addOwnedElement(this);
+        }
+    }
+    
+    public UmlNamespace getNamespace() {
+        return namespace;
     }
 
 } /* end class NetPrimitive */

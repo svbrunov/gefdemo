@@ -22,4 +22,7 @@ public interface UmlModelElement {
     
     public String getName();
     public void setName(String name);
+    
+    public UmlNamespace getNamespace();
+    public void setNamespace(UmlNamespace name);
 }

@@ -10,8 +10,8 @@ class UmlAssociationEndImpl
     private boolean navigable = true;
     
     /** Construct a new Depends. */
-    public UmlAssociationEndImpl() {
-
+    public UmlAssociationEndImpl(UmlNamespace ns) {
+        super(ns);
     }
 
     /**

@@ -8,6 +8,11 @@ class UmlClassifierImpl extends UmlModelElementImpl implements UmlClassifier {
 
     private Collection umlAssociationEndRoles = new ArrayList();
     
+    public UmlClassifierImpl(UmlNamespace ns) {
+        super(ns);
+    }
+    
+    
     /**
      * Return all the association ends of this association
      */
