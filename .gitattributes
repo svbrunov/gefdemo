@@ -1,1 +1,14 @@
 * text=auto !eol
+src/org/tigris/gefdemo/lan/Images/NodeComputer.gif -text
+src/org/tigris/gefdemo/lan/Images/NodeCopier.gif -text
+src/org/tigris/gefdemo/lan/Images/NodeFax.gif -text
+src/org/tigris/gefdemo/lan/Images/NodeGame.gif -text
+src/org/tigris/gefdemo/lan/Images/NodeHardDrive.gif -text
+src/org/tigris/gefdemo/lan/Images/NodeHub.gif -text
+src/org/tigris/gefdemo/lan/Images/NodeLaptop.gif -text
+src/org/tigris/gefdemo/lan/Images/NodePrinter.gif -text
+src/org/tigris/gefdemo/lan/Images/NodeRouter.gif -text
+src/org/tigris/gefdemo/lan/Images/NodeScanner.gif -text
+src/org/tigris/gefdemo/lan/Images/NodeServer.gif -text
+src/org/tigris/gefdemo/lan/Images/NodeSonar.gif -text
+src/org/tigris/gefdemo/lan/Images/NodeWireless.gif -text

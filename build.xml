@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+
+<!-- GEF Demos: Some simple applications to demonstrate the use of
+     the GEF library.
+
+     + This build.xml file assumes that gef.jar and all libraries 
+       needed by GEF are found in ${geflib.dir}, which defaults to
+       ../gef/lib/.  See default.properties.
+-->
+
+<project name="gefdemo" default="usage" basedir=".">
+
+  <!-- You can create build.properties to override default.properties.
+       It is not stored under version control. -->
+  <property file="build.properties" /> 
+  <property file="default.properties" />
+
+  <property name="build.src" value="${src.dir}" />
+  <property name="build.dest" value="${build.dir}/classes" />
+  <property name="gef.libs"
+    value="${geflib.dir}/log4j.jar:${geflib.dir}/xerces.jar:${geflib.dir}/gef.jar" />
+
+  <property file="${user.home}/.ant.properties" />
+
+
+  <!-- =================================================================== -->
+  <!-- Initialization target                                               -->
+  <!-- =================================================================== -->
+  <target name="init">
+    <tstamp/>
+    <echo message="------ ${Name} ${version}: ${releasetype} ------" />
+  </target>
+
+
+  <!-- =================================================================== -->
+  <!-- Help on usage                                                       -->
+  <!-- =================================================================== -->
+  <target name="usage">
+    <echo message=""/>
+    <echo message=""/>
+    <echo message="GEFDemo Build file"/>
+    <echo message="Requires ANT 1.2 or later."/>
+    <echo message="-------------------------------------------------------------"/>
+    <echo message=""/>
+    <echo message=" Available targets are:"/>
+    <echo message=""/>
+    <echo message="   package   --> generates the gefdemo.jar file"/>
+    <echo message="   compile   --> compiles the source code of all demos"/>
+    <echo message="   dist      --> makes the distribution as .tar.gz and .zip"/>
+    <echo message="   dist-src  --> makes the source distribution as .tar.gz and .zip"/>
+    <echo message="   clean     --> deletes all build output" />
+    <echo message="   run       --> runs the application"/>
+    <echo message="   usage     --> show this message (default)"/>
+    <echo message=""/>
+    <echo message=" See the comments inside the build.xml file for more details."/>
+    <echo message="-------------------------------------------------------------"/>
+    <echo message=""/>
+    <echo message=""/>
+  </target>
+
+
+  <!-- =================================================================== -->
+  <!-- Prepares the build directory                                        -->
+  <!-- =================================================================== -->
+  <target name="prepare" depends="init">
+    <echo message="Preparing the build directories"/>
+    <mkdir dir="${build.dir}"/>
+    <copy todir="${build.dest}/org/tigris/gefdemo/lan/Images">
+      <fileset dir="${build.src}/org/tigris/gefdemo/lan/Images" includes="**/**" excludes="CVS/**" />
+    </copy>
+  </target>
+
+
+  <!-- =================================================================== -->
+  <!-- Update from CVS                                                     -->
+  <!-- =================================================================== -->
+
+  <target name="update" depends="prepare">
+    <echo message="Updating from CVS "/>
+    <cvs dest="${src.dir}"
+     command="update"
+    />
+  </target>
+
+
+  <!-- =================================================================== -->
+  <!-- Compiles all demo source code                                       -->
+  <!-- =================================================================== -->
+
+  <target name="compile" depends="prepare">
+    <echo message="Compiling the sources using ${build.compiler}"/>
+    <mkdir dir="${build.dest}"/>
+    <javac srcdir="${build.src}"
+           destdir="${build.dest}"
+           debug="${debug}"
+           deprecation="${deprecation}"
+           optimize="${optimize}"
+           classpath="${gef.libs}:${java.class.path}"
+     />
+  </target>
+
+
+  <!-- =================================================================== -->
+  <!-- Creates the java archive                                            -->
+  <!-- =================================================================== -->
+  <target name="package" depends="compile">
+    <echo message="Creating the jar file ${lib.dir}/${name}.jar"/>
+    <mkdir dir="${lib.dir}"/>
+    <delete file="${lib.dir}/${name}.jar"/>
+
+    <filter token="version" value="${version}"/>
+    <copy todir="${build.dest}">
+      <fileset dir="${build.src}" includes="**/*.properties" excludes="CVS/**" />
+    </copy>
+    <copy file="${src.dir}/${manifest}" tofile="${build.dir}/${manifest}"
+          filtering="on" overwrite="on" />
+    <jar jarfile="${lib.dir}/${name}.jar"
+         basedir="${build.dest}"
+         includes="org/tigris/geflan/**"
+         excludes="${manifest}"
+         manifest="${build.dir}/${manifest}"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Prepares the docs                                                   -->
+  <!-- =================================================================== -->
+  <target name="prepare-docs" depends="init">
+    <mkdir dir="${docs.dir}"/>
+
+    <javadoc sourcepath="${build.src}" destdir="${docs.dir}" packagenames="${packages}"
+        use="true"
+        private="false"
+        splitindex="true"
+        author="false"
+        windowtitle="${Name} Documentation"
+        classpath="${gef.libs}:${java.class.path}"
+     />
+<!--
+        <classpath>
+            <pathelement path="${geflib.dir}/log4j.jar"/>
+            <pathelement path="${geflib.dir}/xerces.jar"/>
+        </classpath>
+    </javadoc>
+-->
+  </target>
+
+
+  <!-- =================================================================== -->
+  <!-- Creates the distribution                                            -->
+  <!-- =================================================================== -->
+  <target name="dist" depends="package">
+    <echo message="Building the distribution files (zip,tar)"/>
+    <mkdir dir="${dist.dir}"/>
+    <copy todir="${dist.dir}">
+      <fileset dir="${lib.dir}" excludes="**/classes/**, **/${ignore_this}" />
+    </copy>
+    <zip zipfile="${Name}-${version}-bin.zip" basedir="${dist.dir}"/>
+    <tar tarfile="${Name}-${version}-bin.tar" basedir="${dist.dir}"/>
+    <gzip zipfile="${Name}-${version}-bin.tar.gz" src="${Name}-${version}-bin.tar" />
+    <delete file="${Name}-${version}-bin.tar"/>
+    <delete dir="${dist.dir}"/>
+  </target>
+
+
+  <!-- =================================================================== -->
+  <!-- Creates the source distribution                                            -->
+  <!-- =================================================================== -->
+  <target name="dist-src" depends="init">
+    <echo message="Building the source distribution files (zip,tar)"/>
+    <chmod file="${src.dir}/build.sh" perm="ugo+rx" />
+    <delete file="${Name}-${version}-src.tar.gz"/>
+    <delete file="${Name}-${version}-src.zip"/>
+    <zip zipfile="${Name}-${version}-src.zip" basedir="${src.dir}" excludes="**/.*/** **/.* **/*% **/*~ **/*.shared* **/*.proj* **/*.ref.* **/*.bak GEF*"/>
+    <tar tarfile="${Name}-${version}-src.tar" basedir="${src.dir}" excludes="**/.*/** **/.* **/*% **/*~ **/*.shared* **/*.proj* **/*.ref.* **/*.bak GEF*"/>
+    <gzip zipfile="${Name}-${version}-src.tar.gz" src="${Name}-${version}-src.tar" />
+    <delete file="${Name}-${version}-src.tar"/>
+  </target>
+
+
+  <!-- =================================================================== -->
+  <!-- Clean targets                                                       -->
+  <!-- =================================================================== -->
+  <target name="clean" depends="init">
+    <delete dir="${build.dir}"/>
+    <delete file="${lib.dir}/${name}.jar"/>
+    <delete file="${src.dir}/${Name}-${version}.zip"/>
+    <delete file="${src.dir}/${Name}-${version}.tar.gz"/>
+    <delete file="${src.dir}/${Name}-${version}-src.zip"/>
+    <delete file="${src.dir}/${Name}-${version}-src.tar.gz"/>
+  </target>
+
+  <target name="distclean" depends="clean">
+    <delete dir="${dist.dir}"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Run demos from compiled sources                                     -->
+  <!-- =================================================================== -->
+  <target name="run" depends="compile">
+    <echo message="--- Executing GEF demos ---"/>
+    <java classname="${main.class}" fork="yes">
+      <classpath>
+        <pathelement path="${build.dest};${gef.libs};${java.class.path}"/>
+      </classpath>
+      <jvmarg value="-Dgeflan.log.location=${geflan.log}"/>
+      <jvmarg value="-Dgeflan.log.level=DEBUG"/>
+    </java>
+  </target>
+
+</project>
+
+<!-- End of file -->
