@@ -10,5 +10,10 @@
             <port>org.tigris.gefdemo.classdiagram.model.UmlAssociation</port>
             <port>org.tigris.gefdemo.classdiagram.model.UmlClassifier</port>
         </connection>
+        <connection>
+            <edge>org.tigris.gefdemo.classdiagram.model.UmlDependency</edge>
+            <port>org.tigris.gefdemo.classdiagram.model.UmlModelElement</port>
+            <port>org.tigris.gefdemo.classdiagram.model.UmlModelElement</port>
+        </connection>
     </connections>
 </graphmodel>

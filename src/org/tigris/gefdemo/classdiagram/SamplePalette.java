@@ -6,6 +6,7 @@ import org.tigris.gef.ui.PaletteFig;
 import org.tigris.gefdemo.classdiagram.model.UmlAssociationEnd;
 import org.tigris.gefdemo.classdiagram.model.UmlAssociation;
 import org.tigris.gefdemo.classdiagram.model.UmlClass;
+import org.tigris.gefdemo.classdiagram.model.UmlDependency;
 import org.tigris.gefdemo.classdiagram.model.UmlInterface;
 
 
@@ -29,5 +30,6 @@ public class SamplePalette extends PaletteFig {
         add(new CmdCreateNode(UmlInterface.class, "Interface"));
         add(new CmdCreateNode(UmlAssociation.class, "Association"));
         add(new CmdSetMode(ModeCreatePolyEdge.class, "edgeClass", UmlAssociationEnd.class, "Association"));
+        add(new CmdSetMode(ModeCreatePolyEdge.class, "edgeClass", UmlDependency.class, "Dependency"));
     }
 } /* end class SamplePalette */
