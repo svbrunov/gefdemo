@@ -6,11 +6,11 @@ import java.awt.Rectangle;
 import org.tigris.gef.presentation.FigLine;
 import org.tigris.gef.presentation.FigRect;
 
-public class InterfaceFig extends ModelElementNodeFig {
+public class InterfaceNodeFig extends ModelElementNodeFig {
     
     FigLine seperator1;
             
-    public InterfaceFig(Object node) {
+    public InterfaceNodeFig(Object node) {
         super(node);
         
         boundryFig = new FigRect(0,0,70,60);

@@ -28,8 +28,7 @@ public class SamplePalette extends PaletteFig {
 
         add(new CmdCreateNode(UmlClass.class, "Class"));
         add(new CmdCreateNode(UmlInterface.class, "Interface"));
-        add(new CmdCreateNode(UmlAssociation.class, "Association"));
-        add(new CmdSetMode(ModeCreateAssociationEnd.class, "edgeClass", UmlAssociationEnd.class, "AssociationEnd"));
+        add(new CmdSetMode(ModeCreateAssociationEnd.class, "edgeClass", UmlAssociationEnd.class, "Association"));
         add(new CmdSetMode(ModeCreatePolyEdge.class, "edgeClass", UmlDependency.class, "Dependency"));
     }
 } /* end class SamplePalette */

@@ -33,6 +33,7 @@ public class ClassDiagramDemo {
         Localizer.switchCurrentLocale(Locale.getDefault());
         ResourceLoader.addResourceExtension("gif");
         ResourceLoader.addResourceLocation("/org/tigris/gef/Images");
+        ResourceLoader.addResourceLocation("/org/tigris/gefdemo/classdiagram/Images");
         GraphModel gm = new UmlGraphModel();
 
         graphFrame = new GefGraphFrame("Class Diagram", gm);

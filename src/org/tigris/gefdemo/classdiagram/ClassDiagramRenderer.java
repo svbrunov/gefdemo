@@ -48,7 +48,7 @@ import org.tigris.gefdemo.classdiagram.ui.AssociationEndEdgeFig;
 import org.tigris.gefdemo.classdiagram.ui.AssociationNodeFig;
 import org.tigris.gefdemo.classdiagram.ui.ClassNodeFig;
 import org.tigris.gefdemo.classdiagram.ui.DependencyEdgeFig;
-import org.tigris.gefdemo.classdiagram.ui.InterfaceFig;
+import org.tigris.gefdemo.classdiagram.ui.InterfaceNodeFig;
 
 /** 
  * This class defines a renderer object for UML Class Diagrams.
@@ -64,7 +64,7 @@ public class ClassDiagramRenderer
     public FigNode getFigNodeFor(GraphModel gm, Layer lay, Object node) {
         LOG.debug("getFigNodeFor node " + node.getClass().getName());
         if (node instanceof UmlClass) return new ClassNodeFig(node);
-        else if (node instanceof UmlInterface) return new InterfaceFig(node);
+        else if (node instanceof UmlInterface) return new InterfaceNodeFig(node);
         else if (node instanceof UmlAssociation) return new AssociationNodeFig(node);
         LOG.error("Unable to create FigNode for " + node);
         return null;
