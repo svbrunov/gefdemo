@@ -11,6 +11,14 @@
             <port>org.tigris.gefdemo.classdiagram.model.UmlClassifier</port>
         </connection>
         <connection>
+            <!-- Attempting to draw an association end from one classifier to another is trapped in the code
+                 This results in the creation of an association in the model with 2 association ends
+                 joining that new association to the 2 given classifiers --> 
+            <edge>org.tigris.gefdemo.classdiagram.model.UmlAssociationEnd</edge>
+            <port>org.tigris.gefdemo.classdiagram.model.UmlClassifier</port>
+            <port>org.tigris.gefdemo.classdiagram.model.UmlClassifier</port>
+        </connection>
+        <connection>
             <edge>org.tigris.gefdemo.classdiagram.model.UmlDependency</edge>
             <port>org.tigris.gefdemo.classdiagram.model.UmlModelElement</port>
             <port>org.tigris.gefdemo.classdiagram.model.UmlModelElement</port>

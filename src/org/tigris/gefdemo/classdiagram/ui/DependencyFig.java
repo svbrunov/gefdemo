@@ -13,6 +13,7 @@ public class DependencyFig extends ModelElementEdgeFig {
     
     public DependencyFig(Object edge, Layer lay) {
         super(edge, lay);
+        setDestArrowHead(destArrowHead);
         getFig().setDashed(true);
     }
     

@@ -27,6 +27,14 @@ public class ModelFacade {
     }
 
     public Object createModelElement(Class identifier, Object fromPort, Object toPort) {
+        // Spot any attempt to draw an association end between to classifiers
+        if (identifier.equals(UmlAssociationEnd.class) && fromPort instanceof UmlClassifier && toPort instanceof UmlClassifier) {
+            Object association = umlModel.createModelElement(UmlAssociation.class);
+            createModelElement(UmlAssociationEnd.class, association, fromPort);
+            createModelElement(UmlAssociationEnd.class, association, toPort);
+            return association;
+        }
+        
         if (identifier.equals(UmlAssociationEnd.class) && fromPort instanceof UmlClassifier && toPort instanceof UmlAssociation) {
             Object swapper = fromPort;
             fromPort = toPort;

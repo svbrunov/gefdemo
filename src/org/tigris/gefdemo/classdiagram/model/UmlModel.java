@@ -25,17 +25,22 @@ public class UmlModel {
             Object identifier,
             UmlModelElement fromPort,
             UmlModelElement toPort) {
+        Object modelElement = null;
         if (identifier.equals(UmlAssociationEnd.class)) {
             UmlAssociationEndImpl ae = new UmlAssociationEndImpl();
             ae.setAssociation((UmlAssociation)fromPort);
             ae.setClassifier((UmlClassifier)toPort);
-            return ae;
+            modelElement = ae;
         }
         if (identifier.equals(UmlDependency.class)) {
             UmlDependencyImpl dep = new UmlDependencyImpl();
             dep.setSupplier((UmlModelElement)fromPort);
             dep.setClient((UmlModelElement)toPort);
-            return dep;
+            modelElement = dep;
+        }
+        System.out.println("ModelElement created " + modelElement);
+        if (modelElement != null) {
+            return modelElement;
         }
         throw new IllegalArgumentException("Factory failed to create a model element for the identifier " + identifier);
     }
@@ -44,6 +49,7 @@ public class UmlModel {
         // TODO If node are removed then remove their
         // edges first.
         umlModelElements.remove(modelElement);
+        System.out.println("ModelElement removed " + modelElement);
         if (modelElement instanceof UmlAssociationEndImpl) {
             UmlAssociationEndImpl ae = (UmlAssociationEndImpl)modelElement;
             ae.setAssociation(null);

@@ -112,7 +112,6 @@ public class UmlGraphModel extends MutableGraphSupport {
      * @param edge edge to remove
      */    
     public void removeEdge(Object edge) {
-        System.out.println("Removing the edge " + edge);
 	if (!containsEdge(edge)) return;
         edges.removeElement(edge);
         fireEdgeRemoved(edge);
@@ -220,19 +219,4 @@ public class UmlGraphModel extends MutableGraphSupport {
     public Vector getOutEdges(Object port) {
         return null;
     }
-
-//    public void vetoableChange(PropertyChangeEvent pce) {
-//
-//        if ("ownedElement".equals(pce.getPropertyName())) {
-//            Vector oldOwned = (Vector) pce.getOldValue();
-//            Object elementImport = /*(MElementImport)*/ pce.getNewValue();
-//                Object modelElement = ModelFacade.getModelElement(elementImport);
-//            //MModelElement modelElement = elementImport.getModelElement();
-//            if (oldOwned.contains(elementImport)) {
-//                cat.debug("model removed " + modelElement);
-//                removeNode(modelElement);
-//        }
-//    }
-
-
 }

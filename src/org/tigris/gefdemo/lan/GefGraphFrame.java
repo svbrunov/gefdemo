@@ -228,10 +228,6 @@ public class GefGraphFrame
         select.add(new CmdSelectNext(true));
         select.add(new CmdSelectInvert());
 
-        //select.add(new CmdSelectSuchThat());
-
-        //edit.add(new CmdUndo());
-        //edit.add(new CmdRedo());
         edit.addSeparator();
 
         //edit.add(new CmdCut());
@@ -311,12 +307,10 @@ public class GefGraphFrame
         KeyStroke altF4 =
             KeyStroke.getKeyStroke(KeyEvent.VK_F4, KeyEvent.ALT_MASK);
 
-        KeyStroke leftArrow, rightArrow, upArrow, downArrow;
-
-        leftArrow = KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0);
-        rightArrow = KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0);
-        upArrow = KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0);
-        downArrow = KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0);
+        KeyStroke leftArrow  = KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0);
+        KeyStroke rightArrow = KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0);
+        KeyStroke upArrow    = KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0);
+        KeyStroke downArrow  = KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0);
 
         KeyStroke sLeftArrow, sRightArrow, sUpArrow, sDownArrow;
         sLeftArrow =
@@ -328,8 +322,6 @@ public class GefGraphFrame
             KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, KeyEvent.SHIFT_MASK);
 
         KeyStroke delKey,
-            ctrlZ,
-            ctrlX,
             ctrlC,
             ctrlV,
             ctrlG,
@@ -339,8 +331,6 @@ public class GefGraphFrame
             sCtrlB,
             sCtrlF;
         delKey = KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, KeyEvent.CTRL_MASK);
-        ctrlZ = KeyStroke.getKeyStroke(KeyEvent.VK_Z, KeyEvent.CTRL_MASK);
-        ctrlX = KeyStroke.getKeyStroke(KeyEvent.VK_X, KeyEvent.CTRL_MASK);
         ctrlC = KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_MASK);
         ctrlV = KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.CTRL_MASK);
         ctrlG = KeyStroke.getKeyStroke(KeyEvent.VK_G, KeyEvent.CTRL_MASK);
@@ -356,15 +346,12 @@ public class GefGraphFrame
                 KeyEvent.VK_F,
                 KeyEvent.CTRL_MASK | KeyEvent.SHIFT_MASK);
 
-        //newItem.setAccelerator(ctrlN);
         openItem.setAccelerator(ctrlO);
         saveItem.setAccelerator(ctrlS);
         printItem.setAccelerator(ctrlP);
         exitItem.setAccelerator(altF4);
 
         deleteItem.setAccelerator(delKey);
-        //undoItem.setAccelerator(ctrlZ);
-        //cutItem.setAccelerator(ctrlX);
         copyItem.setAccelerator(ctrlC);
         pasteItem.setAccelerator(ctrlV);
 

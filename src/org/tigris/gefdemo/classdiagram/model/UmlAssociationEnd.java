@@ -14,4 +14,5 @@ package org.tigris.gefdemo.classdiagram.model;
 public interface UmlAssociationEnd {
     public UmlAssociation getAssociation();
     public UmlClassifier getClassifier();
+    public boolean isNavigable();
 }

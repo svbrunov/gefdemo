@@ -6,6 +6,8 @@ class UmlAssociationEndImpl
     
     private UmlAssociation association;
     private UmlClassifier classifier;
+
+    private boolean navigable = true;
     
     /** Construct a new Depends. */
     public UmlAssociationEndImpl() {
@@ -56,5 +58,9 @@ class UmlAssociationEndImpl
         if (newClassifier != null) {
             newClassifier.addAssociationEnd(this);
         }
+    }
+    
+    public boolean isNavigable() {
+        return navigable;
     }
 }

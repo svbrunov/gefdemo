@@ -25,6 +25,9 @@ class UmlAssociationImpl extends UmlModelElementImpl implements UmlAssociation {
      * Remove an association end from this association
      */
     public void removeAssociationEnd(UmlAssociationEnd associationEnd) {
-        umlAssociationEnds.remove(associationEnd);
+        System.out.println("Removing " + associationEnd + " from " + this);
+        if (!umlAssociationEnds.remove(associationEnd)) {
+            throw new IllegalArgumentException("Attempt to remove a non-existent association end");
+        }
     }
 }
