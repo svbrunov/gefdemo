@@ -3,7 +3,7 @@ package org.tigris.gefdemo.classdiagram.model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-abstract class UmlModelElementImpl implements java.io.Serializable, UmlModelElement {
+abstract class UmlModelElementImpl implements UmlModelElement {
     ////////////////////////////////////////////////////////////////
     // instance variables
 

@@ -31,4 +31,7 @@ public interface UmlModelElement {
         boolean oldV,
         boolean newV);
     public abstract void firePropertyChange(String pName, int oldV, int newV);
+    
+    public String getName();
+    public void setName(String name);
 }

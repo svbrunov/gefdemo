@@ -2,27 +2,22 @@
 package org.tigris.gefdemo.classdiagram.ui;
 
 import java.awt.Rectangle;
-import java.beans.PropertyChangeEvent;
 
 import org.tigris.gef.graph.GraphModel;
-import org.tigris.gef.presentation.Fig;
 import org.tigris.gef.presentation.FigLine;
-import org.tigris.gef.presentation.FigNode;
 import org.tigris.gef.presentation.FigRect;
-
-import org.tigris.gefdemo.classdiagram.model.UmlClass;
 
 /**
  * A Fig representing a target node of an Ant script
  * @author Bob Tarling
  */
-public class ClassFig extends FigNode {
+public class ClassFig extends ModelElementNodeFig {
     
-    Fig boundryFig;
     FigLine seperator1;
     FigLine seperator2;
             
-    public ClassFig() {
+    public ClassFig(GraphModel gm, Object node) {
+        super(gm, node);
         
         boundryFig = new FigRect(0,0,70,60);
 
@@ -32,52 +27,9 @@ public class ClassFig extends FigNode {
         addFig(boundryFig);
         addFig(seperator1);
         addFig(seperator2);
-    }
-    
-    public ClassFig(GraphModel gm, Object node) {
-        this();
         setOwner(node);
     }
     
-    public String getName() {
-        return ((UmlClass)getOwner()).getName();
-    }
-    
-    /**
-     * @return
-     */
-    public Fig getBoundryFig() {
-        return boundryFig;
-    }
-
-    public boolean isDragConnectable() {
-        return false;
-    }
-    
-    public String toString() {
-        if (getOwner() == null) return null;
-        return getOwner().toString();
-    }
-    
-    
-    /** Called whenever the properties of the underlying node
-     * model change
-     */
-    public void propertyChange(PropertyChangeEvent pce) {
-        super.propertyChange(pce);
-        if (pce.getPropertyName().equals("name")) {
-            //nameFig.setText((String)pce.getNewValue());
-        }
-    }
-
-    /**
-     * Called to tie this fig to a model node
-     */
-    public void setOwner(Object node) {
-        super.setOwner(node);
-        String name = ((UmlClass)node).getName();
-    }
-
     /**
      * Set the bounding box to the given rect. Figs in the group are
      * scaled and/or positioned to fit.
@@ -98,5 +50,4 @@ public class ClassFig extends FigNode {
         firePropChange("bounds", oldBounds, getBounds());
         updateEdges();
     }
-    
 }

@@ -1,12 +1,14 @@
 package org.tigris.gefdemo.classdiagram;
 
-import java.awt.event.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import java.util.Locale;
 
-import org.tigris.gef.util.*;
 import org.tigris.gef.graph.GraphModel;
 import org.tigris.gef.graph.GraphModelException;
-import org.tigris.gef.graph.presentation.*;
+import org.tigris.gef.util.Localizer;
+import org.tigris.gef.util.ResourceLoader;
 
 /** A simple example of the minimum code needed to build an
  *  application using GEF.
@@ -14,7 +16,7 @@ import org.tigris.gef.graph.presentation.*;
 
 public class ClassDiagramDemo {
 
-    private JGraphFrame graphFrame;
+    private GefGraphFrame graphFrame;
 
     public ClassDiagramDemo() {
         // init localizer and resourceloader
@@ -33,7 +35,7 @@ public class ClassDiagramDemo {
         ResourceLoader.addResourceLocation("/org/tigris/gef/Images");
         GraphModel gm = new UmlGraphModel();
 
-        graphFrame = new JGraphFrame(gm);
+        graphFrame = new GefGraphFrame("Class Diagram", gm);
         graphFrame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent event) {
                 graphFrame.dispose();
@@ -44,8 +46,6 @@ public class ClassDiagramDemo {
         });
         graphFrame.setToolBar(new SamplePalette()); //needs-more-work
 
-        // make the delete key remove elements from the underlying GraphModel
-        //graphFrame.getGraph().bindKey(new CmdDispose(), KeyEvent.VK_DELETE, 0);
         ClassDiagramRenderer renderer = new ClassDiagramRenderer();
         graphFrame.getGraph().setGraphNodeRenderer(renderer);
         graphFrame.getGraph().setGraphEdgeRenderer(renderer);
@@ -57,7 +57,6 @@ public class ClassDiagramDemo {
             e.printStackTrace();
         }
 
-
         graphFrame.setBounds(10, 10, 300, 200);
         graphFrame.setVisible(true);
     }
@@ -66,7 +65,7 @@ public class ClassDiagramDemo {
     // main
 
     public static void main(String args[]) {
-        ClassDiagramDemo demo = new ClassDiagramDemo();
+        new ClassDiagramDemo();
     }
 
 } /* end class BasicApplication */

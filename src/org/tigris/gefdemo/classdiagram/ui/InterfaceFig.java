@@ -2,22 +2,17 @@
 package org.tigris.gefdemo.classdiagram.ui;
 
 import java.awt.Rectangle;
-import java.beans.PropertyChangeEvent;
 
 import org.tigris.gef.graph.GraphModel;
-import org.tigris.gef.presentation.Fig;
 import org.tigris.gef.presentation.FigLine;
-import org.tigris.gef.presentation.FigNode;
 import org.tigris.gef.presentation.FigRect;
 
-import org.tigris.gefdemo.classdiagram.model.UmlInterface;
-
-public class InterfaceFig extends FigNode {
+public class InterfaceFig extends ModelElementNodeFig {
     
-    Fig boundryFig;
     FigLine seperator1;
             
-    public InterfaceFig() {
+    public InterfaceFig(GraphModel gm, Object node) {
+        super(gm, node);
         
         boundryFig = new FigRect(0,0,70,60);
 
@@ -25,52 +20,9 @@ public class InterfaceFig extends FigNode {
         
         addFig(boundryFig);
         addFig(seperator1);
-    }
-    
-    public InterfaceFig(GraphModel gm, Object node) {
-        this();
         setOwner(node);
     }
     
-    public String getName() {
-        return ((UmlInterface)getOwner()).getName();
-    }
-    
-    /**
-     * @return
-     */
-    public Fig getBoundryFig() {
-        return boundryFig;
-    }
-
-    public boolean isDragConnectable() {
-        return false;
-    }
-    
-    public String toString() {
-        if (getOwner() == null) return null;
-        return getOwner().toString();
-    }
-    
-    
-    /** Called whenever the properties of the underlying node
-     * model change
-     */
-    public void propertyChange(PropertyChangeEvent pce) {
-        super.propertyChange(pce);
-        if (pce.getPropertyName().equals("name")) {
-            //nameFig.setText((String)pce.getNewValue());
-        }
-    }
-
-    /**
-     * Called to tie this fig to a model node
-     */
-    public void setOwner(Object node) {
-        super.setOwner(node);
-        String name = ((UmlInterface)node).getName();
-    }
-
     /**
      * Set the bounding box to the given rect. Figs in the group are
      * scaled and/or positioned to fit.
@@ -90,5 +42,4 @@ public class InterfaceFig extends FigNode {
         firePropChange("bounds", oldBounds, getBounds());
         updateEdges();
     }
-    
 }
