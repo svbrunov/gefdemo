@@ -30,10 +30,13 @@
 
 package org.tigris.gefdemo.uml;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
-
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.tigris.gef.base.ModeCreate;
 import org.tigris.gef.graph.MutableGraphSupport;
 import org.tigris.gefdemo.uml.model.UmlAssociation;
 import org.tigris.gefdemo.uml.model.UmlClassifier;
@@ -45,13 +48,12 @@ import org.tigris.gefdemo.uml.model.UmlClassifier;
  */
 public class UmlGraphModel extends MutableGraphSupport {
     
-    protected static Logger cat =
-	Logger.getLogger(UmlGraphModel.class);
+    private static Log LOG = LogFactory.getLog(UmlGraphModel.class);
     
     /** contains all the nodes in the graphmodel/diagram. */    
-    protected Vector nodes = new Vector();
+    protected ArrayList nodes = new ArrayList();
     /** constains all the edges in the graphmodel/diagram. */    
-    protected Vector edges = new Vector();
+    protected ArrayList edges = new ArrayList();
     
     
     /** constructor.
@@ -65,12 +67,16 @@ public class UmlGraphModel extends MutableGraphSupport {
      * @see org.tigris.gef.graph.MutableGraphSupport#getNodes()
      * @return Vector of nodes in the graphmodel/diagram
      */    
-    public Vector getNodes() { return nodes; }
+    public List getNodes() {
+        return (ArrayList)nodes.clone();
+    }
     
     /** get all the edges from the graphmodel/diagram
      * @return Vector of edges in the graphmodel/diagram
      */    
-    public Vector getEdges() { return (Vector)edges.clone(); }
+    public List getEdges() {
+        return (ArrayList)edges.clone();
+    }
     
     /** Return a valid node in this graph */
     //public Object createNode(String name, Hashtable args) {
@@ -102,9 +108,9 @@ public class UmlGraphModel extends MutableGraphSupport {
      * @param node node to remove
      */    
     public void removeNode(Object node) {
-	if (!containsNode(node)) return;
-	nodes.removeElement(node);
-	fireNodeRemoved(node);
+        if (!containsNode(node)) return;
+        nodes.remove(node);
+        fireNodeRemoved(node);
     }
     
     /** remove an edge from the graphmodel and notify GEF
@@ -113,7 +119,7 @@ public class UmlGraphModel extends MutableGraphSupport {
      */    
     public void removeEdge(Object edge) {
 	if (!containsEdge(edge)) return;
-        edges.removeElement(edge);
+        edges.remove(edge);
         fireEdgeRemoved(edge);
     }
     
@@ -158,21 +164,21 @@ public class UmlGraphModel extends MutableGraphSupport {
         }
         
         if (connection == null) {
-            cat.debug("Cannot make a " + edgeClass.getName() +
+            LOG.debug("Cannot make a " + edgeClass.getName() +
 		      " between a " + fromPort.getClass().getName() +
 		      " and a " + toPort.getClass().getName());
             return null;
         }
         
         addEdge(connection);
-        cat.debug("Connection type" + edgeClass.getName() +
+        LOG.debug("Connection type" + edgeClass.getName() +
 		  " made between a " + fromPort.getClass().getName() +
 		  " and a " + toPort.getClass().getName());
         return connection;
     }
     
     /** Return all ports on node or edge */
-    public Vector getPorts(Object nodeOrEdge) {
+    public List getPorts(Object nodeOrEdge) {
         Vector res = new Vector();
         if (nodeOrEdge instanceof UmlClassifier) res.addElement(nodeOrEdge);
         // TODO Check if this association only has 2 edges
@@ -200,23 +206,23 @@ public class UmlGraphModel extends MutableGraphSupport {
     
     /** Return one end of an edge */
     public Object getSourcePort(Object edge) {
-        cat.error("TODO getSourcePort");
+        LOG.error("TODO getSourcePort");
         return null;
     }
 
     /** Return  the other end of an edge */
     public Object getDestPort(Object edge) {
-        cat.error("TODO getSourcePort");
+        LOG.error("TODO getSourcePort");
         return null;
     }
 
     /** Return all edges going to given port */
-    public Vector getInEdges(Object port) {
+    public List getInEdges(Object port) {
         return null;
     }
 
     /** Return all edges going from given port */
-    public Vector getOutEdges(Object port) {
+    public List getOutEdges(Object port) {
         return null;
     }
 }

@@ -28,7 +28,9 @@ import java.util.Vector;
 
 import javax.swing.Action;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.tigris.gef.base.ModeCreate;
 
 /**
  * Command to create nodes with the appropriate modelelement. The modelelement
@@ -36,7 +38,7 @@ import org.apache.log4j.Logger;
  */
 public class CmdCreateNode extends org.tigris.gef.base.CmdCreateNode {
 
-    private static Logger LOG = Logger.getLogger(CmdCreateNode.class);
+    private static Log LOG = LogFactory.getLog(CmdCreateNode.class);
 
     private static Hashtable cache = new Hashtable();
 

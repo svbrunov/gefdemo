@@ -29,7 +29,8 @@
 
 package org.tigris.gefdemo.uml;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import org.tigris.gef.base.Layer;
 import org.tigris.gef.graph.GraphEdgeRenderer;
@@ -57,8 +58,7 @@ import org.tigris.gefdemo.uml.ui.InterfaceNodeFig;
 public class ClassDiagramRenderer
     implements GraphNodeRenderer, GraphEdgeRenderer {
 
-    protected static final Logger LOG = 
-        Logger.getLogger(ClassDiagramRenderer.class);
+    private static Log LOG = LogFactory.getLog(ClassDiagramRenderer.class);
 
     /** Return a Fig that can be used to represent the given node */
     public FigNode getFigNodeFor(GraphModel gm, Layer lay, Object node) {

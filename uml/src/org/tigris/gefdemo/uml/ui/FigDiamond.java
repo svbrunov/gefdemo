@@ -28,10 +28,10 @@
 
 package org.tigris.gefdemo.uml.ui;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
 import org.tigris.gef.presentation.Fig;
+
+import java.awt.*;
+import java.util.Vector;
 
 /** Primitive Fig to paint rectangles on a LayerDiagram. */
 
@@ -62,6 +62,19 @@ public class FigDiamond extends Fig {
     public FigDiamond(int x, int y, int w, int h, boolean resizable, Color lColor, Color fColor) {
         super(x, y, w, h, lColor, fColor);
         setResizable(resizable);
+    }
+
+    /**
+     * Makes sure that the edges stick to the outline of the fig.
+     * @see org.tigris.gef.presentation.Fig#getGravityPoints()
+     */
+    public Vector getGravityPoints() {
+        Vector ret = new Vector();
+        ret.add(new Point(_x + _w / 2, _y));
+        ret.add(new Point(_x + _w, _y + _h / 2));
+        ret.add(new Point(_x + _w / 2, _y + _h));
+        ret.add(new Point(_x, _y + _h / 2));
+        return ret;
     }
 
     ////////////////////////////////////////////////////////////////
