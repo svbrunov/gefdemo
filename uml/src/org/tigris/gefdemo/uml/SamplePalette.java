@@ -3,7 +3,6 @@ package org.tigris.gefdemo.uml;
 import org.tigris.gef.base.CmdSetMode;
 import org.tigris.gef.base.ModeCreatePolyEdge;
 import org.tigris.gef.ui.PaletteFig;
-import org.tigris.gefdemo.uml.model.UmlAssociation;
 import org.tigris.gefdemo.uml.model.UmlAssociationClass;
 import org.tigris.gefdemo.uml.model.UmlAssociationEnd;
 import org.tigris.gefdemo.uml.model.UmlClass;

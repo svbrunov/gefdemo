@@ -26,16 +26,16 @@ public class AssociationEndEdgeFig extends ModelElementEdgeFig {
         AssociationNodeFig af = (AssociationNodeFig)getSourceFigNode();
         UmlGraphModel gm = (UmlGraphModel)Globals.curEditor().getGraphModel();
         UmlAssociation association = (UmlAssociation)af.getOwner();
-        super.dispose();
+        super.deleteFromModel();
         Collection remainingEdges = af.getFigEdges(null);
         int edgeCount = remainingEdges.size();
         if (edgeCount == 2) {
             Iterator it = remainingEdges.iterator();
             while (it.hasNext()) {
                 AssociationEndEdgeFig fig = (AssociationEndEdgeFig)it.next();
-                fig.delete();
+                fig.removeFromDiagram();
             }
-            af.delete();
+            af.removeFromDiagram();
             gm.addEdge(association);
         }
     }

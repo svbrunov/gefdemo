@@ -23,7 +23,6 @@ import org.tigris.gef.presentation.Fig;
 import org.tigris.gef.presentation.FigEdge;
 import org.tigris.gef.presentation.FigNode;
 import org.tigris.gefdemo.uml.model.UmlAssociation;
-import org.tigris.gefdemo.uml.model.UmlAssociationEnd;
 import org.tigris.gefdemo.uml.ui.AssociationEdgeFig;
 import org.tigris.gefdemo.uml.ui.AssociationEndEdgeFig;
 import org.tigris.gefdemo.uml.ui.AssociationNodeFig;
@@ -107,7 +106,7 @@ public class ModeCreateAssociationEnd extends ModeCreatePolyEdge {
         if (ke.getKeyChar() == KeyEvent.VK_ESCAPE) { // escape
             LOG.debug("ESC pressed");
             if (newAssociationNodeFig != null) {
-                newAssociationNodeFig.delete();
+                newAssociationNodeFig.removeFromDiagram();
                 newAssociationNodeFig = null;
                 oldAssociationEdgeFig.setOwner(association);
             }
@@ -126,7 +125,7 @@ public class ModeCreateAssociationEnd extends ModeCreatePolyEdge {
     protected void endAttached() {
         if (newAssociationNodeFig != null) {
             newAssociationNodeFig.setVisible(true);
-            oldAssociationEdgeFig.delete();
+            oldAssociationEdgeFig.removeFromDiagram();
         
             Editor editor = Globals.curEditor();
             UmlGraphModel gm = (UmlGraphModel)editor.getGraphModel();
@@ -159,9 +158,9 @@ public class ModeCreateAssociationEnd extends ModeCreatePolyEdge {
         Iterator it = remainingEdges.iterator();
         while (it.hasNext()) {
             AssociationEndEdgeFig fig = (AssociationEndEdgeFig)it.next();
-            fig.delete();
+            fig.removeFromDiagram();
         }
-        af.delete();
+        af.removeFromDiagram();
         gm.addEdge(association);
     }
 }

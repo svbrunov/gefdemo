@@ -36,7 +36,6 @@ import java.util.Vector;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.tigris.gef.base.ModeCreate;
 import org.tigris.gef.graph.MutableGraphSupport;
 import org.tigris.gefdemo.uml.model.UmlAssociation;
 import org.tigris.gefdemo.uml.model.UmlClassifier;

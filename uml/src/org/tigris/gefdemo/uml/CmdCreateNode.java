@@ -30,7 +30,6 @@ import javax.swing.Action;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.tigris.gef.base.ModeCreate;
 
 /**
  * Command to create nodes with the appropriate modelelement. The modelelement

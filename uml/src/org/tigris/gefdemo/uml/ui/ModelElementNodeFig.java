@@ -1,11 +1,9 @@
 
 package org.tigris.gefdemo.uml.ui;
 
-import java.awt.Point;
 import java.awt.Rectangle;
 import java.beans.PropertyChangeEvent;
 import java.util.List;
-import java.util.Vector;
 
 import org.tigris.gef.presentation.Fig;
 import org.tigris.gef.presentation.FigNode;

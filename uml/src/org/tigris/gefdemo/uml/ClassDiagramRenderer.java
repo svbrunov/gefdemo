@@ -45,7 +45,6 @@ import org.tigris.gefdemo.uml.model.UmlAssociation;
 import org.tigris.gefdemo.uml.model.UmlAssociationClass;
 import org.tigris.gefdemo.uml.model.UmlAssociationEnd;
 import org.tigris.gefdemo.uml.model.UmlClass;
-import org.tigris.gefdemo.uml.model.UmlClassifier;
 import org.tigris.gefdemo.uml.model.UmlDependency;
 import org.tigris.gefdemo.uml.model.UmlInterface;
 import org.tigris.gefdemo.uml.ui.AssociationEdgeFig;

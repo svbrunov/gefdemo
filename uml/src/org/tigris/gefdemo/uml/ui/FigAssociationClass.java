@@ -28,7 +28,11 @@
 
 package org.tigris.gefdemo.uml.ui;
 
-import org.tigris.gef.base.*;
+import org.tigris.gef.base.Editor;
+import org.tigris.gef.base.Globals;
+import org.tigris.gef.base.Layer;
+import org.tigris.gef.base.LayerPerspective;
+import org.tigris.gef.base.PathConvPercent;
 import org.tigris.gef.graph.GraphModel;
 import org.tigris.gef.graph.MutableGraphModel;
 import org.tigris.gef.presentation.Fig;
@@ -36,13 +40,12 @@ import org.tigris.gef.presentation.FigCircle;
 import org.tigris.gef.presentation.FigPoly;
 import org.tigris.gefdemo.uml.UmlGraphModel;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseListener;
+import java.awt.Color;
+import java.awt.Rectangle;
 import java.beans.PropertyChangeListener;
-import java.beans.VetoableChangeListener;
 import java.util.Iterator;
+
+import javax.swing.SwingUtilities;
 
 
 /**

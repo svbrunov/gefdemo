@@ -46,7 +46,7 @@ import org.w3c.dom.Document;
 public class SaveSvgAction extends AbstractAction {
 
     public SaveSvgAction() {
-        super("Save as SVG...");
+        super("Save as SVG using batik...");
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -56,7 +56,7 @@ public class SaveSvgAction extends AbstractAction {
             FileDialog fd = new FileDialog(ce.findFrame(), "Save Diagram",
                     FileDialog.SAVE);
             fd.setDirectory(Globals.getLastDirectory());
-            fd.show();
+            fd.setVisible(true);
             String filename = fd.getFile(); // blocking
             String path = fd.getDirectory(); // blocking
             Globals.setLastDirectory(path);

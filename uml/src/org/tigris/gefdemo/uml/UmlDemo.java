@@ -94,13 +94,41 @@ public class UmlDemo {
 
         panelManager.setJMenuBar(menuBar);
         
-        DiagramPanel diagramPanel = null;
+        DiagramPanel classDiagramPanel1 = null;
+        DiagramPanel classDiagramPanel2 = null;
+        DiagramPanel activityDiagramPanel1 = null;
+        DiagramPanel activityDiagramPanel2 = null;
+        DiagramPanel sequenceDiagramPanel1 = null;
+        DiagramPanel sequenceDiagramPanel2 = null;
         try {
-            diagramPanel = new DiagramPanel(ConnectionConstrainer.getInstance());
+            classDiagramPanel1 = new ClassDiagramPanel(
+                ConnectionConstrainer.getInstance(),
+                "Class Diagram 1");
+            classDiagramPanel2 = new ClassDiagramPanel(
+                ConnectionConstrainer.getInstance(),
+                "Class Diagram 2");
+            activityDiagramPanel1 = new ActivityDiagramPanel(
+                ConnectionConstrainer.getInstance(),
+                "Activity Diagram 1");
+            activityDiagramPanel2 = new ActivityDiagramPanel(
+                ConnectionConstrainer.getInstance(),
+                "Activity Diagram 2");
+            sequenceDiagramPanel1 = new SequenceDiagramPanel(
+                ConnectionConstrainer.getInstance(),
+                "Sequence Diagram 1");
+            sequenceDiagramPanel2 = new SequenceDiagramPanel(
+                ConnectionConstrainer.getInstance(),
+                "Sequence Diagram 2");
         } catch (Exception e) {
-            
+            System.out.println("Exception caught");
+            e.printStackTrace();
         }
-        panelManager.add(diagramPanel);
+        panelManager.add(classDiagramPanel1);
+        panelManager.add(classDiagramPanel2);
+        panelManager.add(activityDiagramPanel1);
+        panelManager.add(activityDiagramPanel2);
+        panelManager.add(sequenceDiagramPanel1);
+        panelManager.add(sequenceDiagramPanel2);
         panelManager.add(new JPanel(), PanelManager.WEST);
             
         // init localizer and resourceloader
@@ -182,6 +210,7 @@ public class UmlDemo {
         openItem = file.add(new CmdOpen());
         saveItem = file.add(new CmdSave());
         saveItem = file.add(new SaveSvgAction());
+        saveItem = file.add(new SaveGraphicsAction());
         CmdPrint cmdPrint = new CmdPrint();
         printItem = file.add(cmdPrint);
         exitItem = file.add(new CmdExit());
