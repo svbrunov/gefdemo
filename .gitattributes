@@ -1,4 +1,17 @@
 * text=auto !eol
+lan/src/org/tigris/gefdemo/lan/Images/NodeComputer.gif -text
+lan/src/org/tigris/gefdemo/lan/Images/NodeCopier.gif -text
+lan/src/org/tigris/gefdemo/lan/Images/NodeFax.gif -text
+lan/src/org/tigris/gefdemo/lan/Images/NodeGame.gif -text
+lan/src/org/tigris/gefdemo/lan/Images/NodeHardDrive.gif -text
+lan/src/org/tigris/gefdemo/lan/Images/NodeHub.gif -text
+lan/src/org/tigris/gefdemo/lan/Images/NodeLaptop.gif -text
+lan/src/org/tigris/gefdemo/lan/Images/NodePrinter.gif -text
+lan/src/org/tigris/gefdemo/lan/Images/NodeRouter.gif -text
+lan/src/org/tigris/gefdemo/lan/Images/NodeScanner.gif -text
+lan/src/org/tigris/gefdemo/lan/Images/NodeServer.gif -text
+lan/src/org/tigris/gefdemo/lan/Images/NodeSonar.gif -text
+lan/src/org/tigris/gefdemo/lan/Images/NodeWireless.gif -text
 src/org/tigris/gefdemo/classdiagram/Images/Association.gif -text
 src/org/tigris/gefdemo/classdiagram/Images/Class.gif -text
 src/org/tigris/gefdemo/classdiagram/Images/Dependency.gif -text
@@ -16,4 +29,8 @@ src/org/tigris/gefdemo/lan/Images/NodeScanner.gif -text
 src/org/tigris/gefdemo/lan/Images/NodeServer.gif -text
 src/org/tigris/gefdemo/lan/Images/NodeSonar.gif -text
 src/org/tigris/gefdemo/lan/Images/NodeWireless.gif -text
+uml/src/org/tigris/gefdemo/uml/Images/Association.gif -text
+uml/src/org/tigris/gefdemo/uml/Images/Class.gif -text
+uml/src/org/tigris/gefdemo/uml/Images/Dependency.gif -text
+uml/src/org/tigris/gefdemo/uml/Images/Interface.gif -text
 www/images/gefscreen1.gif -text
