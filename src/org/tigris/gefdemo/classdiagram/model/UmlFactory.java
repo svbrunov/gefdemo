@@ -19,4 +19,12 @@ public class UmlFactory {
         if (identifier.equals(UmlAssociation.class)) return new UmlAssociationImpl();
         throw new IllegalArgumentException("Factory failed to create a model element for the identifier " + identifier);
     }
+    
+    public Object createModelElement(
+            Object identifier,
+            Object fromPort,
+            Object toPort) {
+        if (identifier.equals(UmlAssociationEnd.class)) return new UmlAssociationEndImpl();
+        throw new IllegalArgumentException("Factory failed to create a model element for the identifier " + identifier);
+    }
 }
