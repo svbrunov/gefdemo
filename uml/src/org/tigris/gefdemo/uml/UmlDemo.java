@@ -47,8 +47,14 @@ import org.tigris.gef.util.Localizer;
 import org.tigris.gef.util.ResourceLoader;
 import org.tigris.panelbeater.PanelManager;
 
-/** A simple example of the minimum code needed to build an
- *  application using GEF.
+/** 
+ * An example of a complex application built using GEF.
+ * This example demonstrates
+ * <ul>
+ * <li>Connection to an external model</li>
+ * <li>Multiple diagrams in MDI view using panelbeater</li>
+ * <li>Creating SVG from diagram using batik</li>
+ * </ul>
  */
 
 public class UmlDemo {
@@ -62,7 +68,6 @@ public class UmlDemo {
 
     private JPanel _mainPanel = new JPanel(new BorderLayout());
     private JPanel _graphPanel = new JPanel(new BorderLayout());
-    private JMenuBar _menubar = new JMenuBar();
 
     private static UmlDemo instance;
 
@@ -84,7 +89,11 @@ public class UmlDemo {
         
         panelManager.pack();
         panelManager.setVisible(true);
- 
+
+        JMenuBar menuBar = setUpMenus();
+
+        panelManager.setJMenuBar(menuBar);
+        
         DiagramPanel diagramPanel = null;
         try {
             diagramPanel = new DiagramPanel(ConnectionConstrainer.getInstance());
@@ -106,57 +115,7 @@ public class UmlDemo {
             "org.tigris.gef.presentation.PresentationResourceBundle");
         Localizer.addLocale(Locale.getDefault());
         Localizer.switchCurrentLocale(Locale.getDefault());
-//        ResourceLoader.addResourceExtension("gif");
-//        ResourceLoader.addResourceLocation("/org/tigris/gef/Images");
-//        ResourceLoader.addResourceLocation("/org/tigris/gefdemo/uml/Images");
-//        GraphModel gm = new UmlGraphModel();
-//
-//        graphFrame = new GefGraphFrame("Class Diagram", gm);
-//        graphFrame.addWindowListener(new WindowAdapter() {
-//            public void windowClosing(WindowEvent event) {
-//                graphFrame.dispose();
-//            }
-//            public void windowClosed(WindowEvent event) {
-//                System.exit(0);
-//            }
-//        });
-//        graphFrame.setToolBar(new SamplePalette()); //needs-more-work
-
-//        ClassDiagramRenderer renderer = new ClassDiagramRenderer();
-//        graphFrame.getGraph().setGraphNodeRenderer(renderer);
-//        graphFrame.getGraph().setGraphEdgeRenderer(renderer);
-        
-//        try {
-//            graphFrame.getGraphModel().setConnectionConstrainer(ConnectionConstrainer.getInstance());
-//        } catch (GraphModelException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-//
-//        graphFrame.setBounds(10, 10, 300, 200);
-//        graphFrame.setVisible(true);
     }
-    
-//    public void init() {
-//        init(new JGraph());
-//    }
-//
-//    public void init(JGraph jg) {
-//        _graph = jg;
-//        Container content = getContentPane();
-//        setUpMenus();
-//        content.setLayout(new BorderLayout());
-//        content.add(_menubar, BorderLayout.NORTH);
-//        _graphPanel.add(_graph, BorderLayout.CENTER);
-//        _graphPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
-//
-//        _mainPanel.add(_toolbar, BorderLayout.NORTH);
-//        _mainPanel.add(_graphPanel, BorderLayout.CENTER);
-//        content.add(_mainPanel, BorderLayout.CENTER);
-//        content.add(_statusbar, BorderLayout.SOUTH);
-//        setSize(300, 250);
-//        _graph.addModeChangeListener(this);
-//    }
     
     ////////////////////////////////////////////////////////////////
     // accessors
@@ -172,9 +131,6 @@ public class UmlDemo {
     }
     public GraphNodeRenderer getGraphNodeRenderer() {
         return _graph.getEditor().getGraphNodeRenderer();
-    }
-    public JMenuBar getJMenuBar() {
-        return _menubar;
     }
     public ToolBar getToolBar() {
         return _toolbar;
@@ -208,7 +164,7 @@ public class UmlDemo {
     }
     /** Set up the menus and keystrokes for menu items. Subclasses can
      *  override this, or you can use setMenuBar(). */
-    protected void setUpMenus() {
+    protected JMenuBar setUpMenus() {
         JMenuItem openItem,
             saveItem,
             printItem,
@@ -217,19 +173,22 @@ public class UmlDemo {
         JMenuItem groupItem, ungroupItem;
         JMenuItem toBackItem, backwardItem, toFrontItem, forwardItem;
 
+        JMenuBar menubar = new JMenuBar();
+        
         JMenu file = new JMenu(Localizer.localize("GefBase", "File"));
         file.setMnemonic('F');
-        _menubar.add(file);
+        menubar.add(file);
         //file.add(new CmdNew());
         openItem = file.add(new CmdOpen());
         saveItem = file.add(new CmdSave());
+        saveItem = file.add(new SaveSvgAction());
         CmdPrint cmdPrint = new CmdPrint();
         printItem = file.add(cmdPrint);
         exitItem = file.add(new CmdExit());
 
         JMenu edit = new JMenu(Localizer.localize("GefBase", "Edit"));
         edit.setMnemonic('E');
-        _menubar.add(edit);
+        menubar.add(edit);
 
         JMenu select = new JMenu(Localizer.localize("GefBase", "Select"));
         edit.add(select);
@@ -251,7 +210,7 @@ public class UmlDemo {
         edit.add(new CmdUseRotate());
 
         JMenu view = new JMenu(Localizer.localize("GefBase", "View"));
-        _menubar.add(view);
+        menubar.add(view);
         view.setMnemonic('V');
         view.add(new CmdSpawn());
         view.add(new CmdShowProperties());
@@ -261,7 +220,7 @@ public class UmlDemo {
         view.add(new CmdAdjustPageBreaks());
 
         JMenu arrange = new JMenu(Localizer.localize("GefBase", "Arrange"));
-        _menubar.add(arrange);
+        menubar.add(arrange);
         arrange.setMnemonic('A');
         groupItem = arrange.add(new CmdGroup());
         groupItem.setMnemonic('G');
@@ -337,25 +296,8 @@ public class UmlDemo {
         backwardItem.setAccelerator(ctrlB);
         forwardItem.setAccelerator(ctrlF);
 
+        return menubar;
     }
-    ////////////////////////////////////////////////////////////////
-    // display related methods
-
-//    public void setVisible(boolean b) {
-//        super.setVisible(b);
-//        if (b) {
-//            Globals.setStatusBar(this);
-//        }
-//    }
-    ////////////////////////////////////////////////////////////////
-    // IStatusListener implementation
-
-//    /** Show a message in the statusbar. */
-//    public void showStatus(String msg) {
-//        if (_statusbar != null) {
-//            _statusbar.setText(msg);
-//        }
-//    }
 
     ////////////////////////////////////////////////////////////////
     // main
@@ -364,4 +306,4 @@ public class UmlDemo {
         new UmlDemo();
     }
 
-} /* end class BasicApplication */
+} /* end class UmlDemo */
