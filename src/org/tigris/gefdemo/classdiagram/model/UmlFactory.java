@@ -1,7 +1,7 @@
 package org.tigris.gefdemo.classdiagram.model;
 
 /**
- * 
+ * A class which is the factory class for some external model
  * @author Bob Tarling
  * @since 03-Jun-2004
  */
@@ -22,10 +22,10 @@ public class UmlFactory {
     
     public Object createModelElement(
             Object identifier,
-            Object fromPort,
-            Object toPort) {
-        if (identifier.equals(UmlAssociationEnd.class)) return new UmlAssociationEndImpl();
-        if (identifier.equals(UmlDependency.class)) return new UmlDependencyImpl((UmlModelElement)fromPort, (UmlModelElement)toPort);
+            UmlModelElement fromPort,
+            UmlModelElement toPort) {
+        if (identifier.equals(UmlAssociationEnd.class)) return new UmlAssociationEndImpl((UmlAssociation)fromPort, (UmlClassifier)toPort);
+        if (identifier.equals(UmlDependency.class)) return new UmlDependencyImpl(fromPort, toPort);
         throw new IllegalArgumentException("Factory failed to create a model element for the identifier " + identifier);
     }
 }

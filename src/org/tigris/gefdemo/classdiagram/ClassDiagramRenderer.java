@@ -29,8 +29,6 @@
 
 package org.tigris.gefdemo.classdiagram;
 
-import java.util.Collection;
-
 import org.apache.log4j.Logger;
 
 import org.tigris.gef.base.Layer;
@@ -42,6 +40,7 @@ import org.tigris.gef.presentation.FigNode;
 import org.tigris.gefdemo.classdiagram.model.UmlAssociationEnd;
 import org.tigris.gefdemo.classdiagram.model.UmlAssociation;
 import org.tigris.gefdemo.classdiagram.model.UmlClass;
+import org.tigris.gefdemo.classdiagram.model.UmlClassifier;
 import org.tigris.gefdemo.classdiagram.model.UmlDependency;
 import org.tigris.gefdemo.classdiagram.model.UmlInterface;
 import org.tigris.gefdemo.classdiagram.ui.AssociationEndFig;
@@ -50,19 +49,8 @@ import org.tigris.gefdemo.classdiagram.ui.ClassFig;
 import org.tigris.gefdemo.classdiagram.ui.DependencyFig;
 import org.tigris.gefdemo.classdiagram.ui.InterfaceFig;
 
-/** This class defines a renderer object for UML Class Diagrams. In a
- *  Class Diagram the following UML objects are displayed with the
- *  following Figs: <p>
- * <pre>
- *  UML Object      ---  Fig
- *  ---------------------------------------
- *  Class         ---  FigClass
- *  Interface       ---  FigClass (TODO?)
- *  Generalization  ---  FigGeneralization
- *  Realization     ---  FigDependency (TODO)
- *  Association     ---  FigAssociation
- *  Dependency      ---  FigDependency
- *  </pre>
+/** 
+ * This class defines a renderer object for UML Class Diagrams.
  */
 
 public class ClassDiagramRenderer
@@ -85,8 +73,19 @@ public class ClassDiagramRenderer
     public FigEdge getFigEdgeFor(GraphModel gm, Layer lay, Object edge) {
         LOG.debug("making figedge for " + edge);
         if (edge instanceof UmlAssociationEnd) {
-            AssociationEndFig ascFig = new AssociationEndFig(edge, lay);
-            return ascFig;
+            UmlAssociationEnd associationEnd = (UmlAssociationEnd) edge;
+            AssociationEndFig ascEndFig = new AssociationEndFig(edge, lay);
+            UmlAssociation association = associationEnd.getAssociation();
+            UmlClassifier classifier = associationEnd.getClassifier();
+
+            FigNode associationFN = (FigNode) lay.presentationFor(association);
+            FigNode classifierFN = (FigNode) lay.presentationFor(classifier);
+
+            ascEndFig.setSourcePortFig(associationFN);
+            ascEndFig.setSourceFigNode(associationFN);
+            ascEndFig.setDestPortFig(classifierFN);
+            ascEndFig.setDestFigNode(classifierFN);
+            return ascEndFig;
         }
         if (edge instanceof UmlDependency) {
             UmlDependency dep = (UmlDependency) edge;
@@ -102,7 +101,6 @@ public class ClassDiagramRenderer
             depFig.setSourceFigNode(cliFN);
             depFig.setDestPortFig(supFN);
             depFig.setDestFigNode(supFN);
-            depFig.getFig().setDashed(true);
             return depFig;
         }
         LOG.error("Unable to create FigEdge for " + edge);

@@ -12,7 +12,6 @@ package org.tigris.gefdemo.classdiagram.model;
  * @since 03-Jun-2004
  */
 public interface UmlAssociationEnd {
-    public abstract String getId();
-    public abstract String getName();
-    public abstract void setName(String name);
+    public UmlAssociation getAssociation();
+    public UmlClassifier getClassifier();
 }

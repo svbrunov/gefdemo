@@ -11,7 +11,7 @@ package org.tigris.gefdemo.classdiagram.model;
  * @author Bob Tarling
  * @since 03-Jun-2004
  */
-interface UmlClassifier {
+public interface UmlClassifier {
     public abstract void setName(String name);
     public abstract String getName();
     public abstract String getId();

@@ -35,6 +35,8 @@ import java.util.Vector;
 import org.apache.log4j.Logger;
 
 import org.tigris.gef.graph.MutableGraphSupport;
+import org.tigris.gefdemo.classdiagram.model.UmlAssociation;
+import org.tigris.gefdemo.classdiagram.model.UmlAssociationEnd;
 import org.tigris.gefdemo.classdiagram.model.UmlFactory;
 
 
@@ -108,10 +110,21 @@ public class UmlGraphModel extends MutableGraphSupport {
     }
     
     /** remove an edge from the graphmodel and notify GEF
+     * TODO IllegalArgumentException or GraphModelException if edge not contained
      * @param edge edge to remove
      */    
     public void removeEdge(Object edge) {
 	if (!containsEdge(edge)) return;
+        if (edge instanceof UmlAssociationEnd) {
+            UmlAssociation association = ((UmlAssociationEnd)edge).getAssociation();
+            //if (association.getAssociationEnds() == 2) {
+                // Delete the association fig and the association end
+                // figs but do not delete their underlying models
+                // Then create an AssociationEdgeFig reresenting the
+                // existing association and joining the 2 remaining
+                // figs
+            //}
+        }
 	edges.removeElement(edge);
 	fireEdgeRemoved(edge);
     }
@@ -149,20 +162,7 @@ public class UmlGraphModel extends MutableGraphSupport {
     {
         Object connection = null;
         try {
-//            // If this was an association then there will be relevant
-//            // information to fetch out of the mode arguments.  If it
-//            // not an association then these will be passed forward
-//            // harmlessly as null.
-//            Editor curEditor = Globals.curEditor();
-//            ModeManager modeManager = curEditor.getModeManager();
-//            Mode mode = (Mode) modeManager.top();
-//            Hashtable args = mode.getArgs();
-//            Object style = args.get("aggregation");//MAggregationKind
-//            Boolean unidirectional = (Boolean) args.get("unidirectional");
-//            // Create the UML connection of the given type between the
-//            // given model elements.
-//	    // default aggregation (none)
-            connection = UmlFactory.getInstance().createModelElement(
+            connection = FactoryFacade.getInstance().create(
                 edgeClass,
                 fromPort,
                 toPort);

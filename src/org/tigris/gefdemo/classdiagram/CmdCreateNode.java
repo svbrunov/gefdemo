@@ -29,17 +29,11 @@ import java.util.Vector;
 import javax.swing.Action;
 
 import org.apache.log4j.Logger;
-import org.tigris.gef.graph.GraphModelException;
 import org.tigris.gefdemo.classdiagram.model.*;
 
 /**
  * Command to create nodes with the appropriate modelelement. The modelelement
- * is initialized via the build methods on the uml factories. If there is no
- * no-parameter build method, the create method corresponding to the
- * modelelement is used.
- * 
- * @see org.argouml.model.uml.foundation.core.CoreFactory
- * @author jaap.branderhorst@xs4all.nl
+ * is initialized via the build method on the UmlFactory.
  */
 public class CmdCreateNode extends org.tigris.gef.base.CmdCreateNode {
 

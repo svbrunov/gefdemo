@@ -3,23 +3,35 @@ package org.tigris.gefdemo.classdiagram.model;
 /** A NetEdge subclass to represent a dependency between tagets.
  */
 
-class UmlAssociationEndImpl implements UmlAssociationEnd {
+class UmlAssociationEndImpl
+        extends UmlModelElementImpl
+        implements UmlAssociationEnd {
     
-    private String name;
+    private UmlAssociation association;
+    private UmlClassifier classifier;
+    
     
     /** Construct a new Depends. */
-    public UmlAssociationEndImpl() {
+    public UmlAssociationEndImpl(UmlAssociation association, UmlClassifier classifier) {
+        this.association = association;
+        this.classifier = classifier;
     }
 
     public String getId() {
         return toString();
     }
-
-    public String getName() {
-        return name;
+    /**
+     * @return
+     */
+    public UmlAssociation getAssociation() {
+        return association;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    /**
+     * @return
+     */
+    public UmlClassifier getClassifier() {
+        return classifier;
     }
+
 }
