@@ -1,4 +1,8 @@
 * text=auto !eol
+src/org/tigris/gefdemo/classdiagram/Images/Association.gif -text
+src/org/tigris/gefdemo/classdiagram/Images/Class.gif -text
+src/org/tigris/gefdemo/classdiagram/Images/Dependency.gif -text
+src/org/tigris/gefdemo/classdiagram/Images/Interface.gif -text
 src/org/tigris/gefdemo/lan/Images/NodeComputer.gif -text
 src/org/tigris/gefdemo/lan/Images/NodeCopier.gif -text
 src/org/tigris/gefdemo/lan/Images/NodeFax.gif -text
