@@ -130,29 +130,59 @@ public class UmlGraphModel extends MutableGraphSupport {
     }
 
 
-    /** The connect method without specifying a connection
-     * type is unavailable by default
+    /**
+     * The connect method without specifying a connection
+     * type is unavailable in this implementation
      */
     public Object connect(Object fromPort, Object toPort) {
         throw new UnsupportedOperationException("The connect method is not supported");
     }
 
-    /** Contruct and add a new edge of the given kind and connect
+    /**
+     * The connect method specifying a connection
+     * type by class is unavailable in this implmentation.
+     */
+    public Object connect(Object fromPort, Object toPort, Class edgeClass) {
+//        throw new UnsupportedOperationException("The connect method is not supported");
+        Object connection = null;
+        
+        if (canConnect(fromPort, toPort, edgeClass.getName())) {
+            connection = ModelFacade.getInstance().createModelElement(
+                edgeClass,
+                fromPort,
+                toPort);
+        }
+        
+        if (connection == null) {
+            LOG.debug("Cannot make a " + edgeClass.getName() +
+              " between a " + fromPort.getClass().getName() +
+              " and a " + toPort.getClass().getName());
+            return null;
+        }
+        
+        addEdge(connection);
+        LOG.debug("Connection type" + edgeClass.getName() +
+          " made between a " + fromPort.getClass().getName() +
+          " and a " + toPort.getClass().getName());
+        return connection;
+    }
+    
+    /**
+     * Contruct and add a new edge of the given kind and connect
      * the given ports.
      *
-     * @param fromPort   The originating port to connect
+     * @param fromPort  The originating port to connect
      *
-     * @param toPort     The destination port to connect
+     * @param toPort    The destination port to connect
      *
-     * @param edgeClass  The NSUML type of edge to create.
+     * @param edgeType  The type of edge to create. This is one of the types
+     *                  returned by the methods of
+     *                  <code>org.argouml.model.MetaTypes</code>
      *
-     * @return           The type of edge created (the same as
-     *                   <code>edgeClass</code> if we succeeded,
-     *                   <code>null</code> otherwise)
+     * @return          The edge created if we succeeded,
+     *                  <code>null</code> otherwise)
      */
-    public Object connect(Object fromPort, Object toPort,
-			  Object edgeType)
-    {
+    public Object connect(Object fromPort, Object toPort, Object edgeType) {
         Object connection = null;
         
         if (canConnect(fromPort, toPort, edgeType)) {

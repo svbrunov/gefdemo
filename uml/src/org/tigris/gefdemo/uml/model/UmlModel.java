@@ -32,20 +32,19 @@ public class UmlModel {
             Object identifier,
             UmlModelElement fromPort,
             UmlModelElement toPort) {
+        
         Object modelElement = null;
         if (identifier.equals(UmlAssociationEnd.class)) {
             UmlAssociationEndImpl ae = new UmlAssociationEndImpl(defaultNs);
             ae.setAssociation((UmlAssociation)fromPort);
             ae.setClassifier((UmlClassifier)toPort);
             modelElement = ae;
-        }
-        if (identifier.equals(UmlDependency.class)) {
+        } else if (identifier.equals(UmlDependency.class)) {
             UmlDependencyImpl dep = new UmlDependencyImpl(defaultNs);
             dep.setSupplier(fromPort);
             dep.setClient(toPort);
             modelElement = dep;
         }
-        System.out.println("ModelElement created " + modelElement);
         if (modelElement != null) {
             return modelElement;
         }
