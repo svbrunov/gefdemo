@@ -36,6 +36,7 @@ import org.tigris.gef.base.CmdUseResize;
 import org.tigris.gef.base.CmdUseRotate;
 import org.tigris.gef.base.Globals;
 import org.tigris.gef.base.ModeSelect;
+import org.tigris.gef.base.UndoAction;
 import org.tigris.gef.event.ModeChangeEvent;
 import org.tigris.gef.graph.GraphEdgeRenderer;
 import org.tigris.gef.graph.GraphModel;
@@ -218,6 +219,11 @@ public class UmlDemo {
         JMenu edit = new JMenu(Localizer.localize("GefBase", "Edit"));
         edit.setMnemonic('E');
         menubar.add(edit);
+
+        UndoAction undoAction = new UndoAction("Undo");
+        undoAction.setEnabled(false);
+        JMenuItem undoItem = edit.add(undoAction);
+        undoItem.setMnemonic('U');
 
         JMenu select = new JMenu(Localizer.localize("GefBase", "Select"));
         edit.add(select);
