@@ -86,9 +86,9 @@ abstract public class ModelElementNodeFig extends FigNode {
         updateEdges();
     }
 
-    public void dispose() {
+    public void deleteFromModel() {
         Object owner = getOwner();
-        super.dispose();
+        super.deleteFromModel();
         ModelFacade.getInstance().removeModelElement(owner);
     }
     
