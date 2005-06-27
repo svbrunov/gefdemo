@@ -29,7 +29,7 @@ public class AssociationNodeFig extends ModelElementNodeFig {
      * @param w new width for fig
      * @param h new height for fig
      */
-    public void setBounds(int x, int y, int w, int h) {
+    public void setBoundsImpl(int x, int y, int w, int h) {
         Rectangle oldBounds = getBounds();
         boundryFig.setBounds(x, y, w, h);
         calcBounds(); //_x = x; _y = y; _w = w; _h = h;
