@@ -17,7 +17,7 @@ public class EdgeEther extends NetEdge {
   }
 
   public FigEdge makePresentation(Layer lay) {
-    return new FigEdgeRectiline();
+    return new FigEdgePoly();
   }
 
 } /* end class EdgeEther */
