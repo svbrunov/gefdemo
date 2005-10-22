@@ -95,7 +95,7 @@ public class FigAssociationClass
     public FigAssociationClass(Object edge, Layer lay) {
         super(edge, lay);
         setBetweenNearestPoints(true);
-        ((FigPoly) _fig).setRectilinear(false);
+        ((FigPoly) getFig()).setRectilinear(false);
         setDashed(false);
         bigPort = new FigCircle(0, 0, 10, 10, Color.cyan, Color.cyan);
         head = new FigCircle(0, 0, 10, 10, Color.black, Color.white);
@@ -166,7 +166,7 @@ public class FigAssociationClass
      */
     public void setFig(Fig f) {
         super.setFig(f);
-        _fig.setDashed(false);
+        f.setDashed(false);
     }
 
     /**

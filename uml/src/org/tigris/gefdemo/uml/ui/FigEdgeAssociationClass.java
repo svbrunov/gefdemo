@@ -72,7 +72,7 @@ public class FigEdgeAssociationClass
                                    FigAssociationClass ownerFig) {
         super(ownerFig.getOwner(), ownerFig.getLayer());
         setBetweenNearestPoints(true);
-        ( (FigPoly) _fig).setRectilinear(false);
+        ( (FigPoly) getFig()).setRectilinear(false);
         setDashed(true);
         if (toFig == null || fromFig == null) {
             throw new IllegalStateException("No destfig or sourcefig while "
@@ -93,7 +93,7 @@ public class FigEdgeAssociationClass
      */
     public void setFig(Fig f) {
         super.setFig(f);
-        _fig.setDashed(true);
+        f.setDashed(true);
     }
 
     /**

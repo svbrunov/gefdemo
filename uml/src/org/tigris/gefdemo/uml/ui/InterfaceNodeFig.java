@@ -32,7 +32,7 @@ public class InterfaceNodeFig extends ModelElementNodeFig {
      * @param w new width for fig
      * @param h new height for fig
      */
-    public void setBoundsImpl(int x, int y, int w, int h) {
+    protected void setBoundsImpl(int x, int y, int w, int h) {
         Rectangle oldBounds = getBounds();
         boundryFig.setBounds(x, y, w, h);
         seperator1.setBounds(x, y + h/3, w, y + h/3);
