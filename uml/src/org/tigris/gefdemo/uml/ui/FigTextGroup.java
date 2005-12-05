@@ -62,10 +62,10 @@ public class FigTextGroup extends FigGroup implements MouseListener {
      * added (via addFig) is shown at the bottom of the FigTextGroup.
      */
     protected void updateFigTexts() {
-        Iterator it = getFigs().iterator();
         int height = 0;
-        while (it.hasNext()) {
-            FigText fig = (FigText) it.next();
+        int figCount = getFigCount();
+        for (int i=0; i<figCount; ++i) {
+            FigText fig = (FigText) getFigAt(i);
             if (fig.getText().equals("")) {
                 fig.setHeight(0);
             } else {
@@ -91,9 +91,9 @@ public class FigTextGroup extends FigGroup implements MouseListener {
             // calculate the total height
             int maxWidth = 0;
             int height = 0;
-            Iterator it = getFigs().iterator();
-            while (it.hasNext()) {
-                FigText fig = (FigText) it.next();
+            int figCount = getFigCount();
+            for (int i=0; i<figCount; ++i) {
+                FigText fig = (FigText) getFigAt(i);
                 if (fig.getText().equals("")) {
                     fig.setBounds(fig.getX(), fig.getY(), fig.getWidth(), 0);
                 } 
@@ -116,9 +116,10 @@ public class FigTextGroup extends FigGroup implements MouseListener {
      * @see org.tigris.gef.presentation.Fig#removeFromDiagram()
      */
     public void removeFromDiagram() {
-        Iterator it = getFigs().iterator();
-        while (it.hasNext()) {
-            ((Fig) it.next()).removeFromDiagram();
+        int figCount = getFigCount();
+        for (int i=figCount-1; i>=0; --i) {
+            FigText fig = (FigText) getFigAt(i);
+            fig.removeFromDiagram();
         }
         super.removeFromDiagram();
     }
@@ -127,9 +128,10 @@ public class FigTextGroup extends FigGroup implements MouseListener {
      * @see org.tigris.gef.presentation.Fig#deleteFromModel()
      */
     public void deleteFromModel() {
-        Iterator it = getFigs().iterator();
-        while (it.hasNext()) {
-            ((Fig) it.next()).deleteFromModel();
+        int figCount = getFigCount();
+        for (int i=figCount-1; i>=0; --i) {
+            FigText fig = (FigText) getFigAt(i);
+            fig.deleteFromModel();
         }
         super.deleteFromModel();
     }
