@@ -56,11 +56,11 @@ public class ModelElementEdgeFig extends FigEdgePoly {
         return ((UmlModelElement)getOwner()).getName();
     }
     
-    public Fig getNameFig() {
+    public FigText getNameFig() {
         return nameFig;
     }
     
-    public Fig getStereotypeFig() {
+    public FigText getStereotypeFig() {
         return stereoFig;
     }
     

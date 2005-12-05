@@ -22,6 +22,7 @@ public class AssociationEdgeFig extends ModelElementEdgeFig {
         
         middleGroup.addFig(getNameFig());
         middleGroup.addFig(getStereotypeFig());
+        getNameFig().setText("anon assoc");
         addPathItem(middleGroup, new PathConvPercent(this, 50, 25));
     }
     
