@@ -5,7 +5,6 @@ import java.awt.event.KeyEvent;
 
 import java.util.Locale;
 
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -15,10 +14,10 @@ import javax.swing.KeyStroke;
 import org.tigris.gef.base.CmdAdjustGrid;
 import org.tigris.gef.base.CmdAdjustGuide;
 import org.tigris.gef.base.CmdAdjustPageBreaks;
-import org.tigris.gef.base.CmdAlign;
+import org.tigris.gef.base.AlignAction;
 import org.tigris.gef.base.CmdCopy;
 import org.tigris.gef.base.CmdDeleteFromModel;
-import org.tigris.gef.base.CmdDistribute;
+import org.tigris.gef.base.DistributeAction;
 import org.tigris.gef.base.CmdExit;
 import org.tigris.gef.base.CmdGroup;
 import org.tigris.gef.base.CmdOpen;
@@ -64,11 +63,8 @@ public class UmlDemo {
     private ToolBar _toolbar = new PaletteFig();
     /** The graph pane (shown in middle of window). */
     private JGraph _graph;
-    /** A statusbar (shown at bottom ow window). */
-    private JLabel _statusbar = new JLabel(" ");
 
     private JPanel _mainPanel = new JPanel(new BorderLayout());
-    private JPanel _graphPanel = new JPanel(new BorderLayout());
 
     private static UmlDemo instance;
 
@@ -264,21 +260,21 @@ public class UmlDemo {
 
         JMenu align = new JMenu(Localizer.localize("GefBase", "Align"));
         arrange.add(align);
-        align.add(new CmdAlign(CmdAlign.ALIGN_TOPS));
-        align.add(new CmdAlign(CmdAlign.ALIGN_BOTTOMS));
-        align.add(new CmdAlign(CmdAlign.ALIGN_LEFTS));
-        align.add(new CmdAlign(CmdAlign.ALIGN_RIGHTS));
-        align.add(new CmdAlign(CmdAlign.ALIGN_H_CENTERS));
-        align.add(new CmdAlign(CmdAlign.ALIGN_V_CENTERS));
-        align.add(new CmdAlign(CmdAlign.ALIGN_TO_GRID));
+        align.add(new AlignAction(AlignAction.ALIGN_TOPS));
+        align.add(new AlignAction(AlignAction.ALIGN_BOTTOMS));
+        align.add(new AlignAction(AlignAction.ALIGN_LEFTS));
+        align.add(new AlignAction(AlignAction.ALIGN_RIGHTS));
+        align.add(new AlignAction(AlignAction.ALIGN_H_CENTERS));
+        align.add(new AlignAction(AlignAction.ALIGN_V_CENTERS));
+        align.add(new AlignAction(AlignAction.ALIGN_TO_GRID));
 
         JMenu distribute =
             new JMenu(Localizer.localize("GefBase", "Distribute"));
         arrange.add(distribute);
-        distribute.add(new CmdDistribute(CmdDistribute.H_SPACING));
-        distribute.add(new CmdDistribute(CmdDistribute.H_CENTERS));
-        distribute.add(new CmdDistribute(CmdDistribute.V_SPACING));
-        distribute.add(new CmdDistribute(CmdDistribute.V_CENTERS));
+        distribute.add(new DistributeAction(DistributeAction.H_SPACING));
+        distribute.add(new DistributeAction(DistributeAction.H_CENTERS));
+        distribute.add(new DistributeAction(DistributeAction.V_SPACING));
+        distribute.add(new DistributeAction(DistributeAction.V_CENTERS));
 
         JMenu reorder = new JMenu(Localizer.localize("GefBase", "Reorder"));
         arrange.add(reorder);
