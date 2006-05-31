@@ -68,11 +68,11 @@ public class FigFactory implements GraphNodeRenderer,
     /** Return a Fig that can be used to represent the given node */
     public FigNode getFigNodeFor(GraphModel gm, Layer lay, Object node,
             Map styleAttributes) {
-        return getFigNodeFor(node, styleAttributes);
+        return getFigNodeFor(node, 0, 0, styleAttributes);
     }
 
     /** Return a Fig that can be used to represent the given node */
-    public FigNode getFigNodeFor(Object node, Map styleAttributes) {
+    public FigNode getFigNodeFor(Object node, int x, int y, Map styleAttributes) {
         LOG.debug("getFigNodeFor node " + node);
         if (node instanceof UmlClass)
             return new ClassNodeFig(node);
