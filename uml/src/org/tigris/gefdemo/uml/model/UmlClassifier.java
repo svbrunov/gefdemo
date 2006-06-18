@@ -13,6 +13,6 @@ import java.util.List;
  * @author Bob Tarling
  * @since 03-Jun-2004
  */
-public interface UmlClassifier {
+public abstract interface UmlClassifier extends UmlGeneralizableElement {
     public abstract List getAssociationEndRoles();
 }

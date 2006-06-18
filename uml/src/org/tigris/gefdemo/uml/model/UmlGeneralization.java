@@ -6,13 +6,15 @@
  */
 package org.tigris.gefdemo.uml.model;
 
-import java.util.List;
-
 /**
  * 
  * @author Bob Tarling
  * @since 03-Jun-2004
  */
-public interface UmlAssociation extends UmlGeneralizableElement {
-    public abstract List getAssociationEnds();
+public interface UmlGeneralization {
+    public abstract String getId();
+    public abstract String getName();
+    public abstract void setName(String name);
+    public abstract UmlModelElement getClient();
+    public abstract UmlModelElement getSupplier();
 }

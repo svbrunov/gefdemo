@@ -11,8 +11,8 @@ import java.util.List;
 /**
  * 
  * @author Bob Tarling
- * @since 03-Jun-2004
+ * @since 18-Jun-2006
  */
-public interface UmlAssociation extends UmlGeneralizableElement {
-    public abstract List getAssociationEnds();
+public abstract interface UmlGeneralizableElement {
+    public abstract List getAssociationEndRoles();
 }
