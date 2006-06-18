@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-class UmlClassifierImpl extends UmlModelElementImpl implements UmlClassifier {
+class UmlClassifierImpl extends UmlGeneralizableElementImpl implements UmlClassifier {
 
     private Collection umlAssociationEndRoles = new ArrayList();
     

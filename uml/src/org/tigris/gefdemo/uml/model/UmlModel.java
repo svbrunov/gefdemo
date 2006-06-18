@@ -44,6 +44,11 @@ public class UmlModel {
             dep.setSupplier(fromPort);
             dep.setClient(toPort);
             modelElement = dep;
+        } else if (identifier.equals(UmlGeneralization.class)) {
+            UmlGeneralizationImpl gen = new UmlGeneralizationImpl(defaultNs);
+            gen.setParent((UmlGeneralizableElement)fromPort);
+            gen.setChild((UmlGeneralizableElement)toPort);
+            modelElement = gen;
         }
         if (modelElement != null) {
             return modelElement;

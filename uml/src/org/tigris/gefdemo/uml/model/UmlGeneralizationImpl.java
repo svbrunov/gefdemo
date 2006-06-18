@@ -5,10 +5,10 @@ package org.tigris.gefdemo.uml.model;
 
 class UmlGeneralizationImpl 
         extends UmlModelElementImpl
-        implements UmlDependency {
+        implements UmlGeneralization {
     
-    UmlModelElement supplier;
-    UmlModelElement client;
+    UmlGeneralizableElement parent;
+    UmlGeneralizableElement child;
     
     private String name;
     
@@ -28,41 +28,41 @@ class UmlGeneralizationImpl
     public void setName(String name) {
         this.name = name;
     }
-    public UmlModelElement getClient() {
-        return client;
+    public UmlGeneralizableElement getChild() {
+        return child;
     }
-    public UmlModelElement getSupplier() {
-        return supplier;
+    public UmlGeneralizableElement getParent() {
+        return parent;
     }
     /**
      * @param element
      */
-    public void setClient(UmlModelElement client) {
-        UmlModelElementImpl oldClient = (UmlModelElementImpl)this.client;
-        UmlModelElementImpl newClient = (UmlModelElementImpl)client;
-        if (oldClient == newClient) return;
-        if (oldClient != null) {
-            oldClient.removeClientDependency(this);
+    public void setChild(UmlGeneralizableElement child) {
+        UmlGeneralizableElement oldChild = (UmlGeneralizableElement)this.child;
+        UmlGeneralizableElement newChild = (UmlGeneralizableElement)child;
+        if (oldChild == newChild) return;
+        if (oldChild != null) {
+            oldChild.removeGeneralization(this);
         }
-        this.client = newClient;
-        if (newClient != null) {
-            newClient.addClientDependency(this);
+        this.child = newChild;
+        if (newChild != null) {
+            newChild.addGeneralization(this);
         }
     }
 
     /**
      * @param element
      */
-    public void setSupplier(UmlModelElement supplier) {
-        UmlModelElementImpl oldSupplier = (UmlModelElementImpl)this.supplier;
-        UmlModelElementImpl newSupplier = (UmlModelElementImpl)supplier;
-        if (oldSupplier == newSupplier) return;
-        if (oldSupplier != null) {
-            oldSupplier.removeSupplierDependency(this);
+    public void setParent(UmlGeneralizableElement parent) {
+        UmlGeneralizableElement oldParent = (UmlGeneralizableElement)this.parent;
+        UmlGeneralizableElement newParent = (UmlGeneralizableElement)parent;
+        if (oldParent == newParent) return;
+        if (oldParent != null) {
+            oldParent.removeSpecialization(this);
         }
-        this.supplier = newSupplier;
-        if (newSupplier != null) {
-            newSupplier.addSupplierDependency(this);
+        this.parent = newParent;
+        if (newParent != null) {
+            newParent.addSpecialization(this);
         }
     }
 

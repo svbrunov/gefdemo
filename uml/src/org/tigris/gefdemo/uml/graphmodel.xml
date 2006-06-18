@@ -28,5 +28,10 @@
             <port>org.tigris.gefdemo.uml.model.UmlModelElement</port>
             <port>org.tigris.gefdemo.uml.model.UmlModelElement</port>
         </connection>
+        <connection>
+            <edge>org.tigris.gefdemo.uml.model.UmlGeneralization</edge>
+            <port>org.tigris.gefdemo.uml.model.UmlGeneralizableElement</port>
+            <port>org.tigris.gefdemo.uml.model.UmlGeneralizableElement</port>
+        </connection>
     </connections>
 </graphmodel>

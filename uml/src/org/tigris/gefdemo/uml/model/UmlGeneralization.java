@@ -11,10 +11,10 @@ package org.tigris.gefdemo.uml.model;
  * @author Bob Tarling
  * @since 03-Jun-2004
  */
-public interface UmlGeneralization {
+public interface UmlGeneralization extends UmlModelElement {
     public abstract String getId();
-    public abstract String getName();
-    public abstract void setName(String name);
-    public abstract UmlModelElement getClient();
-    public abstract UmlModelElement getSupplier();
+    public abstract void setParent(UmlGeneralizableElement gen);
+    public abstract UmlGeneralizableElement getParent();
+    public abstract void setChild(UmlGeneralizableElement gen);
+    public abstract UmlGeneralizableElement getChild();
 }

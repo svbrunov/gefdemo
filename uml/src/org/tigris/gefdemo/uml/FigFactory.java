@@ -46,6 +46,7 @@ import org.tigris.gefdemo.uml.model.UmlAssociationClass;
 import org.tigris.gefdemo.uml.model.UmlAssociationEnd;
 import org.tigris.gefdemo.uml.model.UmlClass;
 import org.tigris.gefdemo.uml.model.UmlDependency;
+import org.tigris.gefdemo.uml.model.UmlGeneralization;
 import org.tigris.gefdemo.uml.model.UmlInterface;
 import org.tigris.gefdemo.uml.ui.AssociationEdgeFig;
 import org.tigris.gefdemo.uml.ui.AssociationEndEdgeFig;
@@ -53,6 +54,7 @@ import org.tigris.gefdemo.uml.ui.AssociationNodeFig;
 import org.tigris.gefdemo.uml.ui.ClassNodeFig;
 import org.tigris.gefdemo.uml.ui.DependencyEdgeFig;
 import org.tigris.gefdemo.uml.ui.FigAssociationClass;
+import org.tigris.gefdemo.uml.ui.GeneralizationEdgeFig;
 import org.tigris.gefdemo.uml.ui.InterfaceNodeFig;
 import org.tigris.gefdemo.uml.ui.ModelElementEdgeFig;
 
@@ -103,6 +105,12 @@ public class FigFactory implements GraphNodeRenderer,
             newEdgeFig = new AssociationEndEdgeFig(edge, lay);
             source = associationEnd.getAssociation();
             dest = associationEnd.getClassifier();
+        } else if (edge instanceof UmlGeneralization) {
+            UmlGeneralization gen = (UmlGeneralization) edge;
+            newEdgeFig = new GeneralizationEdgeFig(edge, lay);
+
+            source = gen.getChild();
+            dest = gen.getParent();
         } else if (edge instanceof UmlDependency) {
             UmlDependency dep = (UmlDependency) edge;
             newEdgeFig = new DependencyEdgeFig(edge, lay);

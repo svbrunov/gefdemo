@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class UmlAssociationImpl 
-        extends UmlModelElementImpl
+        extends UmlGeneralizableElementImpl
         implements UmlAssociation {
 
     private List umlAssociationEnds = new ArrayList();

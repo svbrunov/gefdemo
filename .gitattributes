@@ -45,6 +45,7 @@ uml/src/org/tigris/gefdemo/uml/Images/Association.gif -text
 uml/src/org/tigris/gefdemo/uml/Images/AssociationClass.gif -text
 uml/src/org/tigris/gefdemo/uml/Images/Class.gif -text
 uml/src/org/tigris/gefdemo/uml/Images/Dependency.gif -text
+uml/src/org/tigris/gefdemo/uml/Images/Generalization.gif -text
 uml/src/org/tigris/gefdemo/uml/Images/Interface.gif -text
 uml/src/org/tigris/gefdemo/uml/Images/Package.gif -text
 www/images/gefscreen1.gif -text

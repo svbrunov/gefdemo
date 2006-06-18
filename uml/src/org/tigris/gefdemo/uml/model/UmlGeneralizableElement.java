@@ -6,13 +6,14 @@
  */
 package org.tigris.gefdemo.uml.model;
 
-import java.util.List;
-
 /**
  * 
  * @author Bob Tarling
  * @since 18-Jun-2006
  */
 public abstract interface UmlGeneralizableElement {
-    public abstract List getAssociationEndRoles();
+    void addGeneralization(UmlGeneralization gen);
+    void removeGeneralization(UmlGeneralization gen);
+    void addSpecialization(UmlGeneralization gen);
+    void removeSpecialization(UmlGeneralization gen);
 }
