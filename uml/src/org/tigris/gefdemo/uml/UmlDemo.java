@@ -120,12 +120,12 @@ public class UmlDemo {
             System.out.println("Exception caught");
             e.printStackTrace();
         }
-        panelManager.add(classDiagramPanel1);
-        panelManager.add(classDiagramPanel2);
         panelManager.add(activityDiagramPanel1);
         panelManager.add(activityDiagramPanel2);
         panelManager.add(sequenceDiagramPanel1);
         panelManager.add(sequenceDiagramPanel2);
+        panelManager.add(classDiagramPanel1);
+        panelManager.add(classDiagramPanel2);
         panelManager.add(new JPanel(), PanelManager.WEST);
             
         // init localizer and resourceloader

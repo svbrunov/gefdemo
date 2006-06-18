@@ -2,13 +2,15 @@ package org.tigris.gefdemo.uml.ui;
 
 import org.tigris.gef.base.Layer;
 import org.tigris.gef.presentation.ArrowHead;
-import org.tigris.gef.presentation.ArrowHeadHalfTriangle;
 import org.tigris.gef.presentation.ArrowHeadTriangle;
 
 /**
  * @author Bob Tarling
  */
 public class GeneralizationEdgeFig extends ModelElementEdgeFig {
+    
+    private static final long serialVersionUID = -2198022905625042677L;
+    
     private ArrowHead destArrowHead = new ArrowHeadTriangle();
     
     public GeneralizationEdgeFig(Object edge, Layer lay) {
