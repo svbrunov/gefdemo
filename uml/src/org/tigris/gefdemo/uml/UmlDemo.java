@@ -85,7 +85,6 @@ public class UmlDemo {
         panelManager.setMode(PanelManager.INTERNAL_FRAME_MODE, PanelManager.CENTER);
         
         panelManager.pack();
-        panelManager.setVisible(true);
 
         JMenuBar menuBar = setUpMenus();
 
@@ -127,6 +126,10 @@ public class UmlDemo {
         panelManager.add(classDiagramPanel1);
         panelManager.add(classDiagramPanel2);
         panelManager.add(new JPanel(), PanelManager.WEST);
+        System.out.println("Panels added");
+        
+        panelManager.setBounds(10, 10, 700, 700);
+        panelManager.setVisible(true);
             
         // init localizer and resourceloader
         ////////////////////////////////////////////////////////////////
