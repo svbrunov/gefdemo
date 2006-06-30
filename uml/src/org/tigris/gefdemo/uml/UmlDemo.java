@@ -45,6 +45,8 @@ import org.tigris.gef.ui.ToolBar;
 import org.tigris.gef.undo.UndoAction;
 import org.tigris.gef.util.Localizer;
 import org.tigris.gef.util.ResourceLoader;
+import org.tigris.geflayout.base.LayoutAction;
+import org.tigris.geflayout.sugiyama.SugiyamaLayouter;
 import org.tigris.panelbeater.PanelManager;
 
 /** 
@@ -309,6 +311,8 @@ public class UmlDemo {
             KeyStroke.getKeyStroke(
                 KeyEvent.VK_F,
                 KeyEvent.CTRL_MASK | KeyEvent.SHIFT_MASK);
+        
+        arrange.add(new LayoutAction(new SugiyamaLayouter() {}));
 
         //newItem.setAccelerator(ctrlN);
         openItem.setAccelerator(ctrlO);
