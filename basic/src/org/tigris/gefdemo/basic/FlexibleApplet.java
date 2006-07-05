@@ -192,8 +192,7 @@ public class FlexibleApplet extends Applet {
         Cmd.register(new CmdSpawn());
         Cmd.register(new CmdAdjustGrid());
         Cmd.register(new CmdShowProperties());
-        Cmd.register(new CmdCreateNode(org.tigris.gef.demo.SampleNode.class,
-                "Sample Node"));
+        Cmd.register(new CmdCreateNode(SampleNode.class, "Sample Node"));
         Cmd.register(new CmdExit());
     }
 
