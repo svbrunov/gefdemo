@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+#foreach ($diagram in $diagrams)
+    <diagram>
+    #foreach ($fig in $diagram.contents )
+    #if ($fig.points.size >= 2)
+        <edge uuid="$fig.uuid" type="$fig.class" path="$fig.path">
+    #else
+        <node uuid="$fig.uuid" type="$fig.class" x="$fig.x" y="$fig.y" w="$fig.width" h="$fig.height">
+    #end
+    #end
+    </diagram>
+#end
+</project>

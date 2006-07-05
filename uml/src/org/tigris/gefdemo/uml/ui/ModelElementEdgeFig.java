@@ -2,6 +2,7 @@ package org.tigris.gefdemo.uml.ui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.UUID;
 
 import org.tigris.gef.base.Layer;
 import org.tigris.gef.presentation.Fig;
@@ -15,6 +16,8 @@ import org.tigris.gefdemo.uml.model.UmlModelElement;
  * @author Bob Tarling
  */
 public class ModelElementEdgeFig extends FigEdgePoly {
+    
+    private UUID uuid = UUID.randomUUID();
     
     /**
      * The Fig that displays the name of this model element.
@@ -68,5 +71,9 @@ public class ModelElementEdgeFig extends FigEdgePoly {
         Object owner = getOwner();
         super.deleteFromModel();
         ModelFacade.getInstance().removeModelElement(owner);
+    }
+    
+    public UUID getUuid() {
+        return uuid;
     }
 }

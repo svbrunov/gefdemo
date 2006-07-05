@@ -17,6 +17,8 @@ import org.tigris.gefdemo.uml.model.UmlInterface;
 
 public class SamplePalette extends PaletteFig {
 
+    private static final long serialVersionUID = 8319853722043556420L;
+
     /** Construct a new palette of example nodes for the Example application */
     public SamplePalette() {
         super();

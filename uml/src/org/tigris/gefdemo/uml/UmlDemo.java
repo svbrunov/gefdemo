@@ -45,6 +45,7 @@ import org.tigris.gef.ui.ToolBar;
 import org.tigris.gef.undo.UndoAction;
 import org.tigris.gef.util.Localizer;
 import org.tigris.gef.util.ResourceLoader;
+import org.tigris.gefdemo.uml.persistence.SaveAction;
 import org.tigris.geflayout.base.LayoutAction;
 import org.tigris.geflayout.sugiyama.SugiyamaLayouter;
 import org.tigris.panelbeater.PanelManager;
@@ -210,7 +211,7 @@ public class UmlDemo {
         menubar.add(file);
         //file.add(new CmdNew());
         openItem = file.add(new CmdOpen());
-        saveItem = file.add(new CmdSave());
+        saveItem = file.add(new SaveAction("Save"));
         saveItem = file.add(new SaveSvgAction());
         saveItem = file.add(new SaveGraphicsAction());
         CmdPrint cmdPrint = new CmdPrint();

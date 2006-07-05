@@ -26,6 +26,7 @@ uml/lib/batik-svg-dom-1.5.1.jar -text
 uml/lib/batik-svggen-1.5.1.jar -text
 uml/lib/batik-util-1.5.1.jar -text
 uml/lib/batik-xml-1.5.1.jar -text
+uml/lib/commons-collections-3.2.jar -text
 uml/lib/freehep-base.jar -text
 uml/lib/freehep-graphics2d.jar -text
 uml/lib/freehep-graphicsio-cgm.jar -text
@@ -41,6 +42,7 @@ uml/lib/freehep-graphicsio.jar -text
 uml/lib/panelbeater0.1.jar -text
 uml/lib/swidgets-0.1.jar -text
 uml/lib/toolbar-0.4.jar -text
+uml/lib/velocity-1.4.jar -text
 uml/src/org/tigris/gefdemo/uml/Images/Association.gif -text
 uml/src/org/tigris/gefdemo/uml/Images/AssociationClass.gif -text
 uml/src/org/tigris/gefdemo/uml/Images/Class.gif -text

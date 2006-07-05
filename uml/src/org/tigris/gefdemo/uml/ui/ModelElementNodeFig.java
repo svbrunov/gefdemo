@@ -4,6 +4,7 @@ package org.tigris.gefdemo.uml.ui;
 import java.awt.Rectangle;
 import java.beans.PropertyChangeEvent;
 import java.util.List;
+import java.util.UUID;
 
 import org.tigris.gef.presentation.Fig;
 import org.tigris.gef.presentation.FigNode;
@@ -18,6 +19,7 @@ import org.tigris.gefdemo.uml.model.UmlModelElement;
 abstract public class ModelElementNodeFig extends FigNode {
     
     Fig boundryFig;
+    UUID uuid = UUID.randomUUID();
             
     public ModelElementNodeFig(Object node) {
         super(node);
@@ -99,5 +101,9 @@ abstract public class ModelElementNodeFig extends FigNode {
      */
     public List getGravityPoints() {
         return boundryFig.getGravityPoints();
+    }
+    
+    public UUID getUuid() {
+        return uuid;
     }
 }
