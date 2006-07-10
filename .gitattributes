@@ -13,6 +13,7 @@ lan/src/org/tigris/gefdemo/lan/Images/NodeServer.gif -text
 lan/src/org/tigris/gefdemo/lan/Images/NodeSonar.gif -text
 lan/src/org/tigris/gefdemo/lan/Images/NodeWireless.gif -text
 lib/commons-logging-1.0.2.jar -text
+lib/gef.jar -text
 lib/xerces_2_5_0.jar -text
 lib/xml-apis.jar -text
 uml/lib/batik-awt-util-1.5.1.jar -text
