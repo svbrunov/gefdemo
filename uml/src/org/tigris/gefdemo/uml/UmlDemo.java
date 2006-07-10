@@ -94,40 +94,40 @@ public class UmlDemo {
         panelManager.setJMenuBar(menuBar);
         
         DiagramPanel classDiagramPanel1 = null;
-        DiagramPanel classDiagramPanel2 = null;
-        DiagramPanel activityDiagramPanel1 = null;
-        DiagramPanel activityDiagramPanel2 = null;
-        DiagramPanel sequenceDiagramPanel1 = null;
-        DiagramPanel sequenceDiagramPanel2 = null;
+//        DiagramPanel classDiagramPanel2 = null;
+//        DiagramPanel activityDiagramPanel1 = null;
+//        DiagramPanel activityDiagramPanel2 = null;
+//        DiagramPanel sequenceDiagramPanel1 = null;
+//        DiagramPanel sequenceDiagramPanel2 = null;
         try {
             classDiagramPanel1 = new ClassDiagramPanel(
                 ConnectionConstrainer.getInstance(),
                 "Class Diagram 1");
-            classDiagramPanel2 = new ClassDiagramPanel(
-                ConnectionConstrainer.getInstance(),
-                "Class Diagram 2");
-            activityDiagramPanel1 = new ActivityDiagramPanel(
-                ConnectionConstrainer.getInstance(),
-                "Activity Diagram 1");
-            activityDiagramPanel2 = new ActivityDiagramPanel(
-                ConnectionConstrainer.getInstance(),
-                "Activity Diagram 2");
-            sequenceDiagramPanel1 = new SequenceDiagramPanel(
-                ConnectionConstrainer.getInstance(),
-                "Sequence Diagram 1");
-            sequenceDiagramPanel2 = new SequenceDiagramPanel(
-                ConnectionConstrainer.getInstance(),
-                "Sequence Diagram 2");
+//            classDiagramPanel2 = new ClassDiagramPanel(
+//                ConnectionConstrainer.getInstance(),
+//                "Class Diagram 2");
+//            activityDiagramPanel1 = new ActivityDiagramPanel(
+//                ConnectionConstrainer.getInstance(),
+//                "Activity Diagram 1");
+//            activityDiagramPanel2 = new ActivityDiagramPanel(
+//                ConnectionConstrainer.getInstance(),
+//                "Activity Diagram 2");
+//            sequenceDiagramPanel1 = new SequenceDiagramPanel(
+//                ConnectionConstrainer.getInstance(),
+//                "Sequence Diagram 1");
+//            sequenceDiagramPanel2 = new SequenceDiagramPanel(
+//                ConnectionConstrainer.getInstance(),
+//                "Sequence Diagram 2");
         } catch (Exception e) {
             System.out.println("Exception caught");
             e.printStackTrace();
         }
-        panelManager.add(activityDiagramPanel1);
-        panelManager.add(activityDiagramPanel2);
-        panelManager.add(sequenceDiagramPanel1);
-        panelManager.add(sequenceDiagramPanel2);
+//        panelManager.add(activityDiagramPanel1);
+//        panelManager.add(activityDiagramPanel2);
+//        panelManager.add(sequenceDiagramPanel1);
+//        panelManager.add(sequenceDiagramPanel2);
         panelManager.add(classDiagramPanel1);
-        panelManager.add(classDiagramPanel2);
+//        panelManager.add(classDiagramPanel2);
         panelManager.add(new JPanel(), PanelManager.WEST);
         System.out.println("Panels added");
         
