@@ -39,6 +39,7 @@ uml/lib/freehep-graphicsio-ps.jar -text
 uml/lib/freehep-graphicsio-svg.jar -text
 uml/lib/freehep-graphicsio-swf.jar -text
 uml/lib/freehep-graphicsio.jar -text
+uml/lib/gef-layout.jar -text
 uml/lib/panelbeater0.1.jar -text
 uml/lib/swidgets-0.1.jar -text
 uml/lib/toolbar-0.4.jar -text
