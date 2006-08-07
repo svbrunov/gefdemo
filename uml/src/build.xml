@@ -29,6 +29,7 @@
 		<property name="project" value="gefdemo-uml"/>
 		<property name="version" value="1.0"/>
 		<property name="uml.classpath" value="${uml.lib}/velocity-1.4.jar:${uml.lib}/panelbeater0.1.jar:${uml.lib}/batik-dom-1.5.1.jar:${uml.lib}/batik-svggen-1.5.1.jar:${uml.lib}/batik-awt-util-1.5.1.jar:${uml.lib}/freehep-graphicsio.jar:${uml.lib}/freehep-graphics2d.jar:${uml.lib}/freehep-graphicsio-gif.jar:${lib}/xerces_2_5_0.jar:${lib}/commons-logging-1.0.2.jar:${lib}/gef.jar:${uml.lib}/gef-layout.jar:${uml.lib}/toolbar-0.4.jar"/>
+        <property name="manifest" value="org/tigris/gefdemo/uml/manifest.mf"/>
     </target>
 
     <!-- - - - - - - - - - - - - - - - - - 
@@ -56,7 +57,11 @@
           target: jar              
          ================================= -->
     <target name="jar" depends="init,compile" description="--> Package the compiled classes">
-        <jar destfile="${build}/${project}-${version}.jar" basedir="${build}/classes"/>
+        <jar destfile="${build}/${project}-${version}.jar" 
+        	 basedir="${build}/classes"
+             excludes="${manifest}"
+             manifest="${src}/${manifest}"
+    	/>
         <!--jar destfile="${build}/${project}-${version}-docs.jar" basedir="${build}/docs"/-->
         <jar destfile="${build}/${project}-${version}-src.jar" basedir="${src}"/>
     </target>
