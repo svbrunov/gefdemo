@@ -109,49 +109,19 @@ public class SaveAction extends AbstractAction {
             
             VelocityEngine ve = new VelocityEngine();
             ve.setProperty("file.resource.loader.path", "c:/cvs/gefdemo/uml/src/org/tigris/gefdemo/uml/persistence");
+            ve.setProperty("file.resource.loader.path", "/org/tigris/gefdemo/uml/persistence");
 
             ve.init();
             
-            /*
-             *  Make a context object and populate with the data.  This 
-             *  is where the Velocity engine gets the data to resolve the
-             *  references (ex. $diagrams) in the template
-             */
-
             VelocityContext context = new VelocityContext();
             context.put("diagrams", getLayers());
             
-            /*
-             *  get the Template object.  This is the parsed version of your 
-             *  template input file.  Note that getTemplate() can throw
-             *   ResourceNotFoundException : if it doesn't find the template
-             *   ParseErrorException : if there is something wrong with the VTL
-             *   Exception : if something else goes wrong (this is generally
-             *        indicative of as serious problem...)
-             */
-
-            Template template =  null;
-
-//            Properties p = new Properties(); 
-//            p.setProperty( "file.resource.loader.path", "c:/cvs/gefdemo/uml/src/org/tigris/gefdemo/uml/persistence" );
-
-            template = ve.getTemplate("diagram.vm");
-
-            /*
-             *  Now have the template engine process your template using the
-             *  data placed into the context.  Think of it as a  'merge' 
-             *  of the template and the data to produce the output stream.
-             */
+            Template template = ve.getTemplate("diagram.vm");
 
             BufferedWriter writer = writer = new BufferedWriter(
                 new OutputStreamWriter(f));
 
-            if ( template != null)
-                template.merge(context, writer);
-
-            /*
-             *  flush and cleanup
-             */
+            template.merge(context, writer);
 
             writer.flush();
             writer.close();
