@@ -227,6 +227,11 @@ public class UmlDemo {
         JMenuItem undoItem = edit.add(undoAction);
         undoItem.setMnemonic('U');
 
+        UndoAction redoAction = new UndoAction("Redo");
+        undoAction.setEnabled(false);
+        JMenuItem redoItem = edit.add(redoAction);
+        redoItem.setMnemonic('R');
+
         JMenu select = new JMenu(Localizer.localize("GefBase", "Select"));
         edit.add(select);
         select.add(new CmdSelectNext(false));
@@ -299,6 +304,7 @@ public class UmlDemo {
 
         KeyStroke delKey = KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0);
         KeyStroke ctrlC = KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_MASK);
+        KeyStroke ctrlZ = KeyStroke.getKeyStroke(KeyEvent.VK_Z, KeyEvent.CTRL_MASK);
         KeyStroke ctrlV = KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.CTRL_MASK);
         KeyStroke ctrlG = KeyStroke.getKeyStroke(KeyEvent.VK_G, KeyEvent.CTRL_MASK);
         KeyStroke ctrlU = KeyStroke.getKeyStroke(KeyEvent.VK_U, KeyEvent.CTRL_MASK);
@@ -322,7 +328,7 @@ public class UmlDemo {
         exitItem.setAccelerator(altF4);
 
         deleteItem.setAccelerator(delKey);
-        //undoItem.setAccelerator(ctrlZ);
+        undoItem.setAccelerator(ctrlZ);
         //cutItem.setAccelerator(ctrlX);
         copyItem.setAccelerator(ctrlC);
         pasteItem.setAccelerator(ctrlV);
