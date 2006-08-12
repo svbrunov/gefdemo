@@ -24,7 +24,6 @@ import org.tigris.gef.base.CmdOpen;
 import org.tigris.gef.base.CmdPaste;
 import org.tigris.gef.base.CmdPrint;
 import org.tigris.gef.base.CmdReorder;
-import org.tigris.gef.base.CmdSave;
 import org.tigris.gef.base.CmdSelectInvert;
 import org.tigris.gef.base.CmdSelectNext;
 import org.tigris.gef.base.CmdShowProperties;
@@ -185,10 +184,7 @@ public class UmlDemo {
     public void setGraphNodeRenderer(GraphNodeRenderer rend) {
         _graph.getEditor().setGraphNodeRenderer(rend);
     }
-//    public void setJMenuBar(JMenuBar mb) {
-//        _menubar = mb;
-//        getContentPane().add(_menubar, BorderLayout.NORTH);
-//    }
+    
     public void setToolBar(ToolBar tb) {
         _toolbar = tb;
         _mainPanel.add(_toolbar, BorderLayout.NORTH);
@@ -304,6 +300,7 @@ public class UmlDemo {
 
         KeyStroke delKey = KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0);
         KeyStroke ctrlC = KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_MASK);
+        KeyStroke ctrlY = KeyStroke.getKeyStroke(KeyEvent.VK_Y, KeyEvent.CTRL_MASK);
         KeyStroke ctrlZ = KeyStroke.getKeyStroke(KeyEvent.VK_Z, KeyEvent.CTRL_MASK);
         KeyStroke ctrlV = KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.CTRL_MASK);
         KeyStroke ctrlG = KeyStroke.getKeyStroke(KeyEvent.VK_G, KeyEvent.CTRL_MASK);
@@ -328,6 +325,7 @@ public class UmlDemo {
         exitItem.setAccelerator(altF4);
 
         deleteItem.setAccelerator(delKey);
+        redoItem.setAccelerator(ctrlY);
         undoItem.setAccelerator(ctrlZ);
         //cutItem.setAccelerator(ctrlX);
         copyItem.setAccelerator(ctrlC);
