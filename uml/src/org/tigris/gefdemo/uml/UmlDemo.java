@@ -41,6 +41,7 @@ import org.tigris.gef.graph.GraphNodeRenderer;
 import org.tigris.gef.graph.presentation.JGraph;
 import org.tigris.gef.ui.PaletteFig;
 import org.tigris.gef.ui.ToolBar;
+import org.tigris.gef.undo.RedoAction;
 import org.tigris.gef.undo.UndoAction;
 import org.tigris.gef.util.Localizer;
 import org.tigris.gef.util.ResourceLoader;
@@ -223,8 +224,8 @@ public class UmlDemo {
         JMenuItem undoItem = edit.add(undoAction);
         undoItem.setMnemonic('U');
 
-        UndoAction redoAction = new UndoAction("Redo");
-        undoAction.setEnabled(false);
+        RedoAction redoAction = new RedoAction("Redo");
+        redoAction.setEnabled(false);
         JMenuItem redoItem = edit.add(redoAction);
         redoItem.setMnemonic('R');
 
