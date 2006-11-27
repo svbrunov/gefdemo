@@ -2,7 +2,8 @@ package org.tigris.gefdemo.uml;
 
 import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
-
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Locale;
 
 import javax.swing.JMenu;
@@ -11,13 +12,12 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import org.tigris.gef.base.AlignAction;
 import org.tigris.gef.base.CmdAdjustGrid;
 import org.tigris.gef.base.CmdAdjustGuide;
 import org.tigris.gef.base.CmdAdjustPageBreaks;
-import org.tigris.gef.base.AlignAction;
 import org.tigris.gef.base.CmdCopy;
 import org.tigris.gef.base.CmdDeleteFromModel;
-import org.tigris.gef.base.DistributeAction;
 import org.tigris.gef.base.CmdExit;
 import org.tigris.gef.base.CmdGroup;
 import org.tigris.gef.base.CmdOpen;
@@ -32,6 +32,7 @@ import org.tigris.gef.base.CmdUngroup;
 import org.tigris.gef.base.CmdUseReshape;
 import org.tigris.gef.base.CmdUseResize;
 import org.tigris.gef.base.CmdUseRotate;
+import org.tigris.gef.base.DistributeAction;
 import org.tigris.gef.base.Globals;
 import org.tigris.gef.base.ModeSelect;
 import org.tigris.gef.event.ModeChangeEvent;
@@ -69,6 +70,8 @@ public class UmlDemo {
 
     private JPanel _mainPanel = new JPanel(new BorderLayout());
 
+    private PanelManager panelManager = new PanelManager();
+    
     private static UmlDemo instance;
 
     public UmlDemo getInstance() {
@@ -83,10 +86,19 @@ public class UmlDemo {
         ResourceLoader.addResourceExtension("gif");
         ResourceLoader.addResourceLocation("/org/tigris/gef/Images");
         
-        PanelManager panelManager = new PanelManager();
-        
         panelManager.setMode(PanelManager.INTERNAL_FRAME_MODE, PanelManager.CENTER);
         
+        panelManager.addWindowListener(
+                new WindowAdapter() {
+                    public void windowClosing(WindowEvent event) {
+                    	panelManager.dispose();
+                    }
+                    public void windowClosed(WindowEvent event) {
+                    	System.exit(0);
+                    }
+                }
+            );
+            
         panelManager.pack();
 
         JMenuBar menuBar = setUpMenus();
