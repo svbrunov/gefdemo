@@ -38,18 +38,13 @@ import org.tigris.gef.base.Globals;
 public class FigClassAssociationClass
         extends ClassNodeFig {
 
+    private static final long serialVersionUID = -271244820258976670L;
+    
     /**
      * The FigAssociationClass that is associated to
      */
     private FigAssociationClass mainFig;
 
-//    /**
-//     * The constructor.
-//     */
-//    public FigClassAssociationClass() {
-//        super();
-//    }
-//
     /**
      * The constructor.
      * 

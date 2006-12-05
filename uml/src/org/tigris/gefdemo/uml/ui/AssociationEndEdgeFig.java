@@ -16,6 +16,9 @@ import org.tigris.gefdemo.uml.model.UmlClassifier;
  * @author Bob Tarling
  */
 public class AssociationEndEdgeFig extends ModelElementEdgeFig {
+    
+    private static final long serialVersionUID = 5021601258693181303L;
+    
     private ArrowHead arrowHead = new ArrowHeadGreater();
     
     public AssociationEndEdgeFig(Object edge, Layer lay) {

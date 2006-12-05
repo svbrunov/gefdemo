@@ -10,6 +10,8 @@ import org.tigris.gef.presentation.FigDiamond;
  */
 public class AssociationNodeFig extends ModelElementNodeFig {
     
+    private static final long serialVersionUID = -1869418809776903407L;
+
     public AssociationNodeFig(Object node) {
         super(node);
         

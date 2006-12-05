@@ -42,6 +42,8 @@ import org.tigris.gef.presentation.FigText;
  */
 public class FigTextGroup extends FigGroup implements MouseListener {
 
+    private static final long serialVersionUID = -2589520011084157798L;
+    
     private static final int ROWHEIGHT = 17;
     private boolean supressCalcBounds = false;
 

@@ -8,7 +8,9 @@ import org.tigris.gef.presentation.FigRect;
 
 public class InterfaceNodeFig extends ModelElementNodeFig {
     
-    FigLine seperator1;
+    private static final long serialVersionUID = -3456719662273930189L;
+    
+    private FigLine seperator1;
             
     public InterfaceNodeFig(Object node) {
         super(node);

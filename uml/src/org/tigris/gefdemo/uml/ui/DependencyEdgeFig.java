@@ -9,6 +9,9 @@ import org.tigris.gef.presentation.Fig;
  * @author Bob Tarling
  */
 public class DependencyEdgeFig extends ModelElementEdgeFig {
+
+    private static final long serialVersionUID = -5236951948313711311L;
+    
     private ArrowHead destArrowHead = new ArrowHeadGreater();
     
     public DependencyEdgeFig(Object edge, Layer lay) {

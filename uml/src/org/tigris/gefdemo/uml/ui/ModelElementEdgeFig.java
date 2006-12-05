@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.util.UUID;
 
 import org.tigris.gef.base.Layer;
-import org.tigris.gef.presentation.Fig;
 import org.tigris.gef.presentation.FigEdgePoly;
 import org.tigris.gef.presentation.FigText;
 
@@ -17,6 +16,8 @@ import org.tigris.gefdemo.uml.model.UmlModelElement;
  */
 public class ModelElementEdgeFig extends FigEdgePoly {
     
+    private static final long serialVersionUID = 5456328668689081675L;
+
     private UUID uuid = UUID.randomUUID();
     
     /**
@@ -39,8 +40,8 @@ public class ModelElementEdgeFig extends FigEdgePoly {
         nameFig.setFilled(false);
         nameFig.setLineWidth(0);
         nameFig.setExpandOnly(false);
-        nameFig.setMultiLine(false);
-        nameFig.setAllowsTab(false);
+        nameFig.setReturnAction(FigText.INSERT);
+        nameFig.setTabAction(FigText.IGNORE);
 
         stereoFig.setFont(LABEL_FONT);
         stereoFig.setTextColor(Color.black);
@@ -48,8 +49,8 @@ public class ModelElementEdgeFig extends FigEdgePoly {
         stereoFig.setFilled(false);
         stereoFig.setLineWidth(0);
         stereoFig.setExpandOnly(false);
-        stereoFig.setMultiLine(false);
-        stereoFig.setAllowsTab(false);
+        stereoFig.setReturnAction(FigText.IGNORE);
+        stereoFig.setTabAction(FigText.IGNORE);
         setBetweenNearestPoints(true);
         setLayer(lay);
         setOwner(edge);

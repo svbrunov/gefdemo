@@ -45,21 +45,14 @@ public class FigEdgeAssociationClass
         extends ModelElementEdgeFig
         implements PropertyChangeListener {
 
+    private static final long serialVersionUID = 7986832508535122330L;
+    
     /**
      * The FigAssociationClass that is associated to.
      */
     private FigAssociationClass mainFig;
     ////////////////////////////////////////////////////////////////
     // constructors
-
-//    /**
-//     * The constructor.
-//     */
-//    public FigEdgeAssociationClass() {
-//        setBetweenNearestPoints(true);
-//        ( (FigPoly) _fig).setRectilinear(false);
-//        setDashed(true);
-//    }
 
     /**
      * The constructor for the AssociationClass fig.

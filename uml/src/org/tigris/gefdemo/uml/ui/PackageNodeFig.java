@@ -3,13 +3,13 @@ package org.tigris.gefdemo.uml.ui;
 
 import java.awt.Rectangle;
 
-import org.tigris.gef.presentation.Fig;
-import org.tigris.gef.presentation.FigLine;
 import org.tigris.gef.presentation.FigRect;
 
 public class PackageNodeFig extends ModelElementNodeFig {
     
-    FigRect tabFig;
+    private static final long serialVersionUID = -2427794589648628383L;
+    
+    private FigRect tabFig;
             
     public PackageNodeFig(Object node) {
         super(node);

@@ -2,15 +2,14 @@ package org.tigris.gefdemo.uml.ui;
 
 import org.tigris.gef.base.Layer;
 import org.tigris.gef.base.PathConvPercent;
-import org.tigris.gef.presentation.ArrowHead;
-import org.tigris.gef.presentation.ArrowHeadGreater;
 
 /**
  * @author Bob Tarling
  */
 public class AssociationEdgeFig extends ModelElementEdgeFig {
-    private ArrowHead destArrowHead = new ArrowHeadGreater();
     
+    private static final long serialVersionUID = 2860173906299928711L;
+
     /**
      * Group for the FigTexts concerning the name and stereotype of the 
      * association itself.

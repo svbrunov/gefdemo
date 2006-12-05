@@ -2,10 +2,8 @@
 package org.tigris.gefdemo.uml.ui;
 
 import java.awt.Rectangle;
-import java.util.ArrayList;
 
 import org.tigris.gef.presentation.FigLine;
-import org.tigris.gef.presentation.FigNode;
 import org.tigris.gef.presentation.FigRect;
 
 /**
@@ -14,8 +12,10 @@ import org.tigris.gef.presentation.FigRect;
  */
 public class ClassNodeFig extends ModelElementNodeFig {
     
-    FigLine seperator1;
-    FigLine seperator2;
+    private static final long serialVersionUID = -8519206619869189441L;
+    
+    private FigLine seperator1;
+    private FigLine seperator2;
             
     public ClassNodeFig(Object node) {
         super(node);

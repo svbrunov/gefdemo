@@ -73,11 +73,12 @@ public class FigAssociationClass
         implements PropertyChangeListener
 {
 
+    private static final long serialVersionUID = 4680567958452630775L;
+
     ////////////////////////////////////////////////////////////////
     // constants
     private static final int DISTANCE = 80;
 
-    private FigCircle bigPort;
     private FigCircle head;
     private FigEdgeAssociationClass edgeAssClass;
     private FigClassAssociationClass fig;
@@ -97,7 +98,6 @@ public class FigAssociationClass
         setBetweenNearestPoints(true);
         ((FigPoly) getFig()).setRectilinear(false);
         setDashed(false);
-        bigPort = new FigCircle(0, 0, 10, 10, Color.cyan, Color.cyan);
         head = new FigCircle(0, 0, 10, 10, Color.black, Color.white);
         addPathItem(head, new PathConvPercent(this, 50, 0));
 
