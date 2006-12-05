@@ -22,6 +22,7 @@ import org.tigris.gef.graph.GraphNodeRenderer;
 import org.tigris.gef.presentation.Fig;
 import org.tigris.gef.presentation.FigEdge;
 import org.tigris.gef.presentation.FigNode;
+import org.tigris.gef.undo.UndoManager;
 import org.tigris.gefdemo.uml.model.UmlAssociation;
 import org.tigris.gefdemo.uml.ui.AssociationEdgeFig;
 import org.tigris.gefdemo.uml.ui.AssociationEndEdgeFig;
@@ -47,6 +48,9 @@ public class ModeCreateAssociationEnd extends ModeCreatePolyEdge {
             if (LOG.isDebugEnabled()) LOG.debug("MousePressed detected but rejected as already consumed");
             return;
         }
+        
+        UndoManager.getInstance().addMementoLock(this);
+        
         int x = me.getX();
         int y = me.getY();
         //Editor editor = Globals.curEditor();
