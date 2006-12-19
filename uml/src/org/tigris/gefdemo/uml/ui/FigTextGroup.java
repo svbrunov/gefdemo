@@ -27,7 +27,6 @@ package org.tigris.gefdemo.uml.ui;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Iterator;
 
 import org.tigris.gef.presentation.Fig;
 import org.tigris.gef.presentation.FigGroup;
