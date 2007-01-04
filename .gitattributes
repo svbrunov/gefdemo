@@ -1,4 +1,13 @@
 * text=auto !eol
+bert/src/org/tigris/gefdemo/bert/Images/Association.gif -text
+bert/src/org/tigris/gefdemo/bert/Images/AssociationClass.gif -text
+bert/src/org/tigris/gefdemo/bert/Images/Class.gif -text
+bert/src/org/tigris/gefdemo/bert/Images/Dependency.gif -text
+bert/src/org/tigris/gefdemo/bert/Images/Generalization.gif -text
+bert/src/org/tigris/gefdemo/bert/Images/Interface.gif -text
+bert/src/org/tigris/gefdemo/bert/Images/Package.gif -text
+bert/src/org/tigris/gefdemo/bert/manifest.mf -text
+bert/src/org/tigris/gefdemo/bert/persistence/diagram.vm -text
 lan/src/org/tigris/gefdemo/lan/Images/NodeComputer.gif -text
 lan/src/org/tigris/gefdemo/lan/Images/NodeCopier.gif -text
 lan/src/org/tigris/gefdemo/lan/Images/NodeFax.gif -text
