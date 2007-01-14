@@ -5,16 +5,16 @@ import java.awt.Font;
 import java.util.UUID;
 
 import org.tigris.gef.base.Layer;
-import org.tigris.gef.presentation.FigEdgePoly;
 import org.tigris.gef.presentation.FigText;
 
+import org.tigris.gefdemo.bert.FigEdgeRectiline;
 import org.tigris.gefdemo.bert.ModelFacade;
 import org.tigris.gefdemo.bert.model.ModelElement;
 
 /**
  * @author Bob Tarling
  */
-public class ModelElementEdgeFig extends FigEdgePoly {
+public class ModelElementEdgeFig extends FigEdgeRectiline {
     
     private static final long serialVersionUID = 5456328668689081675L;
 
