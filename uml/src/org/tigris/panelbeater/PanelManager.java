@@ -3,34 +3,19 @@ package org.tigris.panelbeater;
 import java.awt.Component;
 import java.awt.event.WindowListener;
 
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JToolBar;
 
-import org.tigris.swidgets.BorderSplitPane;
+import org.tigris.gefdemo.uml.ui.ApplicationFrame;
 
 public class PanelManager {
-    public static final String NORTHEAST = BorderSplitPane.NORTHEAST;
-    public static final String NORTHWEST = BorderSplitPane.NORTHWEST;
-    public static final String SOUTHEAST = BorderSplitPane.SOUTHEAST;
-    public static final String SOUTHWEST = BorderSplitPane.SOUTHWEST;
-    public static final String EAST = BorderSplitPane.EAST;
-    public static final String WEST = BorderSplitPane.WEST;
-    public static final String NORTH = BorderSplitPane.NORTH;
-    public static final String SOUTH = BorderSplitPane.SOUTH;
-    public static final String CENTER = BorderSplitPane.CENTER;
-    
     private ApplicationFrame workbenchFrame;
     
     public PanelManager() {
         workbenchFrame = new ApplicationFrame();
     }
 
-    private PanelManager(String name) {
-        workbenchFrame = new ApplicationFrame(name);
-    }
-    
     public void addToolBar(JToolBar toolbar) {
         workbenchFrame.add(toolbar);
     }
@@ -116,9 +101,5 @@ public class PanelManager {
     
     public void addWindowListener(WindowListener listener) {
         workbenchFrame.addWindowListener(listener);
-    }
-
-    public void showOpenDialog(JFileChooser fc) {
-        fc.showOpenDialog(workbenchFrame);
     }
 }

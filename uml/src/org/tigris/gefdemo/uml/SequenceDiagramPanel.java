@@ -19,6 +19,8 @@ import org.tigris.gefdemo.uml.model.UmlInterface;
  */
 public class SequenceDiagramPanel extends DiagramPanel {
     
+    private static final long serialVersionUID = -5782383290781868487L;
+
     public SequenceDiagramPanel(
             ConnectionConstrainer connectionConstrainer,
             String name) throws GraphModelException {
@@ -26,11 +28,6 @@ public class SequenceDiagramPanel extends DiagramPanel {
     
         setName(name);
         
-        getActions().add(new CmdCreateNode(UmlClass.class, "Class"));
-        getActions().add(new CmdCreateNode(UmlInterface.class, "Interface"));
-        getActions().add(new CmdSetMode(ModeCreateAssociationEnd.class, "edgeClass", UmlAssociationEnd.class, "Association"));
-        getActions().add(new CmdSetMode(ModeCreatePolyEdge.class, "edgeClass", UmlDependency.class, "Dependency"));
-        getActions().add(new CmdSetMode(ModeCreatePolyEdge.class, "edgeClass", UmlAssociationClass.class, "AssociationClass"));
         add(makeToolBar(), BorderLayout.NORTH);
         
         FigFactory renderer = new FigFactory();

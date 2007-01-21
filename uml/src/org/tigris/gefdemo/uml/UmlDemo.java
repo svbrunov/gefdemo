@@ -12,29 +12,25 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import org.tigris.gef.base.AdjustGridAction;
+import org.tigris.gef.base.AdjustGuideAction;
+import org.tigris.gef.base.AdjustPageBreaksAction;
 import org.tigris.gef.base.AlignAction;
-import org.tigris.gef.base.CmdAdjustGrid;
-import org.tigris.gef.base.CmdAdjustGuide;
-import org.tigris.gef.base.CmdAdjustPageBreaks;
 import org.tigris.gef.base.CmdCopy;
-import org.tigris.gef.base.CmdDeleteFromModel;
-import org.tigris.gef.base.CmdExit;
-import org.tigris.gef.base.CmdGroup;
 import org.tigris.gef.base.CmdOpen;
-import org.tigris.gef.base.CmdPaste;
-import org.tigris.gef.base.CmdPrint;
-import org.tigris.gef.base.CmdReorder;
-import org.tigris.gef.base.CmdSelectInvert;
-import org.tigris.gef.base.CmdSelectNext;
-import org.tigris.gef.base.CmdShowProperties;
-import org.tigris.gef.base.CmdSpawn;
-import org.tigris.gef.base.CmdUngroup;
-import org.tigris.gef.base.CmdUseReshape;
-import org.tigris.gef.base.CmdUseResize;
-import org.tigris.gef.base.CmdUseRotate;
+import org.tigris.gef.base.DeleteFromModelAction;
 import org.tigris.gef.base.DistributeAction;
+import org.tigris.gef.base.ExitAction;
 import org.tigris.gef.base.Globals;
 import org.tigris.gef.base.ModeSelect;
+import org.tigris.gef.base.PasteAction;
+import org.tigris.gef.base.PrintAction;
+import org.tigris.gef.base.ReorderAction;
+import org.tigris.gef.base.SelectInvertAction;
+import org.tigris.gef.base.SelectNextAction;
+import org.tigris.gef.base.UseReshapeAction;
+import org.tigris.gef.base.UseResizeAction;
+import org.tigris.gef.base.UseRotateAction;
 import org.tigris.gef.event.ModeChangeEvent;
 import org.tigris.gef.graph.GraphEdgeRenderer;
 import org.tigris.gef.graph.GraphModel;
@@ -50,6 +46,7 @@ import org.tigris.gefdemo.uml.persistence.SaveAction;
 import org.tigris.geflayout.base.LayoutAction;
 import org.tigris.geflayout.sugiyama.SugiyamaLayouter;
 import org.tigris.panelbeater.PanelManager;
+import org.tigris.swidgets.BorderSplitPane;
 
 /** 
  * An example of a complex application built using GEF.
@@ -104,41 +101,21 @@ public class UmlDemo {
         panelManager.setJMenuBar(menuBar);
         
         DiagramPanel classDiagramPanel1 = null;
-//        DiagramPanel classDiagramPanel2 = null;
-//        DiagramPanel activityDiagramPanel1 = null;
-//        DiagramPanel activityDiagramPanel2 = null;
-//        DiagramPanel sequenceDiagramPanel1 = null;
-//        DiagramPanel sequenceDiagramPanel2 = null;
+        DiagramPanel sequenceDiagramPanel1 = null;
         try {
             classDiagramPanel1 = new ClassDiagramPanel(
                 ConnectionConstrainer.getInstance(),
-                "Class Diagram 1");
-//            classDiagramPanel2 = new ClassDiagramPanel(
-//                ConnectionConstrainer.getInstance(),
-//                "Class Diagram 2");
-//            activityDiagramPanel1 = new ActivityDiagramPanel(
-//                ConnectionConstrainer.getInstance(),
-//                "Activity Diagram 1");
-//            activityDiagramPanel2 = new ActivityDiagramPanel(
-//                ConnectionConstrainer.getInstance(),
-//                "Activity Diagram 2");
-//            sequenceDiagramPanel1 = new SequenceDiagramPanel(
-//                ConnectionConstrainer.getInstance(),
-//                "Sequence Diagram 1");
-//            sequenceDiagramPanel2 = new SequenceDiagramPanel(
-//                ConnectionConstrainer.getInstance(),
-//                "Sequence Diagram 2");
+                "Class Diagram");
+            sequenceDiagramPanel1 = new SequenceDiagramPanel(
+                ConnectionConstrainer.getInstance(),
+                "Sequence Diagram");
         } catch (Exception e) {
             System.out.println("Exception caught");
             e.printStackTrace();
         }
-//        panelManager.add(activityDiagramPanel1);
-//        panelManager.add(activityDiagramPanel2);
-//        panelManager.add(sequenceDiagramPanel1);
-//        panelManager.add(sequenceDiagramPanel2);
+        panelManager.add(sequenceDiagramPanel1);
         panelManager.add(classDiagramPanel1);
-//        panelManager.add(classDiagramPanel2);
-        panelManager.add(new JPanel(), PanelManager.WEST);
+        panelManager.add(new JPanel(), BorderSplitPane.WEST);
         System.out.println("Panels added");
         
         panelManager.setBounds(10, 10, 700, 700);
@@ -208,7 +185,6 @@ public class UmlDemo {
             printItem,
             exitItem;
         JMenuItem deleteItem, copyItem, pasteItem;
-        JMenuItem groupItem, ungroupItem;
         JMenuItem toBackItem, backwardItem, toFrontItem, forwardItem;
 
         JMenuBar menubar = new JMenuBar();
@@ -221,9 +197,9 @@ public class UmlDemo {
         saveItem = file.add(new SaveAction("Save"));
         saveItem = file.add(new SaveSvgAction());
         saveItem = file.add(new SaveGraphicsAction());
-        CmdPrint cmdPrint = new CmdPrint();
+        PrintAction cmdPrint = new PrintAction();
         printItem = file.add(cmdPrint);
-        exitItem = file.add(new CmdExit());
+        exitItem = file.add(new ExitAction());
 
         JMenu edit = new JMenu(Localizer.localize("GefBase", "Edit"));
         edit.setMnemonic('E');
@@ -241,40 +217,34 @@ public class UmlDemo {
 
         JMenu select = new JMenu(Localizer.localize("GefBase", "Select"));
         edit.add(select);
-        select.add(new CmdSelectNext(false));
-        select.add(new CmdSelectNext(true));
-        select.add(new CmdSelectInvert());
+        select.add(new SelectNextAction("Next", false));
+        select.add(new SelectNextAction("Previous", true));
+        select.add(new SelectInvertAction());
 
         edit.addSeparator();
 
         copyItem = edit.add(new CmdCopy());
         copyItem.setMnemonic('C');
-        pasteItem = edit.add(new CmdPaste());
+        pasteItem = edit.add(new PasteAction("Paste"));
         pasteItem.setMnemonic('P');
 
-        deleteItem = edit.add(new CmdDeleteFromModel());
+        deleteItem = edit.add(new DeleteFromModelAction("Delete"));
         edit.addSeparator();
-        edit.add(new CmdUseReshape());
-        edit.add(new CmdUseResize());
-        edit.add(new CmdUseRotate());
+        edit.add(new UseReshapeAction("Reshape"));
+        edit.add(new UseResizeAction());
+        edit.add(new UseRotateAction());
 
         JMenu view = new JMenu(Localizer.localize("GefBase", "View"));
         menubar.add(view);
         view.setMnemonic('V');
-        view.add(new CmdSpawn());
-        view.add(new CmdShowProperties());
         view.addSeparator();
-        view.add(new CmdAdjustGrid());
-        view.add(new CmdAdjustGuide());
-        view.add(new CmdAdjustPageBreaks());
+        view.add(new AdjustGridAction());
+        view.add(new AdjustGuideAction());
+        view.add(new AdjustPageBreaksAction());
 
         JMenu arrange = new JMenu(Localizer.localize("GefBase", "Arrange"));
         menubar.add(arrange);
         arrange.setMnemonic('A');
-        groupItem = arrange.add(new CmdGroup());
-        groupItem.setMnemonic('G');
-        ungroupItem = arrange.add(new CmdUngroup());
-        ungroupItem.setMnemonic('U');
 
         JMenu align = new JMenu(Localizer.localize("GefBase", "Align"));
         arrange.add(align);
@@ -296,10 +266,10 @@ public class UmlDemo {
 
         JMenu reorder = new JMenu(Localizer.localize("GefBase", "Reorder"));
         arrange.add(reorder);
-        toBackItem = reorder.add(new CmdReorder(CmdReorder.SEND_TO_BACK));
-        toFrontItem = reorder.add(new CmdReorder(CmdReorder.BRING_TO_FRONT));
-        backwardItem = reorder.add(new CmdReorder(CmdReorder.SEND_BACKWARD));
-        forwardItem = reorder.add(new CmdReorder(CmdReorder.BRING_FORWARD));
+        toBackItem = reorder.add(new ReorderAction("Send to back", ReorderAction.SEND_TO_BACK));
+        toFrontItem = reorder.add(new ReorderAction("Bring to front", ReorderAction.BRING_TO_FRONT));
+        backwardItem = reorder.add(new ReorderAction("Send Backward", ReorderAction.SEND_BACKWARD));
+        forwardItem = reorder.add(new ReorderAction("Bring forward", ReorderAction.BRING_FORWARD));
 
         JMenu nudge = new JMenu(Localizer.localize("GefBase", "Nudge"));
         arrange.add(nudge);
@@ -314,8 +284,6 @@ public class UmlDemo {
         KeyStroke ctrlY = KeyStroke.getKeyStroke(KeyEvent.VK_Y, KeyEvent.CTRL_MASK);
         KeyStroke ctrlZ = KeyStroke.getKeyStroke(KeyEvent.VK_Z, KeyEvent.CTRL_MASK);
         KeyStroke ctrlV = KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.CTRL_MASK);
-        KeyStroke ctrlG = KeyStroke.getKeyStroke(KeyEvent.VK_G, KeyEvent.CTRL_MASK);
-        KeyStroke ctrlU = KeyStroke.getKeyStroke(KeyEvent.VK_U, KeyEvent.CTRL_MASK);
         KeyStroke ctrlB = KeyStroke.getKeyStroke(KeyEvent.VK_B, KeyEvent.CTRL_MASK);
         KeyStroke ctrlF = KeyStroke.getKeyStroke(KeyEvent.VK_F, KeyEvent.CTRL_MASK);
         KeyStroke sCtrlB =
@@ -338,12 +306,8 @@ public class UmlDemo {
         deleteItem.setAccelerator(delKey);
         redoItem.setAccelerator(ctrlY);
         undoItem.setAccelerator(ctrlZ);
-        //cutItem.setAccelerator(ctrlX);
         copyItem.setAccelerator(ctrlC);
         pasteItem.setAccelerator(ctrlV);
-
-        groupItem.setAccelerator(ctrlG);
-        ungroupItem.setAccelerator(ctrlU);
 
         toBackItem.setAccelerator(sCtrlB);
         toFrontItem.setAccelerator(sCtrlF);

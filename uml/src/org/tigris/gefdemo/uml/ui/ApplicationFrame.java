@@ -1,4 +1,4 @@
-package org.tigris.panelbeater;
+package org.tigris.gefdemo.uml.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
+import org.tigris.panelbeater.PanelContainer;
 import org.tigris.swidgets.BorderSplitPane;
 import org.tigris.toolbar.layouts.DockBorderLayout;
 
@@ -18,8 +19,12 @@ import org.tigris.toolbar.layouts.DockBorderLayout;
  *
  * @author Bob Tarling
  */
-class ApplicationFrame extends JFrame {
+public class ApplicationFrame extends JFrame {
     
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 3596142647436177638L;
     public static final int TABBED_MODE = 0;
     public static final int INTERNAL_FRAME_MODE = 1;
     
@@ -60,15 +65,15 @@ class ApplicationFrame extends JFrame {
 
     private void init() {
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
-        panelDataMap.put(NORTHEAST, new PanelData(PanelContainer.TABBED_MODE));
-        panelDataMap.put(NORTHWEST, new PanelData(PanelContainer.TABBED_MODE));
-        panelDataMap.put(SOUTHEAST, new PanelData(PanelContainer.TABBED_MODE));
-        panelDataMap.put(SOUTHWEST, new PanelData(PanelContainer.TABBED_MODE));
-        panelDataMap.put(EAST, new PanelData(PanelContainer.TABBED_MODE));
-        panelDataMap.put(WEST, new PanelData(PanelContainer.TABBED_MODE));
-        panelDataMap.put(NORTH, new PanelData(PanelContainer.TABBED_MODE));
-        panelDataMap.put(SOUTH, new PanelData(PanelContainer.TABBED_MODE));
-        panelDataMap.put(CENTER, new PanelData(PanelContainer.TABBED_MODE));
+        panelDataMap.put(NORTHEAST, new PanelData());
+        panelDataMap.put(NORTHWEST, new PanelData());
+        panelDataMap.put(SOUTHEAST, new PanelData());
+        panelDataMap.put(SOUTHWEST, new PanelData());
+        panelDataMap.put(EAST, new PanelData());
+        panelDataMap.put(WEST, new PanelData());
+        panelDataMap.put(NORTH, new PanelData());
+        panelDataMap.put(SOUTH, new PanelData());
+        panelDataMap.put(CENTER, new PanelData());
     
         toolbarBoundry = new JPanel();
         toolbarBoundry.setLayout(new DockBorderLayout());
@@ -79,37 +84,10 @@ class ApplicationFrame extends JFrame {
     }
         
     /**
-     *  Delegate any added components to the workarea
-     */
-    //public Component add(Component arg0, int arg1) {
-    //    if (constructed) {
-    //        return workarea.add(arg0, arg1);
-    //    } else {
-    //        return super.add(arg0, arg1);
-    //    }
-    //}
-
-    /**
      * Delegate any added components to the workarea
      */
     public void add(Component comp, Object position) {
         put(comp, comp, position);
-//        if (constructed) {
-//            // Wrap the component in a WorkbenchPanel
-//            Workbench wp = (Workbench)workbenchPanelByPosition.get(position);
-//            if (wp == null) {
-//                System.out.println(position);
-//                PanelData pd = (PanelData)panelDataMap.get(position);
-//                int style = pd.style;
-//                wp = new Workbench(style);
-//                wp.setPreferredSize(new Dimension(90,90));
-//                workarea.add(wp, position);
-//                workbenchPanelByPosition.put(position, wp);
-//            }
-//            wp.add(comp);
-//        } else {
-//            super.add(comp, position);
-//        }
     }
 
     /**
@@ -118,13 +96,6 @@ class ApplicationFrame extends JFrame {
     public Component add(Component comp) {
         put(comp, comp);
         return comp;
-//        if (constructed) {
-//            // Wrap the component in a WorkbenchPanel
-//            add(comp, BorderSplitPane.CENTER);
-//            return comp;
-//        } else {
-//            return super.add(comp);
-//        }
     }
 
     /**
@@ -144,14 +115,6 @@ class ApplicationFrame extends JFrame {
     }
     
     /**
-     *  Delegate any added components to the workarea
-     */
-    //public Component put(Object key, Component comp, int arg1) {
-    //    keyedPanels.put(key, comp);
-    //    return add(comp, arg1);
-    //}
-
-    /**
      * Delegate any added components to the workarea
      */
     public void put(Object key, Component comp, Object position) {
@@ -162,8 +125,7 @@ class ApplicationFrame extends JFrame {
             if (wp == null) {
                 System.out.println(position);
                 PanelData pd = (PanelData)panelDataMap.get(position);
-                int style = pd.style;
-                wp = new PanelContainer(style);
+                wp = new PanelContainer();
                 wp.setPreferredSize(new Dimension(90,90));
                 workarea.add(wp, position);
                 workbenchPanelByPosition.put(position, wp);
@@ -187,10 +149,10 @@ class ApplicationFrame extends JFrame {
     }
     
     public void setMode(int mode, String position) {
-        panelDataMap.put(position, new PanelData(mode));
+        panelDataMap.put(position, new PanelData());
         PanelContainer wp = (PanelContainer)workbenchPanelByPosition.get(position);
         if (wp == null) {
-            wp = new PanelContainer(mode);
+            wp = new PanelContainer();
             wp.setPreferredSize(new Dimension(90,90));
             workarea.add(wp, position);
             workbenchPanelByPosition.put(position, wp);
@@ -198,9 +160,7 @@ class ApplicationFrame extends JFrame {
     }
 
     private class PanelData {
-        int style;
-        PanelData(int style) {
-            this.style = style;
+        PanelData() {
         }
     }
 }

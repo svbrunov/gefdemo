@@ -21,16 +21,16 @@ import javax.swing.JPanel;
  * TODO This is work in progress. At the moment this class just wraps a single JPanel.
  * @author Bob Tarling
  */
-class PanelContainer extends JPanel {
+public class PanelContainer extends JPanel {
 
-    public static final int TABBED_MODE = 0;
-    public static final int INTERNAL_FRAME_MODE = 1;
-    
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -730139784321012729L;
     List panelList = new ArrayList();
-    private int mode = TABBED_MODE;
     private TabbedPanelStrategy strategy = null;
         
-    PanelContainer() {
+    public PanelContainer() {
         super();
         setLayout(new BorderLayout());
         strategy = new TabbedPanelStrategy(this);
@@ -38,7 +38,6 @@ class PanelContainer extends JPanel {
 
     PanelContainer(int mode) {
         super();
-        this.mode = mode;
         setLayout(new BorderLayout());
         strategy = new TabbedPanelStrategy(this);
     }
