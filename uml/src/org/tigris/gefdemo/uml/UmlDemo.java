@@ -105,20 +105,18 @@ public class UmlDemo {
         DiagramPanel classDiagramPanel1 = null;
         DiagramPanel sequenceDiagramPanel1 = null;
         try {
-            classDiagramPanel1 = new ClassDiagramPanel(
-                ConnectionConstrainer.getInstance(),
-                "Class Diagram");
             sequenceDiagramPanel1 = new SequenceDiagramPanel(
                 ConnectionConstrainer.getInstance(),
                 "Sequence Diagram");
+            classDiagramPanel1 = new ClassDiagramPanel(
+                    ConnectionConstrainer.getInstance(),
+                    "Class Diagram");
         } catch (Exception e) {
             System.out.println("Exception caught");
             e.printStackTrace();
         }
-        workbenchFrame.add(sequenceDiagramPanel1);
         workbenchFrame.add(classDiagramPanel1);
-        workbenchFrame.add(new JPanel(), BorderSplitPane.WEST);
-        System.out.println("Panels added");
+        workbenchFrame.add(sequenceDiagramPanel1);
         
         workbenchFrame.setBounds(10, 10, 700, 700);
         workbenchFrame.setVisible(true);

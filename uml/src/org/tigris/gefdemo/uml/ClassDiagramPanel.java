@@ -30,7 +30,6 @@ public class ClassDiagramPanel extends DiagramPanel {
         
         getActions().add(new CmdCreateNode(UmlClass.class, "Class"));
         getActions().add(new CmdCreateNode(UmlInterface.class, "Interface"));
-        getActions().add(new CmdCreateNode(UmlPackage.class, "Package"));
         getActions().add(new CmdSetMode(ModeCreateAssociationEnd.class, "edgeClass", UmlAssociationEnd.class, "Association"));
         getActions().add(new CmdSetMode(ModeCreatePolyEdge.class, "edgeClass", UmlDependency.class, "Dependency"));
         getActions().add(new CmdSetMode(ModeCreatePolyEdge.class, "edgeClass", UmlAssociationClass.class, "AssociationClass"));
