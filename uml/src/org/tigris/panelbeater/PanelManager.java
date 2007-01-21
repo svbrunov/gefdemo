@@ -11,9 +11,6 @@ import javax.swing.JToolBar;
 import org.tigris.swidgets.BorderSplitPane;
 
 public class PanelManager {
-    public static final int TABBED_MODE = 0;
-    public static final int INTERNAL_FRAME_MODE = 1;
-    
     public static final String NORTHEAST = BorderSplitPane.NORTHEAST;
     public static final String NORTHWEST = BorderSplitPane.NORTHWEST;
     public static final String SOUTHEAST = BorderSplitPane.SOUTHEAST;
@@ -109,10 +106,6 @@ public class PanelManager {
         return workbenchFrame;
     }
 
-    public void toTop(Object key) {
-        workbenchFrame.toTop(key);
-    }
-    
     public void setTitle(String title) {
         workbenchFrame.setTitle(title);
     }

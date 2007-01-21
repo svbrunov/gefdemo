@@ -28,7 +28,7 @@ class PanelContainer extends JPanel {
     
     List panelList = new ArrayList();
     private int mode = TABBED_MODE;
-    private PanelStrategy strategy = null;
+    private TabbedPanelStrategy strategy = null;
         
     PanelContainer() {
         super();
@@ -40,13 +40,7 @@ class PanelContainer extends JPanel {
         super();
         this.mode = mode;
         setLayout(new BorderLayout());
-        if (mode == INTERNAL_FRAME_MODE) {
-            System.out.println("Creating workbench in frame mode");
-            strategy = new FloatingPanelStrategy(this);
-        } else {
-            System.out.println("Creating workbench in tabbed mode");
-            strategy = new TabbedPanelStrategy(this);
-        }
+        strategy = new TabbedPanelStrategy(this);
     }
 
     /**
@@ -109,18 +103,5 @@ class PanelContainer extends JPanel {
      */
     public Component add(String arg0, Component arg1) {
         return super.add(arg0, arg1);
-    }
-    
-    public void setMode(int mode) {
-        if (mode == this.mode) return;
-        if (mode == TABBED_MODE) {
-            
-        } else {
-            
-        }
-    }
-    
-    public void toTop(Component comp) {
-        strategy.toTop(comp);
     }
 }

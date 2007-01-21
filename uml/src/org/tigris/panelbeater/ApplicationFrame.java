@@ -186,17 +186,6 @@ class ApplicationFrame extends JFrame {
         return (Component)keyedPanels.get(key);
     }
     
-    public void toTop(Object key) {
-        Component comp;
-//        if (key instanceof Component) {
-//            comp = (Component)key;
-//        } else {
-            comp = (Component)keyedPanels.get(key);
-//        }
-        PanelContainer wp = (PanelContainer)workbenchPanelsByComponent.get(comp);
-        wp.toTop(comp);
-    }
-    
     public void setMode(int mode, String position) {
         panelDataMap.put(position, new PanelData(mode));
         PanelContainer wp = (PanelContainer)workbenchPanelByPosition.get(position);

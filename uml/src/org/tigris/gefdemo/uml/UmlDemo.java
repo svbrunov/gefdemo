@@ -86,8 +86,6 @@ public class UmlDemo {
         ResourceLoader.addResourceExtension("gif");
         ResourceLoader.addResourceLocation("/org/tigris/gef/Images");
         
-        panelManager.setMode(PanelManager.TABBED_MODE, PanelManager.CENTER);
-        
         panelManager.addWindowListener(
                 new WindowAdapter() {
                     public void windowClosing(WindowEvent event) {

@@ -9,9 +9,11 @@ import javax.swing.border.TitledBorder;
 /**
  * @author Bob Tarling
  */
-class TabbedPanelStrategy extends PanelStrategy {
+class TabbedPanelStrategy {
     
     private JTabbedPane tabbedPane;
+    
+    PanelContainer workbench;
     
     TabbedPanelStrategy(PanelContainer workbench) {
         this.workbench = workbench;
