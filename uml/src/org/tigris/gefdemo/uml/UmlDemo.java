@@ -43,9 +43,9 @@ import org.tigris.gef.undo.UndoAction;
 import org.tigris.gef.util.Localizer;
 import org.tigris.gef.util.ResourceLoader;
 import org.tigris.gefdemo.uml.persistence.SaveAction;
+import org.tigris.gefdemo.uml.ui.ApplicationFrame;
 import org.tigris.geflayout.base.LayoutAction;
 import org.tigris.geflayout.sugiyama.SugiyamaLayouter;
-import org.tigris.panelbeater.PanelManager;
 import org.tigris.swidgets.BorderSplitPane;
 
 /** 
@@ -67,15 +67,17 @@ public class UmlDemo {
 
     private JPanel _mainPanel = new JPanel(new BorderLayout());
 
-    private PanelManager panelManager = new PanelManager();
-    
     private static UmlDemo instance;
+    
+    private ApplicationFrame workbenchFrame;
 
     public UmlDemo getInstance() {
         return instance;
     }
     
     public UmlDemo() {
+	
+        workbenchFrame = new ApplicationFrame();
 
         instance = this;
         
@@ -83,10 +85,10 @@ public class UmlDemo {
         ResourceLoader.addResourceExtension("gif");
         ResourceLoader.addResourceLocation("/org/tigris/gef/Images");
         
-        panelManager.addWindowListener(
+        workbenchFrame.addWindowListener(
                 new WindowAdapter() {
                     public void windowClosing(WindowEvent event) {
-                    	panelManager.dispose();
+                	workbenchFrame.dispose();
                     }
                     public void windowClosed(WindowEvent event) {
                     	System.exit(0);
@@ -94,11 +96,11 @@ public class UmlDemo {
                 }
             );
             
-        panelManager.pack();
+        workbenchFrame.pack();
 
         JMenuBar menuBar = setUpMenus();
 
-        panelManager.setJMenuBar(menuBar);
+        workbenchFrame.setJMenuBar(menuBar);
         
         DiagramPanel classDiagramPanel1 = null;
         DiagramPanel sequenceDiagramPanel1 = null;
@@ -113,13 +115,13 @@ public class UmlDemo {
             System.out.println("Exception caught");
             e.printStackTrace();
         }
-        panelManager.add(sequenceDiagramPanel1);
-        panelManager.add(classDiagramPanel1);
-        panelManager.add(new JPanel(), BorderSplitPane.WEST);
+        workbenchFrame.add(sequenceDiagramPanel1);
+        workbenchFrame.add(classDiagramPanel1);
+        workbenchFrame.add(new JPanel(), BorderSplitPane.WEST);
         System.out.println("Panels added");
         
-        panelManager.setBounds(10, 10, 700, 700);
-        panelManager.setVisible(true);
+        workbenchFrame.setBounds(10, 10, 700, 700);
+        workbenchFrame.setVisible(true);
             
         // init localizer and resourceloader
         ////////////////////////////////////////////////////////////////
