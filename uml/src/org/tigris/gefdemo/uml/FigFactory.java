@@ -58,6 +58,9 @@ import org.tigris.gefdemo.uml.ui.GeneralizationEdgeFig;
 import org.tigris.gefdemo.uml.ui.InterfaceNodeFig;
 import org.tigris.gefdemo.uml.ui.ModelElementEdgeFig;
 
+import org.tigris.gefdemo.uml.model.UmlActor;
+import org.tigris.gefdemo.uml.ui.ActorNodeFig;
+
 /**
  * This class defines a renderer object for UML Class Diagrams.
  */
@@ -82,7 +85,9 @@ public class FigFactory implements GraphNodeRenderer,
             return new InterfaceNodeFig(node);
         else if (node instanceof UmlAssociation)
             return new AssociationNodeFig(node);
-        LOG.error("Unable to create FigNode for " + node);
+        else if (node instanceof UmlActor)
+            return new ActorNodeFig(node);
+       LOG.error("Unable to create FigNode for " + node);
         return null;
     }
 

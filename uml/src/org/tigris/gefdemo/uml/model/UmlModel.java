@@ -25,6 +25,8 @@ public class UmlModel {
             return new UmlAssociationImpl(defaultNs);
         if (identifier.equals(UmlAssociationClass.class))
             return new UmlAssociationClassImpl(defaultNs);
+        if (identifier.equals(UmlActor.class)) 
+            return new UmlActorImpl(defaultNs);
         throw new IllegalArgumentException("Factory failed to create a model element for the identifier " + identifier);
     }
     

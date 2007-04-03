@@ -85,6 +85,7 @@ uml/lib/swidgets-0.1.jar -text
 uml/lib/toolbar-0.4.jar -text
 uml/lib/velocity-1.4.jar -text
 uml/lib/velocity-tools-generic-1.2.jar -text
+uml/src/org/tigris/gefdemo/uml/Images/Actor.gif -text
 uml/src/org/tigris/gefdemo/uml/Images/Association.gif -text
 uml/src/org/tigris/gefdemo/uml/Images/AssociationClass.gif -text
 uml/src/org/tigris/gefdemo/uml/Images/Class.gif -text

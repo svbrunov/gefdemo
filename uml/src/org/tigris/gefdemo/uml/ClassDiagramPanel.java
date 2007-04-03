@@ -13,6 +13,7 @@ import org.tigris.gefdemo.uml.model.UmlDependency;
 import org.tigris.gefdemo.uml.model.UmlGeneralization;
 import org.tigris.gefdemo.uml.model.UmlInterface;
 import org.tigris.gefdemo.uml.model.UmlPackage;
+import org.tigris.gefdemo.uml.model.UmlActor;
 
 /**
  * A panel containing the toolbar and split diagram
@@ -30,6 +31,7 @@ public class ClassDiagramPanel extends DiagramPanel {
         
         getActions().add(new CmdCreateNode(UmlClass.class, "Class"));
         getActions().add(new CmdCreateNode(UmlInterface.class, "Interface"));
+        getActions().add(new CmdCreateNode(UmlActor.class, "Actor"));
         getActions().add(new CmdSetMode(ModeCreateAssociationEnd.class, "edgeClass", UmlAssociationEnd.class, "Association"));
         getActions().add(new CmdSetMode(ModeCreatePolyEdge.class, "edgeClass", UmlDependency.class, "Dependency"));
         getActions().add(new CmdSetMode(ModeCreatePolyEdge.class, "edgeClass", UmlAssociationClass.class, "AssociationClass"));
