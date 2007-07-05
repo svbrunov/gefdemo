@@ -1,0 +1,9 @@
+<graphmodel>
+    <connections>
+        <connection>
+            <edge>org.tigris.gefdemo.bert.model.Relationship</edge>
+            <port>org.tigris.gefdemo.bert.model.ModelElement</port>
+            <port>org.tigris.gefdemo.bert.model.ModelElement</port>
+        </connection>
+    </connections>
+</graphmodel>

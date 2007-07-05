@@ -1,0 +1,10 @@
+Manifest-Version: 2.0
+Class-Path: velocity-1.4.jar panelbeater0.1.jar: batik-dom-1.5.1.jar batik-svggen-1.5.1.jar batik-awt-util-1.5.1.jar freehep-graphicsio.jar freehep-graphics2d.jar freehep-graphicsio-gif.jar xerces_2_5_0.jar commons-logging-1.0.2.jar gef.jar gef-layout.jar toolbar-0.4.jar
+Main-Class: org.tigris.gefdemo.uml.UmlDemo
+Created-By: 1.2 (Sun Microsystems Inc.) 
+
+Name: org/tigris/gefdemo/uml
+Specification-Title: uml
+Specification-Version: @version@
+Implementation-Version: @version@
+Implementation-Title: uml
