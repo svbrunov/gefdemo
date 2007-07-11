@@ -24,7 +24,7 @@ import org.tigris.gef.base.ExitAction;
 import org.tigris.gef.base.Globals;
 import org.tigris.gef.base.ModeSelect;
 import org.tigris.gef.base.PasteAction;
-import org.tigris.gef.base.PrintAction;
+import org.tigris.gef.swing.PrintAction;
 import org.tigris.gef.base.ReorderAction;
 import org.tigris.gef.base.SelectInvertAction;
 import org.tigris.gef.base.SelectNextAction;
@@ -35,7 +35,7 @@ import org.tigris.gef.event.ModeChangeEvent;
 import org.tigris.gef.graph.GraphEdgeRenderer;
 import org.tigris.gef.graph.GraphModel;
 import org.tigris.gef.graph.GraphNodeRenderer;
-import org.tigris.gef.graph.presentation.JGraph;
+import org.tigris.gef.graph.presentation.Graph;
 import org.tigris.gef.ui.PaletteFig;
 import org.tigris.gef.ui.ToolBar;
 import org.tigris.gef.undo.RedoAction;
@@ -63,7 +63,7 @@ public class UmlDemo {
     /** The toolbar (shown at top of window). */
     private ToolBar _toolbar = new PaletteFig();
     /** The graph pane (shown in middle of window). */
-    private JGraph _graph;
+    private Graph _graph;
 
     private JPanel _mainPanel = new JPanel(new BorderLayout());
 
@@ -138,7 +138,7 @@ public class UmlDemo {
     ////////////////////////////////////////////////////////////////
     // accessors
 
-    public JGraph getGraph() {
+    public Graph getGraph() {
         return _graph;
     }
     public GraphEdgeRenderer getGraphEdgeRenderer() {
@@ -160,7 +160,7 @@ public class UmlDemo {
         if (!Globals.getSticky() && Globals.mode() instanceof ModeSelect)
             _toolbar.unpressAllButtons();
     }
-    public void setGraph(JGraph g) {
+    public void setGraph(Graph g) {
         _graph = g;
     }
     public void setGraphEdgeRenderer(GraphEdgeRenderer rend) {

@@ -16,8 +16,8 @@ import org.tigris.gef.event.ModeChangeEvent;
 import org.tigris.gef.event.ModeChangeListener;
 import org.tigris.gef.graph.ConnectionConstrainer;
 import org.tigris.gef.graph.GraphModelException;
-import org.tigris.gef.graph.presentation.JGraph;
-import org.tigris.gef.graph.presentation.JSplitGraphPane;
+import org.tigris.gef.graph.presentation.Graph;
+import org.tigris.gef.graph.presentation.SplitGraphPane;
 
 import org.tigris.toolbar.ToolBarFactory;
 
@@ -28,21 +28,22 @@ import org.tigris.toolbar.ToolBarFactory;
  */
 public abstract class DiagramPanel extends JPanel implements ModeChangeListener, InternalFrameListener {
     /** The graph pane (shown in middle of window). */
-    private JGraph graph;
+    private Graph graph;
     private JToolBar toolbar;
     
-    private static JGraph currentGraph;
+    private static Graph currentGraph;
 
     private List actions = new ArrayList();
     
     public DiagramPanel(ConnectionConstrainer connectionConstrainer) throws GraphModelException {
         super(new BorderLayout());
     
-        graph = new JGraph(connectionConstrainer);
+        org.tigris.gef.swing.JGraph g = new org.tigris.gef.swing.JGraph(connectionConstrainer);
+        graph = g;
         graph.setGraphModel(new UmlGraphModel());
         currentGraph = graph;
 
-        add(new JSplitGraphPane(graph), BorderLayout.CENTER);
+        add(new org.tigris.gef.swing.JSplitGraphPane(g), BorderLayout.CENTER);
         graph.addModeChangeListener(this);
     }
 
@@ -58,7 +59,7 @@ public abstract class DiagramPanel extends JPanel implements ModeChangeListener,
         return actions;
     }
     
-    protected JGraph getGraph() {
+    protected Graph getGraph() {
         return graph;
     }
 
@@ -71,7 +72,7 @@ public abstract class DiagramPanel extends JPanel implements ModeChangeListener,
         }
     }
     
-    public static JGraph getCurrentGraph() {
+    public static Graph getCurrentGraph() {
         return currentGraph;
     }
 

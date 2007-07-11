@@ -13,7 +13,7 @@ import org.tigris.gef.graph.presentation.*;
 
 public class BasicApplication {
 
-    private JGraphFrame graphFrame;
+    private GraphFrame graphFrame;
 
     public BasicApplication() {
         // init localizer and resourceloader
