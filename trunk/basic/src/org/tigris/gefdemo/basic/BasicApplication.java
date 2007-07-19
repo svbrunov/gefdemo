@@ -6,7 +6,9 @@ import java.util.Locale;
 
 import org.tigris.gef.base.*;
 import org.tigris.gef.util.*;
-import org.tigris.gef.graph.presentation.*;
+import org.tigris.gef.swing.*;
+
+import org.eclipse.swt.*;
 
 /** A simple example of the minimum code needed to build an
  *  application using GEF. */
@@ -16,6 +18,10 @@ public class BasicApplication {
     private GraphFrame graphFrame;
 
     public BasicApplication() {
+        SwingInit();
+    }
+    
+    public void SwingInit(){
         // init localizer and resourceloader
         Localizer.addResource("GefBase","org.tigris.gef.base.BaseResourceBundle");
         Localizer.addResource("GefPres","org.tigris.gef.presentation.PresentationResourceBundle");
@@ -52,8 +58,17 @@ public class BasicApplication {
             dgm.addNode(sn);
         }
     }
+    public void SWTInit() {
+        // init localizer and resourceloader
+    }   
+    public BasicApplication(String mode) {
+         if (mode="SWT")
+             SWTInit();
+         else
+             SwingInit();
+    }
 
     public static void main(String args[]) {
-        BasicApplication demo = new BasicApplication();
+        BasicApplication demo = new BasicApplication(args[1]);
     }
 }
