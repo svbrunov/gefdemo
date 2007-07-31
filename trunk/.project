@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>gefdemo</name>
+	<comment></comment>
+	<projects>
+		<project>gef</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>classes</name>
+			<type>2</type>
+			<location>build/classes</location>
+		</link>
+		<link>
+			<name>src</name>
+			<type>2</type>
+			<location>src</location>
+		</link>
+		<link>
+			<name>xerces.jar</name>
+			<type>2</type>
+			<location>../gef/lib/xerces.jar</location>
+		</link>
+		<link>
+			<name>log4j.jar</name>
+			<type>2</type>
+			<location>../gef/lib/log4j.jar</location>
+		</link>
+	</linkedResources>
+</projectDescription>

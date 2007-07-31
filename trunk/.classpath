@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="classes" path="src"/>
+	<classpathentry kind="src" path="uml/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.0.2.jar"/>
+	<classpathentry kind="lib" path="lib/xerces_2_5_0.jar"/>
+	<classpathentry kind="lib" path="lib/xml-apis.jar"/>
+	<classpathentry kind="lib" path="uml/lib/batik-awt-util-1.5.1.jar"/>
+	<classpathentry kind="lib" path="uml/lib/batik-css-1.5.1.jar"/>
+	<classpathentry kind="lib" path="uml/lib/batik-dom-1.5.1.jar"/>
+	<classpathentry kind="lib" path="uml/lib/batik-ext-1.5.1.jar"/>
+	<classpathentry kind="lib" path="uml/lib/batik-gui-util-1.5.1.jar"/>
+	<classpathentry kind="lib" path="uml/lib/batik-gvt-1.5.1.jar"/>
+	<classpathentry kind="lib" path="uml/lib/batik-parser-1.5.1.jar"/>
+	<classpathentry kind="lib" path="uml/lib/batik-svg-dom-1.5.1.jar"/>
+	<classpathentry kind="lib" path="uml/lib/batik-svggen-1.5.1.jar"/>
+	<classpathentry kind="lib" path="uml/lib/batik-util-1.5.1.jar"/>
+	<classpathentry kind="lib" path="uml/lib/batik-xml-1.5.1.jar"/>
+	<classpathentry kind="lib" path="uml/lib/commons-collections-3.2.jar"/>
+	<classpathentry kind="lib" path="uml/lib/freehep-base.jar"/>
+	<classpathentry kind="lib" path="uml/lib/freehep-graphics2d.jar"/>
+	<classpathentry kind="lib" path="uml/lib/freehep-graphicsio.jar"/>
+	<classpathentry kind="lib" path="uml/lib/freehep-graphicsio-cgm.jar"/>
+	<classpathentry kind="lib" path="uml/lib/freehep-graphicsio-emf.jar"/>
+	<classpathentry kind="lib" path="uml/lib/freehep-graphicsio-gif.jar"/>
+	<classpathentry kind="lib" path="uml/lib/freehep-graphicsio-java.jar"/>
+	<classpathentry kind="lib" path="uml/lib/freehep-graphicsio-pdf.jar"/>
+	<classpathentry kind="lib" path="uml/lib/freehep-graphicsio-ppm.jar"/>
+	<classpathentry kind="lib" path="uml/lib/freehep-graphicsio-ps.jar"/>
+	<classpathentry kind="lib" path="uml/lib/freehep-graphicsio-svg.jar"/>
+	<classpathentry kind="lib" path="uml/lib/freehep-graphicsio-swf.jar"/>
+	<classpathentry kind="lib" path="uml/lib/gef-layout.jar"/>
+	<classpathentry kind="lib" path="uml/lib/panelbeater0.1.jar"/>
+	<classpathentry kind="lib" path="uml/lib/swidgets-0.1.jar"/>
+	<classpathentry kind="lib" path="uml/lib/swingwt.jar"/>
+	<classpathentry kind="lib" path="uml/lib/swt.jar"/>
+	<classpathentry kind="lib" path="uml/lib/toolbar-0.4.jar"/>
+	<classpathentry kind="lib" path="uml/lib/velocity-1.4.jar"/>
+	<classpathentry kind="lib" path="uml/lib/velocity-tools-generic-1.2.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gef"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
