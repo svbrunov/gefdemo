@@ -1,6 +1,8 @@
 * text=auto !eol
 trunk/.classpath -text
 trunk/.project -text
+trunk/basic/eclipse/BasicApplicationSWT.launch -text
+trunk/basic/eclipse/BasicApplicationSwing.launch -text
 trunk/bert/lib/batik-awt-util-1.5.1.jar -text
 trunk/bert/lib/batik-css-1.5.1.jar -text
 trunk/bert/lib/batik-dom-1.5.1.jar -text
