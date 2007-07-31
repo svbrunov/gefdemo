@@ -54,7 +54,6 @@ trunk/lan/src/org/tigris/gefdemo/lan/Images/NodeServer.gif -text
 trunk/lan/src/org/tigris/gefdemo/lan/Images/NodeSonar.gif -text
 trunk/lan/src/org/tigris/gefdemo/lan/Images/NodeWireless.gif -text
 trunk/lib/commons-logging-1.0.2.jar -text
-trunk/lib/gef.jar -text svneol=unset#unset
 trunk/lib/xerces_2_5_0.jar -text
 trunk/lib/xml-apis.jar -text
 trunk/uml/lib/batik-awt-util-1.5.1.jar -text
