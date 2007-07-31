@@ -1,10 +1,11 @@
 package org.tigris.gefdemo.basic;
 
-import java.awt.event.*;
 import java.util.*;
 import java.io.*;
 
 import org.tigris.gef.base.*;
+import org.tigris.gef.base.KeyEvent;
+import org.tigris.gef.base.MouseEvent;
 import org.tigris.gef.presentation.*;
 import org.tigris.gef.graph.presentation.*;
 
@@ -12,7 +13,11 @@ import org.tigris.gef.graph.presentation.*;
  * application. */
 public class SampleNode extends NetNode implements Serializable {
 
-  public SamplePort north, east, west, south;
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2408765935522642669L;
+public SamplePort north, east, west, south;
   protected int _number;
   
    /** Initialize a new SampleNode from the given default node and

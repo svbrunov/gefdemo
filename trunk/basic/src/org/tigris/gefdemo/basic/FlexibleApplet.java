@@ -49,6 +49,7 @@ import org.tigris.gef.base.Globals;
 import org.tigris.gef.graph.GraphModel;
 import org.tigris.gef.graph.presentation.DefaultGraphModel;
 import org.tigris.gef.graph.presentation.Graph;
+import org.tigris.gef.graph.presentation.JGraph;
 import org.tigris.gef.ui.PaletteFig;
 import org.tigris.gef.util.Localizer;
 import org.tigris.gef.util.ResourceLoader;
@@ -140,7 +141,7 @@ public class FlexibleApplet extends Applet {
 
     public void initWindows() {
         Dimension drawAreaSize = new Dimension(_drawAreaWidth, _drawAreaHeight);
-        Graph jg = new JGraph(gm);
+        JGraph jg = new JGraph(gm);
         jg.setSize(drawAreaSize);
         jg.setPreferredSize(drawAreaSize);
 

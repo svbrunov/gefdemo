@@ -5,8 +5,12 @@ import java.awt.event.*;
 import java.util.Locale;
 
 import org.tigris.gef.base.*;
+import org.tigris.gef.graph.presentation.DefaultGraphModel;
+import org.tigris.gef.graph.presentation.GraphFrame;
 import org.tigris.gef.util.*;
 import org.tigris.gef.swing.*;
+import org.tigris.gefdemo.basic.SampleNode;
+import org.tigris.gefdemo.basic.SamplePalette;
 
 import org.eclipse.swt.*;
 
@@ -60,15 +64,20 @@ public class BasicApplication {
     }
     public void SWTInit() {
         // init localizer and resourceloader
-    }   
+     }   
     public BasicApplication(String mode) {
-         if (mode="SWT")
+         if (mode=="SWT")
              SWTInit();
          else
              SwingInit();
     }
 
     public static void main(String args[]) {
-        BasicApplication demo = new BasicApplication(args[1]);
+    	BasicApplication demo;
+    	if (args.length>0)
+    		demo = new BasicApplication(args[1]);
+    	else
+    		demo = new BasicApplication("");
+    		
     }
 }

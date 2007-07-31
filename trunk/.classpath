@@ -2,6 +2,9 @@
 <classpath>
 	<classpathentry kind="src" output="classes" path="src"/>
 	<classpathentry kind="src" path="uml/src"/>
+	<classpathentry kind="src" path="basic/src"/>
+	<classpathentry kind="src" path="lan/src"/>
+	<classpathentry kind="src" path="bert/src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/commons-logging-1.0.2.jar"/>
 	<classpathentry kind="lib" path="lib/xerces_2_5_0.jar"/>
@@ -39,5 +42,6 @@
 	<classpathentry kind="lib" path="uml/lib/velocity-1.4.jar"/>
 	<classpathentry kind="lib" path="uml/lib/velocity-tools-generic-1.2.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/gef"/>
+	<classpathentry kind="lib" path="lib"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
