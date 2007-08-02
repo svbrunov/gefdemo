@@ -31,16 +31,6 @@ public class BasicApplication {
         ResourceLoader.addResourceExtension("gif");
         ResourceLoader.addResourceLocation("/org/tigris/gef/Images");
         graphFrame = new JGraphFrame();
-        graphFrame.addWindowListener(
-            new WindowAdapter() {
-                public void windowClosing(WindowEvent event) {
-                  graphFrame.dispose();
-                }
-                public void windowClosed(WindowEvent event) {
-                  System.exit(0);
-                }
-            }
-        );
 
         graphFrame.setToolBar(new SamplePalette()); //needs-more-work
     
