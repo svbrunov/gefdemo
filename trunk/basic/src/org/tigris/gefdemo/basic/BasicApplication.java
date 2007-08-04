@@ -1,18 +1,18 @@
 package org.tigris.gefdemo.basic;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Rectangle;
 import java.util.Locale;
 
-import org.tigris.gef.base.*;
+import org.tigris.gef.base.LayerManager;
+import org.tigris.gef.base.LayerPerspective;
 import org.tigris.gef.graph.presentation.DefaultGraphModel;
 import org.tigris.gef.graph.presentation.GraphFrame;
-import org.tigris.gef.util.*;
-import org.tigris.gef.swing.*;
+import org.tigris.gef.graph.presentation.Presentation;
+import org.tigris.gef.graph.presentation.PresentationFactory;
+import org.tigris.gef.util.Localizer;
+import org.tigris.gef.util.ResourceLoader;
 import org.tigris.gefdemo.basic.SampleNode;
 import org.tigris.gefdemo.basic.SamplePalette;
-
-import org.eclipse.swt.*;
 
 /** A simple example of the minimum code needed to build an
  *  application using GEF. */
@@ -22,10 +22,6 @@ public class BasicApplication {
     private GraphFrame graphFrame;
 
     public BasicApplication() {
-        SwingInit();
-    }
-    
-    public void SwingInit(){
         // init localizer and resourceloader
         Localizer.addResource("GefBase","org.tigris.gef.base.BaseResourceBundle");
         Localizer.addResource("GefPres","org.tigris.gef.presentation.PresentationResourceBundle");
@@ -33,12 +29,9 @@ public class BasicApplication {
         Localizer.switchCurrentLocale(Locale.getDefault());
         ResourceLoader.addResourceExtension("gif");
         ResourceLoader.addResourceLocation("/org/tigris/gef/Images");
-        graphFrame = new JGraphFrame();
+        graphFrame = PresentationFactory.getPresentation().createGraphFrame();
 
         graphFrame.setToolBar(new SamplePalette()); //needs-more-work
-    
-        // make the delete key remove elements from the underlying GraphModel
-        //_jgf.getGraph().bindKey(new CmdDispose(), KeyEvent.VK_DELETE, 0);
     
         graphFrame.setBounds(10, 10, 300, 200);
         graphFrame.setVisible(true);
@@ -52,22 +45,17 @@ public class BasicApplication {
             dgm.addNode(sn);
         }
     }
-    public void SWTInit() {
-        // init localizer and resourceloader
-     }   
-    public BasicApplication(String mode) {
-         if (mode=="SWT")
-             SWTInit();
-         else
-             SwingInit();
-    }
 
     public static void main(String args[]) {
-    	BasicApplication demo;
-    	if (args.length>0)
-    		demo = new BasicApplication(args[1]);
-    	else
-    		demo = new BasicApplication("");
-    		
+	
+	if (args.length > 0) {
+	    try {
+                Class c = Class.forName(args[0]);
+                PresentationFactory.setPresentation((Presentation) c.newInstance());
+	    } catch (Exception e) {
+		// fall back to swing if there's an exception
+	    }
+	}
+    	BasicApplication demo = new BasicApplication();
     }
 }
