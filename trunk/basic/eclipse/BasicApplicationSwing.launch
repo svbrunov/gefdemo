@@ -16,5 +16,5 @@
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="4"/>
 </listAttribute>
-<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.tigris.gefdemo.basic.swing.BasicApplication"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.tigris.gefdemo.basic.BasicApplication"/>
 </launchConfiguration>
