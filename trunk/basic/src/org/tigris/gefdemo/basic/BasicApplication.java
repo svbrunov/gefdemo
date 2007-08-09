@@ -33,16 +33,19 @@ public class BasicApplication {
 
         graphFrame.setToolBar(new SamplePalette()); //needs-more-work
     
-        graphFrame.setBounds(10, 10, 300, 200);
+        graphFrame.setBounds(10, 10, 300, 300);
         graphFrame.setVisible(true);
         LayerManager lm =  graphFrame.getGraph().getEditor().getLayerManager();
         LayerPerspective lay = (LayerPerspective) lm.getActiveLayer();
         lay.addNodeTypeRegion(SampleNode.class, new Rectangle(10, 10, 200, 200));
         DefaultGraphModel dgm = (DefaultGraphModel) graphFrame.getGraphModel();
         for (int i = 0; i < 1; i++) {
-            SampleNode sn = new SampleNode();
-            sn.initialize(null);
-            dgm.addNode(sn);
+            SampleNode sn1 = new SampleNode();
+            SampleNode sn2 = new SampleNode();
+            sn1.initialize(null);
+            sn2.initialize(null);
+            dgm.addNode(sn1);
+            dgm.addNode(sn2);
         }
     }
 
