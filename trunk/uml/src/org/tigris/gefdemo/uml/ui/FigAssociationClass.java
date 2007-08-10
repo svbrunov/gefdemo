@@ -113,7 +113,7 @@ public class FigAssociationClass
                     mutableGraphModel.addNode(currentFig.getOwner());
                     int x = head.getX();
                     int y = head.getY();
-                    Rectangle drawingArea = editor.getJComponent().getBounds();
+                    Rectangle drawingArea = editor.getGraphInternalPane().getInternalBounds();
 
                     Iterator nodes = currentFig.getLayer().getContentsNoEdges().iterator();
                     while (nodes.hasNext()) {

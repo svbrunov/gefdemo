@@ -9,6 +9,7 @@ import org.tigris.gef.graph.presentation.DefaultGraphModel;
 import org.tigris.gef.graph.presentation.GraphFrame;
 import org.tigris.gef.graph.presentation.Presentation;
 import org.tigris.gef.graph.presentation.PresentationFactory;
+import org.tigris.gef.ui.PaletteFig;
 import org.tigris.gef.util.Localizer;
 import org.tigris.gef.util.ResourceLoader;
 import org.tigris.gefdemo.basic.SampleNode;
@@ -31,7 +32,8 @@ public class BasicApplication {
         ResourceLoader.addResourceLocation("/org/tigris/gef/Images");
         graphFrame = PresentationFactory.getPresentation().createGraphFrame();
 
-        graphFrame.setToolBar(new SamplePalette()); //needs-more-work
+        //graphFrame.setToolBar(new SamplePalette()); //needs-more-work
+        graphFrame.setToolBar(PresentationFactory.getPresentation().createPaletteFig()); //No Icons displayed
     
         graphFrame.setBounds(10, 10, 300, 300);
         graphFrame.setVisible(true);
