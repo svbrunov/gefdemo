@@ -3,17 +3,17 @@ package org.tigris.gefdemo.basic;
 import java.awt.Rectangle;
 import java.util.Locale;
 
+import org.tigris.gef.base.CmdCreateNode;
 import org.tigris.gef.base.LayerManager;
 import org.tigris.gef.base.LayerPerspective;
 import org.tigris.gef.graph.presentation.DefaultGraphModel;
 import org.tigris.gef.graph.presentation.GraphFrame;
 import org.tigris.gef.graph.presentation.Presentation;
 import org.tigris.gef.graph.presentation.PresentationFactory;
-import org.tigris.gef.ui.PaletteFig;
+import org.tigris.gef.ui.IToolBar;
 import org.tigris.gef.util.Localizer;
 import org.tigris.gef.util.ResourceLoader;
 import org.tigris.gefdemo.basic.SampleNode;
-import org.tigris.gefdemo.basic.SamplePalette;
 
 /** A simple example of the minimum code needed to build an
  *  application using GEF. */
@@ -33,7 +33,10 @@ public class BasicApplication {
         graphFrame = PresentationFactory.getPresentation().createGraphFrame();
 
         //graphFrame.setToolBar(new SamplePalette()); //needs-more-work
-        graphFrame.setToolBar(PresentationFactory.getPresentation().createPaletteFig()); //No Icons displayed
+        
+        IToolBar tb = graphFrame.getToolBar();
+        tb.add(new CmdCreateNode(org.tigris.gefdemo.basic.SampleNode.class, "NodeOne"));
+        tb.add(new CmdCreateNode(org.tigris.gefdemo.basic.SampleNode2.class, "NodeTwo"));
     
         graphFrame.setBounds(10, 10, 300, 300);
         graphFrame.setVisible(true);
