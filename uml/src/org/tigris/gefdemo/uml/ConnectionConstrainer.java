@@ -4,7 +4,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.apache.xerces.parsers.DOMParser;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.tigris.gef.graph.GraphModelException;
 import org.tigris.gef.graph.XmlConnectionConstrainer;
 import org.w3c.dom.DOMException;
@@ -34,14 +37,14 @@ public class ConnectionConstrainer extends XmlConnectionConstrainer {
 
     private static Document getDocument() throws GraphModelException {
         try {
-            //File file = new File("/org/tigris/gefdemo/uml/graphmodel.xml");
-            //FileInputStream inputStream = new FileInputStream(file);
             InputStream inputStream = ConnectionConstrainer.class.getResourceAsStream("/org/tigris/gefdemo/uml/graphmodel.xml");
             InputSource inputSource = new InputSource(inputStream);
-            DOMParser parser = new DOMParser();
-            parser.parse(inputSource);
-            return parser.getDocument();
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            return db.parse(inputSource);
         } catch (FileNotFoundException e) {
+            throw new GraphModelException(e);
+        } catch (ParserConfigurationException e) {
             throw new GraphModelException(e);
         } catch (DOMException e) {
             throw new GraphModelException(e);
