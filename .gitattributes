@@ -1,4 +1,6 @@
 * text=auto !eol
+/.classpath -text
+/.project -text
 bert/lib/batik-awt-util-1.5.1.jar -text
 bert/lib/batik-css-1.5.1.jar -text
 bert/lib/batik-dom-1.5.1.jar -text
