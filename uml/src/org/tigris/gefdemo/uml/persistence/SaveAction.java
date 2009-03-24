@@ -118,7 +118,7 @@ public class SaveAction extends AbstractAction {
             
             Template template = ve.getTemplate("diagram.vm");
 
-            BufferedWriter writer = writer = new BufferedWriter(
+            BufferedWriter writer = new BufferedWriter(
                 new OutputStreamWriter(f));
 
             template.merge(context, writer);
